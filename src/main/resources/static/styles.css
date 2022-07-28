@@ -5,6 +5,7 @@
 }
 
 fieldset {
+    border: 1px solid rgb(243, 52, 26);
     display: inline-block;
 }
 
