@@ -1,0 +1,19 @@
+.parent_center { /* Centering the tag */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
+    display: inline-block;
+}
+
+legend {
+    background-color: blue;
+    color: yellow;
+    padding: 3px 6px;
+}
+
+input {
+    margin: .4rem;
+}
