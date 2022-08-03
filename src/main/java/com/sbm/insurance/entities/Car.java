@@ -1,31 +1,39 @@
-package com.sbm.insurance.entity;
+package com.sbm.insurance.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Car")
+@Table(
+        uniqueConstraints = @UniqueConstraint(
+                name = "email",
+                columnNames = "email"
+        )
+)
 public class Car {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(nullable = false, unique = false)
     private int age;
 
-    @Column(nullable = false, unique = false)
     private String model;
 
-    @Column(nullable = false, unique = false)
     private int memberYear;
+
+    private int price;
+
+    public Car(String email, int age, String model, int memberYear) {
+        this.email = email;
+        this.age = age;
+        this.model = model;
+        this.memberYear = memberYear;
+    }
+
+    public Car() {
+
+    }
 
     @Override
     public String toString() {
@@ -71,5 +79,13 @@ public class Car {
 
     public void setMemberYear(int memberYear) {
         this.memberYear = memberYear;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
