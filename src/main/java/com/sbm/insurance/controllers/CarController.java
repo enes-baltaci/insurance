@@ -25,7 +25,7 @@ public class CarController {
     @PostMapping("/car_registrate")
     public String carRegistrate(@ModelAttribute Car car , Model model) {
 
-        int price = 0;
+        int price;
 
         if (car.getModel().equalsIgnoreCase("SUV")) {
 

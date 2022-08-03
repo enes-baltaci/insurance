@@ -5,16 +5,18 @@
 }
 
 fieldset {
-    border: 1px solid rgb(243, 52, 26);
+    border: 2px solid;
     display: inline-block;
 }
 
-legend {
-    background-color: blue;
-    color: yellow;
-    padding: 3px 6px;
+button {
+    border: 3px solid crimson;
 }
 
 input {
     margin: .4rem;
+}
+
+.radioright {
+    padding-right: 100px;
 }

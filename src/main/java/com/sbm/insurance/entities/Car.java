@@ -1,8 +1,14 @@
 package com.sbm.insurance.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(
         uniqueConstraints = @UniqueConstraint(
                 name = "email",
@@ -14,6 +20,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String email;
 
     private int age;
@@ -24,68 +31,16 @@ public class Car {
 
     private int price;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
+    private Account account;
+
+    // For test purposes
     public Car(String email, int age, String model, int memberYear) {
         this.email = email;
         this.age = age;
         this.model = model;
         this.memberYear = memberYear;
-    }
-
-    public Car() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "Car [age=" + age + ", email=" + email + ", id=" + id + ", memberYear=" + memberYear + ", model=" + model
-                + "]";
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getMemberYear() {
-        return memberYear;
-    }
-
-    public void setMemberYear(int memberYear) {
-        this.memberYear = memberYear;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 }

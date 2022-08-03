@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.text.ParseException;
-
 @Controller
 public class TravelController {
 
@@ -25,9 +23,9 @@ public class TravelController {
     }
 
     @PostMapping("/travel_registrate")
-    public String travelRegistrate(@ModelAttribute Travel travel, Model model) throws ParseException {
+    public String travelRegistrate(@ModelAttribute Travel travel, Model model) {
 
-        int price = 0;
+        int price;
 
         if (travel.getType().equalsIgnoreCase("Flight")) {
 
