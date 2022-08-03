@@ -22,8 +22,8 @@ public class CarController {
         return "car_insurance";
     }
 
-    @PostMapping("registrate")
-    public String registrate(@ModelAttribute Car car , Model model) {
+    @PostMapping("/car_registrate")
+    public String carRegistrate(@ModelAttribute Car car , Model model) {
 
         int price = 0;
 

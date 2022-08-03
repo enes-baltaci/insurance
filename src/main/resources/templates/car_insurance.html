@@ -13,12 +13,12 @@
 
 <div class="container">
 
-    <h1>Make Insurance</h1>
+    <h1>Make Car Insurance</h1>
     <hr>
 
     <h5><a th:href="@{/}">Home</a></h5>
 
-    <form action="#" th:action="@{/registrate}" th:object="${car}" method="post">
+    <form action="#" th:action="@{/car_registrate}" th:object="${car}" method="post">
 
         <div>
             <label for="email">Email</label>
@@ -46,21 +46,24 @@
                 <div class="col-sm-10">
 
                     <div class="form-check">
-                        <input class="form-check-input" th:field="*{model}" type="radio" name="suv" id="suv" value="SUV" checked>
+                        <input class="form-check-input"
+                               th:field="*{model}" type="radio" name="suv" id="suv" value="SUV" checked>
                         <label class="form-check-label" for="suv">
                             SUV
                         </label>
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" th:field="*{model}" type="radio" name="sedan" id="sedan" value="Sedan">
+                        <input class="form-check-input"
+                               th:field="*{model}" type="radio" name="sedan" id="sedan" value="Sedan">
                         <label class="form-check-label" for="sedan">
                             Sedan
                         </label>
                     </div>
 
                     <div class="form-check disabled">
-                        <input class="form-check-input" th:field="*{model}" type="radio" name="hatchback" id="hatchback" value="Hatchback">
+                        <input class="form-check-input"
+                               th:field="*{model}" type="radio" name="hatchback" id="hatchback" value="Hatchback">
                         <label class="form-check-label" for="hatchback">
                             Hatchback
                         </label>
