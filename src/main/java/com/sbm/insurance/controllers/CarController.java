@@ -23,21 +23,59 @@ public class CarController {
     }
 
     @PostMapping("registrate")
-    public String registrate(@ModelAttribute Car car) {
+    public String registrate(@ModelAttribute Car car , Model model) {
+
+        int price = 0;
 
         if (car.getModel().equalsIgnoreCase("SUV")) {
 
+            price = 3000;
+
+            if (car.getAge() < 2) {
+                price += 2400;
+            }
+            else if (car.getAge() > 2 && car.getAge() < 6) {
+                price += 1800;
+            }
+            else {
+                price += 1000;
+            }
         }
         else if (car.getModel().equalsIgnoreCase("Sedan")) {
 
+            price = 3600;
+
+            if (car.getAge() < 2) {
+                price += 2700;
+            }
+            else if (car.getAge() > 2 && car.getAge() < 6) {
+                price += 2400;
+            }
+            else {
+                price += 1800;
+            }
         }
         else {
+            price = 2400;
 
+            if (car.getAge() < 2) {
+                price += 1500;
+            }
+            else if (car.getAge() > 2 && car.getAge() < 6) {
+                price += 1200;
+            }
+            else {
+                price += 800;
+            }
         }
+
+        price -= car.getMemberYear() < 5 ? 0 : 250;
+
+        car.setPrice(price);
 
         carService.save(car);
 
-
+        model.addAttribute("price", price);
 
         return "price";
     }

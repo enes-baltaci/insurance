@@ -14,8 +14,9 @@
     <h2>Price</h2>
     <hr>
 
-    <form action="#" th:action="@{/}" method="post" th:object="">
-
+    <form action="/" th:action="@{/}" method="get" th:object="${price}">
+        <p th:text="'Total price is: ' + ${price}"/>
+        <button type="submit">Home</button>
     </form>
 </div>
 </body>
