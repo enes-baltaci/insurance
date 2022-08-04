@@ -7,7 +7,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
-    <title>Insurance :: Travel</title>
+    <title>Insurance App :: Travel</title>
 </head>
 <body>
 <div class="container">
@@ -21,9 +21,13 @@
             <label for="accounts">Choose an account:</label>
 
             <select th:field="*{account}" class="form-control" style="width: auto;" id="accounts">
-                <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.email}"/>
+                <option th:each="account : ${accounts}"
+                        th:value="${account.id}"
+                        th:text="${account.name + ' ' + account.surname + ' - ' + account.email}"/>
             </select>
         </div>
+
+        <br>
 
         <fieldset class="form-group">
 

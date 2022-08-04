@@ -7,13 +7,13 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
-    <title>Insurance :: Car</title>
+    <title>Insurance App :: Car</title>
 </head>
 <body>
 
 <div class="container">
 
-    <h1>Make Car Insurance</h1>
+    <h2>Make Car Insurance</h2>
     <hr>
 
     <form action="#" th:action="@{/car_registrate}" th:object="${car}" method="post">
@@ -22,7 +22,9 @@
             <label for="accounts">Choose an account:</label>
 
             <select th:field="*{account}" class="form-control" style="width: auto;" id="accounts">
-                <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.email}"/>
+                <option th:each="account : ${accounts}"
+                        th:value="${account.id}"
+                        th:text="${account.name + ' ' + account.surname + ' - '  + account.email}"/>
             </select>
         </div>
 

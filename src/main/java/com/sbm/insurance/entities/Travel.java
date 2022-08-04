@@ -19,6 +19,7 @@ public class Travel {
 
     private String type;
 
+    @Column(name = "travel_date")
     private String date;
 
     private int distance;
