@@ -29,9 +29,14 @@ public class Account {
     private String name;
     private String surname;
 
+    private int memberYear;
+
     @Email
     private String email;
 
     @OneToMany(mappedBy = "account")
     private List<Car> cars;
+
+    @OneToMany(mappedBy = "account")
+    private List<Travel> travels;
 }

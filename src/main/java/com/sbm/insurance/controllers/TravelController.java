@@ -1,6 +1,7 @@
 package com.sbm.insurance.controllers;
 
 import com.sbm.insurance.entities.Travel;
+import com.sbm.insurance.services.AccountService;
 import com.sbm.insurance.services.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,13 @@ public class TravelController {
     @Autowired
     private TravelService travelService;
 
+    @Autowired
+    private AccountService accountService;
+
     @GetMapping("/travel_insurance")
     public String travelInsurance(Model model) {
-        Travel travel = new Travel();
-        model.addAttribute(travel);
+        model.addAttribute("travel", new Travel());
+        model.addAttribute("accounts", accountService.getAll());
         return "travel_insurance";
     }
 

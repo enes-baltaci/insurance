@@ -1,6 +1,7 @@
 package com.sbm.insurance.controllers;
 
 import com.sbm.insurance.entities.Car;
+import com.sbm.insurance.services.AccountService;
 import com.sbm.insurance.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,15 +16,18 @@ public class CarController {
     @Autowired
     private CarService carService;
 
+    @Autowired
+    private AccountService accountService;
+
     @GetMapping("/car_insurance")
     public String carInsurance(Model model) {
-        Car car = new Car();
-        model.addAttribute(car);
+        model.addAttribute("car", new Car());
+        model.addAttribute("accounts", accountService.getAll());
         return "car_insurance";
     }
 
     @PostMapping("/car_registrate")
-    public String carRegistrate(@ModelAttribute Car car , Model model) {
+    public String carRegistrate(@ModelAttribute Car car, Model model) {
 
         int price;
 
@@ -68,8 +72,6 @@ public class CarController {
                 price += 800;
             }
         }
-
-        price -= car.getMemberYear() < 5 ? 0 : 250;
 
         car.setPrice(price);
 

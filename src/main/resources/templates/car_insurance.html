@@ -19,18 +19,18 @@
     <form action="#" th:action="@{/car_registrate}" th:object="${car}" method="post">
 
         <div>
-            <label for="email">Email</label>
-            <input th:field="*{email}" type="email" name="email" id="email" placeholder="Email" required>
+            <label for="accounts">Choose an account:</label>
+
+            <select th:field="*{account}" class="form-control" style="width: auto;" id="accounts">
+                <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.email}"/>
+            </select>
         </div>
+
+        <br>
 
         <div>
             <label for="age">Car Age</label>
             <input th:field="*{age}" type="text" name="age" id="age" placeholder="Car Age" value="0" required>
-        </div>
-
-        <div>
-            <label for="memberyear">Member Year</label>
-            <input th:field="*{memberYear}" type="text" name="memberyear" id="memberyear" placeholder="Member Year" value="0">
         </div>
 
         <br>

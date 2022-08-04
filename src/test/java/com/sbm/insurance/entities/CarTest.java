@@ -13,7 +13,7 @@ class CarTest {
 
     @Test
     public void createCar() {
-        Car car = new Car("enes@gmail.com", 5, "Sedan", 10);
+        Car car = new Car(5, "Sedan");
 
         carService.save(car);
     }

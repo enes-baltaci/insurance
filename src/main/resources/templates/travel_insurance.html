@@ -16,6 +16,15 @@
     <hr>
 
     <form action="#" th:action="@{/travel_registrate}" th:object="${travel}" method="post">
+
+        <div>
+            <label for="accounts">Choose an account:</label>
+
+            <select th:field="*{account}" class="form-control" style="width: auto;" id="accounts">
+                <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.email}"/>
+            </select>
+        </div>
+
         <fieldset class="form-group">
 
             <div class="row">

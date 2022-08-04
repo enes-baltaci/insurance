@@ -3,6 +3,7 @@ package com.sbm.insurance.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -25,4 +26,9 @@ public class Travel {
     private int days;
 
     private int price;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
+    private Account account;
 }
