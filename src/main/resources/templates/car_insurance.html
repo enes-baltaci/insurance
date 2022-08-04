@@ -32,7 +32,7 @@
 
         <div>
             <label for="age">Car Age</label>
-            <input th:field="*{age}" type="text" name="age" id="age" placeholder="Car Age" value="0" required>
+            <input th:field="*{age}" type="number" name="age" id="age" placeholder="Car Age" value="0" min="0" required>
         </div>
 
         <br>
@@ -90,6 +90,9 @@
         </li>
         <li>
             <h6><a th:href="@{/travel_insurance}">Make Travel Insurance</a></h6>
+        </li>
+        <li>
+            <h6><a th:href="@{/list_insurances}">List Insurance</a></h6>
         </li>
     </ul>
 

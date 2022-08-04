@@ -73,12 +73,12 @@
 
         <div>
             <label for="distance">Distance</label>
-            <input th:field="*{distance}" type="text" name="distance" id="distance" value="0">
+            <input th:field="*{distance}" type="number" name="distance" id="distance" min="0" value="0">
         </div>
 
         <div>
             <label for="days">How many days</label>
-            <input th:field="*{days}" type="text" name="days" id="days" value="0">
+            <input th:field="*{days}" type="number" name="days" id="days" min="0" value="0">
         </div>
 
         <button type="submit">Submit!</button>
@@ -95,6 +95,9 @@
         </li>
         <li>
             <h6><a th:href="@{/car_insurance}">Make Car Insurance</a></h6>
+        </li>
+        <li>
+            <h6><a th:href="@{/list_insurances}">List Insurance</a></h6>
         </li>
     </ul>
 

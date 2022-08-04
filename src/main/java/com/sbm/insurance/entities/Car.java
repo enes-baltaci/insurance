@@ -25,10 +25,4 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
-
-    // For test purposes
-    public Car(int age, String model) {
-        this.age = age;
-        this.model = model;
-    }
 }
