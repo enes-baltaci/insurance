@@ -28,4 +28,10 @@ public class AccountController {
         accountService.save(account);
         return "redirect:/";
     }
+
+    @GetMapping("/account_edit")
+    public String editAccount(Model model) {
+        model.addAttribute("accounts", accountService.getAll());
+        return "account_select";
+    }
 }

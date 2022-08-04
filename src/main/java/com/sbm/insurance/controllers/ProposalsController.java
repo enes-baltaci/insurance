@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ListInsuranceController {
+public class ProposalsController {
 
     @Autowired
     private TravelService travelService;
@@ -16,10 +16,10 @@ public class ListInsuranceController {
     @Autowired
     private CarService carService;
 
-    @GetMapping("/list_insurances")
+    @GetMapping("/proposals")
     public String listInsurances(Model model) {
         model.addAttribute("cars", carService.getAll());
         model.addAttribute("travels", travelService.getAll());
-        return "insurances";
+        return "proposals";
     }
 }
