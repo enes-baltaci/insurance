@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 public class AccountController {
@@ -29,9 +32,46 @@ public class AccountController {
         return "redirect:/";
     }
 
-    @GetMapping("/account_edit")
-    public String editAccount(Model model) {
+    @GetMapping("/account_select")
+    public String selectAccount(Model model) {
         model.addAttribute("accounts", accountService.getAll());
         return "account_select";
+    }
+
+    @GetMapping("/account_edit/{id}")
+    public String sendAccount(@PathVariable("id") Long id, Model model) {
+
+        Optional<Account> accountOptional = accountService.getById(id);
+
+        if (accountOptional.isPresent()) {
+            model.addAttribute("account", accountOptional.get());
+        }
+        return "account_edit";
+    }
+
+    @PostMapping("/account_edit/{id}")
+    public String editAccount(@PathVariable("id") Long id, Account account) {
+
+        Account accountDatabase = accountService.getById(id).get();
+
+        if (!account.getName().equalsIgnoreCase(accountDatabase.getName())) {
+            accountDatabase.setName(account.getName());
+        }
+
+        if (!account.getSurname().equalsIgnoreCase(accountDatabase.getSurname())) {
+            accountDatabase.setSurname(account.getSurname());
+        }
+
+        if (!account.getEmail().equalsIgnoreCase(accountDatabase.getEmail())) {
+            accountDatabase.setEmail(account.getEmail());
+        }
+
+        if (account.getMemberYear() != accountDatabase.getMemberYear()) {
+            accountDatabase.setMemberYear(account.getMemberYear());
+        }
+
+        accountService.save(accountDatabase);
+
+        return "redirect:/";
     }
 }

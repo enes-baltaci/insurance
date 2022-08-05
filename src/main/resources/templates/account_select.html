@@ -7,7 +7,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
-    <title>Insurance App :: Account Edit</title>
+    <title>Insurance App :: Select Account</title>
 </head>
 <body>
 <div class="container">
@@ -15,19 +15,25 @@
     <h2>Choose Account to Edit</h2>
     <hr>
 
-    <form th:object="${accounts}" th:action="@{/account_edit}" action="#"  method="get">
 
-        <div>
-            <label for="accounts">Choose an account:</label>
+    <div>
+        <label for="accounts">Choose an account:</label>
 
-            <select class="form-control" name="accounts" id="accounts" style="width: auto">
-                <option th:each="account : ${accounts}"
-                        th:value="${account}"
-                        th:text="${account.name + ' ' + account.surname + ' - ' + account.email}"/>
-            </select>
-        </div>
+        <ul id="accounts">
+            <li th:each="account : ${accounts}">
+                <a th:href="@{/account_edit/{id}(id=${account.id})}">
+                    <p th:text="${account.name + ' ' + account.surname + ' - ' + account.email}"/>
+                </a>
+            </li>
+        </ul>
 
-    </form>
+    </div>
+
+    <hr>
+
+    <ul>
+        <li><a th:href="@{/}">Back</a></li>
+    </ul>
 
 </div>
 </body>
