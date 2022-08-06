@@ -13,8 +13,8 @@ public class TravelService {
     @Autowired
     private TravelRepository travelRepository;
 
-    public Travel save(Travel travel) {
-        return travelRepository.save(travel);
+    public void save(Travel travel) {
+        travelRepository.save(travel);
     }
 
     public List<Travel> getAll() {

@@ -13,8 +13,8 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    public Car save(Car car) {
-        return carRepository.save(car);
+    public void save(Car car) {
+        carRepository.save(car);
     }
 
     public List<Car> getAll() {

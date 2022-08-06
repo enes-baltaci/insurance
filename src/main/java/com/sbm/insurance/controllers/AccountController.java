@@ -23,13 +23,13 @@ public class AccountController {
         Account account = new Account();
         model.addAttribute("account", account);
         model.addAttribute("processName", "Create");
-        model.addAttribute("action", "account_registrate");
+        model.addAttribute("action", "account_registration");
 
         return "account";
     }
 
-    @PostMapping("/account_registrate")
-    public String registrate(@ModelAttribute Account account) {
+    @PostMapping("/account_registration")
+    public String registration(@ModelAttribute Account account) {
         accountService.save(account);
         return "redirect:/";
     }

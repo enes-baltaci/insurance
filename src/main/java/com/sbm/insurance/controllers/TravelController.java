@@ -26,8 +26,8 @@ public class TravelController {
         return "travel_insurance";
     }
 
-    @PostMapping("/travel_registrate")
-    public String travelRegistrate(@ModelAttribute Travel travel, Model model) {
+    @PostMapping("/travel_registration")
+    public String travelRegistration(@ModelAttribute Travel travel, Model model) {
 
         int price;
 

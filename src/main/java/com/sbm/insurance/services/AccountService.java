@@ -15,8 +15,8 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public Account save(@Valid Account account) {
-        return accountRepository.save(account);
+    public void save(@Valid Account account) {
+        accountRepository.save(account);
     }
 
     public List<Account> getAll() {
