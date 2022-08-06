@@ -49,33 +49,43 @@ public class AccountController {
             model.addAttribute("account", accountOptional.get());
             model.addAttribute("processName", "Update");
             model.addAttribute("action", "account_edit/" + accountOptional.get().getId());
+            return "account";
         }
-        return "account";
+        else {
+            return "error";
+        }
     }
 
     @PostMapping("/account_edit/{id}")
     public String editAccount(@PathVariable("id") Long id, Account account) {
 
-        Account accountDatabase = accountService.getById(id).get();
+        if (accountService.getById(id).isPresent()) {
 
-        if (!account.getName().equalsIgnoreCase(accountDatabase.getName())) {
-            accountDatabase.setName(account.getName());
+            Account accountDatabase = accountService.getById(id).get();
+
+            if (!account.getName().equalsIgnoreCase(accountDatabase.getName())) {
+                accountDatabase.setName(account.getName());
+            }
+
+            if (!account.getSurname().equalsIgnoreCase(accountDatabase.getSurname())) {
+                accountDatabase.setSurname(account.getSurname());
+            }
+
+            if (!account.getEmail().equalsIgnoreCase(accountDatabase.getEmail())) {
+                accountDatabase.setEmail(account.getEmail());
+            }
+
+            if (account.getMemberYear() != accountDatabase.getMemberYear()) {
+                accountDatabase.setMemberYear(account.getMemberYear());
+            }
+
+            accountService.save(accountDatabase);
+
+            return "redirect:/";
+
         }
-
-        if (!account.getSurname().equalsIgnoreCase(accountDatabase.getSurname())) {
-            accountDatabase.setSurname(account.getSurname());
+        else {
+            return "error";
         }
-
-        if (!account.getEmail().equalsIgnoreCase(accountDatabase.getEmail())) {
-            accountDatabase.setEmail(account.getEmail());
-        }
-
-        if (account.getMemberYear() != accountDatabase.getMemberYear()) {
-            accountDatabase.setMemberYear(account.getMemberYear());
-        }
-
-        accountService.save(accountDatabase);
-
-        return "redirect:/";
     }
 }

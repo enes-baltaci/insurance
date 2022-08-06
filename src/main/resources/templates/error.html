@@ -7,17 +7,15 @@
           crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{styles.css}">
     <meta charset="UTF-8">
-    <title>Insurance App :: Price</title>
+    <title>Insurance :: Error</title>
 </head>
 <body>
-<div class="container">
-    <h2>Price</h2>
+<div>
+    <h1>Sorry, what you are looking for does not exist.</h1>
     <hr>
 
-    <form action="/" th:action="@{/}" method="get">
-        <p th:text="'Total price is: ' + ${price}"/>
-        <button type="submit">Home</button>
-    </form>
+    <h5><a th:href="@{/}">Home</a></h5>
+
 </div>
 </body>
 </html>
