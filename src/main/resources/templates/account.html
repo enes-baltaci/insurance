@@ -12,10 +12,10 @@
 <body>
 <div class="container">
 
-    <h2>Create Account</h2>
+    <h2 th:text="${processName} + ' Account'"/>
     <hr>
 
-    <form action="#" th:action="@{/account_registrate}" th:object="${account}" method="post">
+    <form th:object="${account}" action="#" th:action="@{/{action}(action=${action})}" method="post">
 
         <div>
             <label for="name">Name</label>

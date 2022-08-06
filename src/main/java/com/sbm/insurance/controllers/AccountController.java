@@ -21,7 +21,9 @@ public class AccountController {
     @GetMapping("/create_account")
     public String createAccount(Model model) {
         Account account = new Account();
-        model.addAttribute(account);
+        model.addAttribute("account", account);
+        model.addAttribute("processName", "Create");
+        model.addAttribute("action", "account_registrate");
 
         return "account";
     }
@@ -45,8 +47,10 @@ public class AccountController {
 
         if (accountOptional.isPresent()) {
             model.addAttribute("account", accountOptional.get());
+            model.addAttribute("processName", "Update");
+            model.addAttribute("action", "account_edit/" + accountOptional.get().getId());
         }
-        return "account_edit";
+        return "account";
     }
 
     @PostMapping("/account_edit/{id}")
