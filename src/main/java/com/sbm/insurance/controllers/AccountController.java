@@ -30,8 +30,14 @@ public class AccountController {
 
     @PostMapping("/account_registration")
     public String registration(@ModelAttribute Account account) {
-        accountService.save(account);
-        return "redirect:/";
+
+        try {
+            accountService.save(account);
+            return "redirect:/";
+        }
+        catch (Exception e) {
+            return "account_create_error";
+        }
     }
 
     @GetMapping("/account_select")
@@ -50,8 +56,7 @@ public class AccountController {
             model.addAttribute("processName", "Update");
             model.addAttribute("action", "account_edit/" + accountOptional.get().getId());
             return "account";
-        }
-        else {
+        } else {
             return "error";
         }
     }
@@ -83,8 +88,7 @@ public class AccountController {
 
             return "redirect:/";
 
-        }
-        else {
+        } else {
             return "error";
         }
     }
