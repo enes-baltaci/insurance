@@ -15,7 +15,7 @@
     <h2 class="parent_center" th:text="${title}"/>
     <hr>
 
-    <h4 th:text="${traveltitle}"/>
+    <h4 th:text="${travelTitle}"/>
     <hr>
 
     <table class="table table-dark">
@@ -94,6 +94,9 @@
     <ul>
         <li>
             <h6><a th:href="@{/}">Home</a></h6>
+        </li>
+        <li>
+            <h6><a th:href="@{/{link}(link=${link})}" th:text="${linkName}"/></h6>
         </li>
         <li>
             <h6><a th:href="@{/create_account}">Create Account</a></h6>

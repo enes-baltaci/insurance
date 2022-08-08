@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 @Controller
@@ -30,7 +29,9 @@ public class ProposalsController {
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
         model.addAttribute("carTitle", "Car Insurance Proposals");
-        model.addAttribute("traveltitle", "Travel Insurance Proposals");
+        model.addAttribute("travelTitle", "Travel Insurance Proposals");
+        model.addAttribute("link", "proposals/accepted");
+        model.addAttribute("linkName", "Accepted Proposals");
         return "proposals";
     }
 
@@ -41,7 +42,9 @@ public class ProposalsController {
         model.addAttribute("accepted", true);
         model.addAttribute("title", "Accepted Proposals");
         model.addAttribute("carTitle", "Car Insurances");
-        model.addAttribute("traveltitle", "Travel Insurances");
+        model.addAttribute("travelTitle", "Travel Insurances");
+        model.addAttribute("link", "proposals");
+        model.addAttribute("linkName", "Proposals");
         return "proposals";
     }
 
