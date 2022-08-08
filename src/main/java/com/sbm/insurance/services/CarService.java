@@ -25,4 +25,8 @@ public class CarService {
     public Optional<Car> getById(Long id) {
         return carRepository.findById(id);
     }
+
+    public int updateCarStatusById(Long id) {
+        return carRepository.updateCarStatusById(id);
+    }
 }

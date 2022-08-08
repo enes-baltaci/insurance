@@ -1,6 +1,7 @@
 package com.sbm.insurance.controllers;
 
 import com.sbm.insurance.entities.Car;
+import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.CarService;
 import com.sbm.insurance.services.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,17 +30,38 @@ public class ProposalsController {
     }
 
     @PostMapping("/proposals/car/{id}")
-    public String accept(@PathVariable Long id) {
+    public String acceptCar(@PathVariable Long id) {
         Optional<Car> optionalCar = carService.getById(id);
 
         if (optionalCar.isPresent()) {
-            Car car = optionalCar.get();
 
-            car.setStatus(true);
+            if (!optionalCar.get().isStatus()) {
 
-            carService.save(car);
+                carService.updateCarStatusById(optionalCar.get().getId());
+
+            }
+
+            return "redirect:/proposals";
         }
+        else {
+            return "error";
+        }
+    }
 
-        return "redirect:/proposals";
+    @PostMapping("/proposals/travel/{id}")
+    public String acceptTravel(@PathVariable Long id) {
+        Optional<Travel> optionalTravel = travelService.getById(id);
+
+        if (optionalTravel.isPresent()) {
+
+            if (!optionalTravel.get().isStatus()) {
+                travelService.updateTravelStatusById(optionalTravel.get().getId());
+            }
+
+            return "redirect:/proposals";
+        }
+        else {
+            return "error";
+        }
     }
 }

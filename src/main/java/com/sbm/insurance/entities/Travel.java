@@ -26,6 +26,9 @@ public class Travel {
 
     private int days;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean status;
+
     private int price;
 
     @NotNull

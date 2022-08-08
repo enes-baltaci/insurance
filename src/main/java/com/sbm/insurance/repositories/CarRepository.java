@@ -17,5 +17,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             value = "UPDATE car SET status = true WHERE id = ?1",
             nativeQuery = true
     )
-    int updateStudentStatusById(Long id);
+    int updateCarStatusById(Long id);
 }

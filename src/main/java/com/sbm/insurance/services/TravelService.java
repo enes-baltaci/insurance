@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TravelService {
@@ -19,5 +20,13 @@ public class TravelService {
 
     public List<Travel> getAll() {
         return travelRepository.findAll();
+    }
+
+    public Optional<Travel> getById(Long id) {
+        return travelRepository.findById(id);
+    }
+
+    public int updateTravelStatusById(Long id) {
+        return travelRepository.updateTravelStatusById(id);
     }
 }
