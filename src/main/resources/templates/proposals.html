@@ -12,10 +12,10 @@
 <body style="background-color: lightsteelblue">
 <div class="container">
 
-    <h2 class="parent_center">Proposals</h2>
+    <h2 class="parent_center" th:text="${title}"/>
     <hr>
 
-    <h4>Travel Insurance Proposals</h4>
+    <h4 th:text="${traveltitle}"/>
     <hr>
 
     <table class="table table-dark">
@@ -30,11 +30,11 @@
             <th scope="col">Travel Distance</th>
             <th scope="col">Day</th>
             <th scope="col">Price</th>
-            <th scope="col">Action</th>
+            <th scope="col" th:if="${accepted} == false">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="travel : ${travels}">
+        <tr th:each="travel : ${travels}" th:if="${travel.status} == ${accepted}">
             <td th:text="${travel.account.id}"/>
             <td th:text="${travel.account.name + ' ' + travel.account.surname}"/>
             <td th:text="${travel.account.email}"/>
@@ -44,7 +44,7 @@
             <td th:text="${travel.distance}"/>
             <td th:text="${travel.days}">
             <td th:text="${travel.price}"/>
-            <td>
+            <td th:if="${accepted} == false">
                 <form th:action="@{/proposals/travel/{id}(id=${travel.id})}" action="#" method="post">
                     <button type="submit" class="btn btn-primary">Accept</button>
                 </form>
@@ -55,7 +55,7 @@
 
     <hr>
 
-    <h4>Car Insurance Proposals</h4>
+    <h4 th:text="${carTitle}"/>
     <hr>
 
     <table class="table table-dark" th:object="${cars}">
@@ -68,11 +68,11 @@
             <th scope="col">Car Age</th>
             <th scope="col">Car Model</th>
             <th scope="col">Price</th>
-            <th scope="col">Action</th>
+            <th scope="col" th:if="${accepted} == false">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="car : ${cars}">
+        <tr th:each="car : ${cars}" th:if="${car.status} == ${accepted}">
             <td th:text="${car.account.id}"/>
             <td th:text="${car.account.name + ' ' + car.account.surname}"/>
             <td th:text="${car.account.email}"/>
@@ -80,7 +80,7 @@
             <td th:text="${car.age}"/>
             <td th:text="${car.model}"/>
             <td th:text="${car.price}"/>
-            <td>
+            <td th:if="${accepted} == false">
                 <form th:action="@{/proposals/car/{id}(id=${car.id})}" action="#" method="post">
                     <button type="submit" class="btn btn-primary">Accept</button>
                 </form>
