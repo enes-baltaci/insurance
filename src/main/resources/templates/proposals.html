@@ -12,7 +12,7 @@
 <body style="background-color: lightsteelblue">
 <div class="container">
 
-    <h2 class="parent_center" th:text="${title}"/>
+    <h2 th:text="${title}"/>
     <hr>
 
     <h4 th:text="${travelTitle}"/>
@@ -38,7 +38,7 @@
             <td th:text="${travel.account.id}"/>
             <td th:text="${travel.account.name + ' ' + travel.account.surname}"/>
             <td th:text="${travel.account.email}"/>
-            <td th:text="${travel.account.memberYear}"/>
+            <td th:text="${travel.account.getAge}"/>
             <td th:text="${travel.type}"/>
             <td th:text="${travel.date}"/>
             <td th:text="${travel.distance}"/>
@@ -76,7 +76,7 @@
             <td th:text="${car.account.id}"/>
             <td th:text="${car.account.name + ' ' + car.account.surname}"/>
             <td th:text="${car.account.email}"/>
-            <td th:text="${car.account.memberYear}"/>
+            <td th:text="${car.account.getAge}"/>
             <td th:text="${car.age}"/>
             <td th:text="${car.model}"/>
             <td th:text="${car.price}"/>

@@ -19,7 +19,7 @@ class AccountTest {
                 .email("sbm@gmail.com")
                 .name("Nazif")
                 .surname("Ilbek")
-                .memberYear(5)
+                .age(5)
                 .build();
 
         accountService.save(account);

@@ -4,6 +4,20 @@
     align-items: center;
 }
 
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+th {
+    color: brown;
+}
+
+td {
+    color: cornflowerblue;
+}
+
 fieldset {
     border: 2px solid;
     display: inline-block;

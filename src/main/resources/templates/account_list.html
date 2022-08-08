@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <meta charset="UTF-8">
+    <title>Insurance App :: Accounts</title>
+</head>
+<body style="background-color: navajowhite">
+<div class="container">
+
+    <h2>Accounts</h2>
+    <hr>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Account Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="account : ${accounts}">
+            <td th:text="${account.id}"/>
+            <td th:text="${account.name + ' ' + account.surname}"/>
+            <td th:text="${account.email}"/>
+            <td th:text="${account.age}"/>
+            <td>
+                <a th:href="@{/account_edit/{id}(id=${account.id})}" class="btn btn-primary">
+                    Edit
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <ul>
+        <li><a th:href="@{/}">Back</a></li>
+    </ul>
+
+</div>
+</body>
+</html>

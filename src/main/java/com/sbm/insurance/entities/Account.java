@@ -26,7 +26,7 @@ public class Account {
     private String name;
     private String surname;
 
-    private int memberYear;
+    private int age;
 
     private String email;
 

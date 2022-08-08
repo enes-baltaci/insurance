@@ -40,10 +40,10 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/account_select")
+    @GetMapping("/account_list")
     public String selectAccount(Model model) {
         model.addAttribute("accounts", accountService.getAll());
-        return "account_select";
+        return "account_list";
     }
 
     @GetMapping("/account_edit/{id}")
@@ -80,8 +80,8 @@ public class AccountController {
                 accountDatabase.setEmail(account.getEmail());
             }
 
-            if (account.getMemberYear() != accountDatabase.getMemberYear()) {
-                accountDatabase.setMemberYear(account.getMemberYear());
+            if (account.getAge() != accountDatabase.getAge()) {
+                accountDatabase.setAge(account.getAge());
             }
 
             accountService.save(accountDatabase);
