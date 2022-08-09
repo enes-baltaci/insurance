@@ -54,16 +54,18 @@ public class ProposalsController {
 
         if (optionalCar.isPresent()) {
 
-            if (!optionalCar.get().isStatus()) {
+//            if (!optionalCar.get().isStatus()) {
+//
+//                carService.updateCarStatusById(optionalCar.get().getId());
+//
+//            }
 
-                carService.updateCarStatusById(optionalCar.get().getId());
-
-            }
+            carService.updateCarStatusById(optionalCar.get().getId()); // WILL BE REPLACED WITH UPPER BLOCK
 
             return "redirect:/proposals";
         }
         else {
-            return "error";
+            return "account_id_error";
         }
     }
 
@@ -73,14 +75,16 @@ public class ProposalsController {
 
         if (optionalTravel.isPresent()) {
 
-            if (!optionalTravel.get().isStatus()) {
-                travelService.updateTravelStatusById(optionalTravel.get().getId());
-            }
+//            if (!optionalTravel.get().isStatus()) {
+//                travelService.updateTravelStatusById(optionalTravel.get().getId());
+//            }
+
+            travelService.updateTravelStatusById(optionalTravel.get().getId());
 
             return "redirect:/proposals";
         }
         else {
-            return "error";
+            return "account_id_error";
         }
     }
 }

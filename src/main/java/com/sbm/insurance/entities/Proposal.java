@@ -11,20 +11,22 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Travel {
+public class Proposal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int price;
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean status;
+
+    private String proposalDate;
+
     private String type;
 
-    @Column(name = "travel_date")
-    private String date;
-
-    private int distance;
-
-    private int days;
+    private Long foreign_id;
 
     @NotNull
     @ManyToOne

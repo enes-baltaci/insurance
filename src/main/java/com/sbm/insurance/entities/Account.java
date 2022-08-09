@@ -35,4 +35,7 @@ public class Account {
 
     @OneToMany(mappedBy = "account")
     private List<Travel> travels;
+
+    @OneToMany(mappedBy = "account")
+    private List<Proposal> proposals;
 }

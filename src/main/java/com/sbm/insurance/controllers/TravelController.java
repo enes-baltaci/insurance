@@ -1,7 +1,9 @@
 package com.sbm.insurance.controllers;
 
+import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.AccountService;
+import com.sbm.insurance.services.ProposalService;
 import com.sbm.insurance.services.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class TravelController {
@@ -18,6 +23,9 @@ public class TravelController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private ProposalService proposalService;
 
     @GetMapping("/travel_insurance")
     public String travelInsurance(Model model) {
@@ -56,9 +64,20 @@ public class TravelController {
             price += travel.getDays() * 60;
         }
 
-        travel.setPrice(price);
-
         travelService.save(travel);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+
+        Proposal proposal = Proposal.builder()
+                .account(travel.getAccount())
+                .price(price)
+                .proposalDate(formatter.format(date))
+                .type("Travel")
+                .foreign_id(travel.getId())
+                .build();
+
+        proposalService.save(proposal);
 
         model.addAttribute("price", price);
 
