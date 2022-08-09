@@ -18,6 +18,8 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    private boolean flag = false;
+
     @GetMapping("/create_account")
     public String createAccount(Model model) {
         Account account = new Account();
@@ -33,16 +35,24 @@ public class AccountController {
 
         try {
             accountService.save(account);
-            return "redirect:/success";
+            flag = true;
+            return "redirect:/info";
         }
         catch (Exception e) {
-            return "account_create_error";
+            flag = false;
+            return "redirect:/info";
         }
     }
 
-    @GetMapping("/success")
-    public String success() {
-        return "account_creation_success";
+    @GetMapping("/info")
+    public String info(Model model) {
+        if (flag) {
+            model.addAttribute("flag", true);
+        }
+        else {
+            model.addAttribute("flag", false);
+        }
+        return "account_creation_info";
     }
 
     @GetMapping("/account_list")

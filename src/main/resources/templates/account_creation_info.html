@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance :: Success</title>
+</head>
+<body>
+
+<script th:if="${flag} == true">
+    alert('Account created succesfully!');
+    window.location.href = "/";
+</script>
+
+<script th:if="${flag} == false">
+    alert('Email already exists!');
+    window.location.href = "/create_account";
+</script>
+
+</body>
+</html>
