@@ -73,20 +73,19 @@ public class CarController {
             }
         }
 
-        carService.save(car);
-
         SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
         Proposal proposal = Proposal.builder()
-                .account(car.getAccount())
                 .price(price)
                 .proposalDate(formatter.format(date))
-                .type("Car")
-                .foreign_id(car.getId())
                 .build();
 
         proposalService.save(proposal);
+
+        car.setProposal(proposal);
+
+        carService.save(car);
 
         model.addAttribute("price", price);
 

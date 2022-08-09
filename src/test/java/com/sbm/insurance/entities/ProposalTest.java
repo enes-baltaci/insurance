@@ -24,18 +24,8 @@ class ProposalTest {
         SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
 
-        Account account = Account.builder()
-                .email("london@paris.com")
-                .name("London")
-                .surname("Paris")
-                .age(5)
-                .build();
-
-        accountService.save(account);
-
         Proposal proposal = Proposal.builder()
                 .price(5)
-                .account(account)
                 .proposalDate(formatter.format(date))
                 .build();
 

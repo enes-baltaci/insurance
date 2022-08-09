@@ -3,6 +3,7 @@ package com.sbm.insurance.controllers;
 import com.sbm.insurance.entities.Car;
 import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.CarService;
+import com.sbm.insurance.services.ProposalService;
 import com.sbm.insurance.services.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class ProposalsController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private ProposalService proposalService;
 
     @GetMapping("/proposals")
     public String listProposals(Model model) {
@@ -54,13 +58,9 @@ public class ProposalsController {
 
         if (optionalCar.isPresent()) {
 
-//            if (!optionalCar.get().isStatus()) {
-//
-//                carService.updateCarStatusById(optionalCar.get().getId());
-//
-//            }
-
-            carService.updateCarStatusById(optionalCar.get().getId()); // WILL BE REPLACED WITH UPPER BLOCK
+            if (!optionalCar.get().getProposal().isStatus()) {
+                proposalService.updateStatusById(optionalCar.get().getProposal().getId());
+            }
 
             return "redirect:/proposals";
         }
@@ -75,11 +75,9 @@ public class ProposalsController {
 
         if (optionalTravel.isPresent()) {
 
-//            if (!optionalTravel.get().isStatus()) {
-//                travelService.updateTravelStatusById(optionalTravel.get().getId());
-//            }
-
-            travelService.updateTravelStatusById(optionalTravel.get().getId());
+            if (!optionalTravel.get().getProposal().isStatus()) {
+                proposalService.updateStatusById(optionalTravel.get().getProposal().getId());
+            }
 
             return "redirect:/proposals";
         }

@@ -64,20 +64,19 @@ public class TravelController {
             price += travel.getDays() * 60;
         }
 
-        travelService.save(travel);
-
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
         Proposal proposal = Proposal.builder()
-                .account(travel.getAccount())
                 .price(price)
                 .proposalDate(formatter.format(date))
-                .type("Travel")
-                .foreign_id(travel.getId())
                 .build();
 
         proposalService.save(proposal);
+
+        travel.setProposal(proposal);
+
+        travelService.save(travel);
 
         model.addAttribute("price", price);
 

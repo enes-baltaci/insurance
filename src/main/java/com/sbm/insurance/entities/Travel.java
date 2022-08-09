@@ -30,4 +30,9 @@ public class Travel {
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "proposal_id", referencedColumnName = "id", nullable = false)
+    private Proposal proposal;
 }

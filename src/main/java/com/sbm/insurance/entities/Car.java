@@ -1,6 +1,8 @@
 package com.sbm.insurance.entities;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,4 +25,9 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "proposal_id", referencedColumnName = "id", nullable = false)
+    private Proposal proposal;
 }

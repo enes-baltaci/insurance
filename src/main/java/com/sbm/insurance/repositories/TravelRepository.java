@@ -2,19 +2,9 @@ package com.sbm.insurance.repositories;
 
 import com.sbm.insurance.entities.Travel;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
 
 @Repository
 public interface TravelRepository extends JpaRepository<Travel, Long> {
-    @Modifying
-    @Transactional
-    @Query(
-            value = "UPDATE travel SET status = true WHERE id = ?1",
-            nativeQuery = true
-    )
-    int updateTravelStatusById(Long id);
+
 }

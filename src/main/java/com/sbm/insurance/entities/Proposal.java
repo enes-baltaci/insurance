@@ -3,7 +3,6 @@ package com.sbm.insurance.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -24,12 +23,9 @@ public class Proposal {
 
     private String proposalDate;
 
-    private String type;
+    @OneToOne(mappedBy = "proposal")
+    private Car car;
 
-    private Long foreign_id;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-    private Account account;
+    @OneToOne(mappedBy = "proposal")
+    private Travel travel;
 }

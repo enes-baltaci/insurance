@@ -25,8 +25,4 @@ public class TravelService {
     public Optional<Travel> getById(Long id) {
         return travelRepository.findById(id);
     }
-
-    public int updateTravelStatusById(Long id) {
-        return travelRepository.updateTravelStatusById(id);
-    }
 }
