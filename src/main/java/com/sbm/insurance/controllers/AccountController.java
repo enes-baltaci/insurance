@@ -33,11 +33,16 @@ public class AccountController {
 
         try {
             accountService.save(account);
-            return "redirect:/";
+            return "redirect:/success";
         }
         catch (Exception e) {
             return "account_create_error";
         }
+    }
+
+    @GetMapping("/success")
+    public String success() {
+        return "account_creation_success";
     }
 
     @GetMapping("/account_list")
