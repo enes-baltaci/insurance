@@ -35,6 +35,20 @@
             <input th:field="*{age}" type="number" name="age" id="age" placeholder="Car Age" value="0" min="0" required>
         </div>
 
+        <div>
+            <label for="plateNumber">Plate Number</label>
+            <input th:field="*{plateNumber}"
+                   type="text" name="plateNumber"
+                   id="plateNumber" placeholder="Plate Number" max="8" required>
+        </div>
+
+        <div>
+            <label for="brand">Brand</label>
+            <input th:field="*{brand}"
+                   type="text" name="brand"
+                   id="brand" placeholder="Brand" required>
+        </div>
+
         <br>
 
         <fieldset class="form-group">

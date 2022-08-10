@@ -16,6 +16,8 @@ public class Proposal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String type;
+
     private int price;
 
     @Column(columnDefinition = "boolean default false")

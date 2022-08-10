@@ -1,6 +1,7 @@
 package com.sbm.insurance.controllers;
 
 import com.sbm.insurance.entities.Car;
+import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.CarService;
 import com.sbm.insurance.services.ProposalService;
@@ -28,12 +29,9 @@ public class ProposalsController {
 
     @GetMapping("/proposals")
     public String listProposals(Model model) {
-        model.addAttribute("cars", carService.getAll());
-        model.addAttribute("travels", travelService.getAll());
+        model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
-        model.addAttribute("carTitle", "Car Insurance Proposals");
-        model.addAttribute("travelTitle", "Travel Insurance Proposals");
         model.addAttribute("link", "proposals/accepted");
         model.addAttribute("linkName", "Accepted Proposals");
         return "proposals";
@@ -41,48 +39,53 @@ public class ProposalsController {
 
     @GetMapping("/proposals/accepted")
     public String listAcceptedProposals(Model model) {
-        model.addAttribute("cars", carService.getAll());
-        model.addAttribute("travels", travelService.getAll());
+        model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", true);
         model.addAttribute("title", "Accepted Proposals");
-        model.addAttribute("carTitle", "Car Insurances");
-        model.addAttribute("travelTitle", "Travel Insurances");
         model.addAttribute("link", "proposals");
         model.addAttribute("linkName", "Proposals");
         return "proposals";
     }
 
-    @PostMapping("/proposals/car/{id}")
-    public String acceptCar(@PathVariable Long id) {
-        Optional<Car> optionalCar = carService.getById(id);
-
-        if (optionalCar.isPresent()) {
-
-            if (!optionalCar.get().getProposal().isStatus()) {
-                proposalService.updateStatusById(optionalCar.get().getProposal().getId());
-            }
-
-            return "redirect:/proposals";
-        }
-        else {
-            return "account_id_error";
-        }
-    }
-
-    @PostMapping("/proposals/travel/{id}")
-    public String acceptTravel(@PathVariable Long id) {
+    @GetMapping("/proposal/details/travel/{id}")
+    public String travelDetails(@PathVariable Long id, Model model) {
         Optional<Travel> optionalTravel = travelService.getById(id);
 
         if (optionalTravel.isPresent()) {
+            model.addAttribute("travel", optionalTravel.get());
+            return "travel_details";
+        }
+        else {
+            return "id_error";
+        }
+    }
 
-            if (!optionalTravel.get().getProposal().isStatus()) {
-                proposalService.updateStatusById(optionalTravel.get().getProposal().getId());
+    @GetMapping("/proposal/details/car/{id}")
+    public String carDetails(@PathVariable Long id, Model model) {
+        Optional<Car> optionalCar = carService.getById(id);
+
+        if (optionalCar.isPresent()) {
+            model.addAttribute("car", optionalCar.get());
+            return "car_details";
+        }
+        else {
+            return "id_error";
+        }
+    }
+
+    @PostMapping("/proposals/accept/{id}")
+    public String accept(@PathVariable Long id) {
+        Optional<Proposal> optionalProposal = proposalService.getById(id);
+
+        if (optionalProposal.isPresent()) {
+
+            if (!optionalProposal.get().isStatus()) {
+                proposalService.updateStatusById(optionalProposal.get().getId());
             }
-
             return "redirect:/proposals";
         }
         else {
-            return "account_id_error";
+            return "id_error";
         }
     }
 }

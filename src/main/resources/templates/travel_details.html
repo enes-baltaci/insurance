@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+    <title>Insurance App :: Travel Details</title>
+</head>
+<body>
+<div class="container">
+
+    <h2>Travel Details</h2>
+    <hr>
+
+    <div class="parent_center">
+        <p>
+            <strong>Travel Insurance ID:</strong>&nbsp
+        </p>
+        <p th:text="${travel.id}"/>
+    </div>
+
+    <div class="parent_center">
+        <p>
+            <strong>Travel Type:</strong>&nbsp
+        </p>
+        <p th:text="${travel.type}"/>
+    </div>
+
+    <div class="parent_center">
+        <p>
+            <strong>Travel Date:</strong>&nbsp
+        </p>
+        <p th:text="${travel.date}"/>
+    </div>
+
+    <div class="parent_center">
+        <p>
+            <strong>Travel Distance:</strong>&nbsp
+        </p>
+        <p th:text="${travel.distance}"/>
+    </div>
+
+    <div class="parent_center">
+        <p>
+            <strong>Travel Days:</strong>&nbsp
+        </p>
+        <p th:text="${travel.days}"/>
+    </div>
+
+    <div class="parent_center">
+        <p>
+            <strong>Proposal Price:</strong>&nbsp
+        </p>
+        <p th:text="${travel.proposal.price}"/>
+    </div>
+
+    <div class="parent_center">
+        <p>
+            <strong>Proposal Date:</strong>&nbsp
+        </p>
+        <p th:text="${travel.proposal.proposalDate}"/>
+    </div>
+
+    <div th:if="${travel.proposal.status} == false" class="parent_center">
+        <form th:action="@{/proposals/accept/{id}(id=${travel.id})}" action="#" method="post">
+            <button type="submit" class="btn btn-primary">
+                Accept
+            </button>
+        </form>
+    </div>
+
+    <hr>
+
+    <ul>
+        <li th:if="${travel.proposal.status} == false"><a th:href="@{/proposals}">Back</a></li>
+        <li th:if="${travel.proposal.status} == true"><a th:href="@{/proposals/accepted}">Back</a></li>
+    </ul>
+
+</div>
+</body>
+</html>

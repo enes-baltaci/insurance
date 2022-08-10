@@ -72,7 +72,7 @@ public class AccountController {
             model.addAttribute("action", "account_edit/" + accountOptional.get().getId());
             return "account";
         } else {
-            return "account_id_error";
+            return "id_error";
         }
     }
 
@@ -104,7 +104,7 @@ public class AccountController {
             return "redirect:/";
 
         } else {
-            return "account_id_error";
+            return "id_error";
         }
     }
 }

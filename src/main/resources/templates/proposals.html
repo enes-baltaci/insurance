@@ -15,74 +15,45 @@
     <h2 th:text="${title}"/>
     <hr>
 
-    <h4 th:text="${travelTitle}"/>
-    <hr>
-
     <table class="table table-dark">
         <thead>
         <tr>
-            <th scope="col">Account Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Travel Type</th>
-            <th scope="col">Travel Date</th>
-            <th scope="col">Travel Distance</th>
-            <th scope="col">Day</th>
+            <th scope="col">Proposal ID</th>
+            <th scope="col">Client Name</th>
+            <th scope="col">Proposal Type</th>
             <th scope="col">Price</th>
             <th scope="col">Proposal Date</th>
+            <th scope="col">Details</th>
             <th scope="col" th:if="${accepted} == false">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="travel : ${travels}" th:if="${travel.proposal.status} == ${accepted}">
-            <td th:text="${travel.account.id}"/>
-            <td th:text="${travel.account.name + ' ' + travel.account.surname}"/>
-            <td th:text="${travel.account.email}"/>
-            <td th:text="${travel.type}"/>
-            <td th:text="${travel.date}"/>
-            <td th:text="${travel.distance}"/>
-            <td th:text="${travel.days}">
-            <td th:text="${travel.proposal.price}"/>
-            <td th:text="${travel.proposal.proposalDate}"/>
-            <td th:if="${accepted} == false">
-                <form th:action="@{/proposals/travel/{id}(id=${travel.id})}" action="#" method="post">
-                    <button type="submit" class="btn btn-primary">Accept</button>
+        <tr th:each="proposal : ${proposals}" th:if="${proposal.status} == ${accepted}">
+            <td th:text="${proposal.id}"/>
+            <td th:if="${proposal.type} == 'Car'"
+                th:text="${proposal.car.account.name + ' ' + proposal.car.account.surname}"/>
+            <td th:if="${proposal.type} == 'Travel'"
+                th:text="${proposal.travel.account.name + ' ' + proposal.travel.account.surname}"/>
+            <td th:text="${proposal.type}"/>
+            <td th:text="${proposal.price}"/>
+            <td th:text="${proposal.proposalDate}"/>
+            <td>
+                <form th:if="${proposal.type} == 'Travel'"
+                      th:action="@{/proposal/details/travel/{id}(id=${proposal.travel.id})}"
+                      action="#" method="get">
+                    <button type="submit" class="btn btn-info">Details</button>
+                </form>
+                <form th:if="${proposal.type} == 'Car'"
+                      th:action="@{/proposal/details/car/{id}(id=${proposal.car.id})}"
+                      action="#" method="get">
+                    <button type="submit" class="btn btn-info">Details</button>
                 </form>
             </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <hr>
-
-    <h4 th:text="${carTitle}"/>
-    <hr>
-
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th scope="col">Account Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Car Age</th>
-            <th scope="col">Car Model</th>
-            <th scope="col">Price</th>
-            <th scope="col">Proposal Date</th>
-            <th scope="col" th:if="${accepted} == false">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="car : ${cars}" th:if="${car.proposal.status} == ${accepted}">
-            <td th:text="${car.account.id}"/>
-            <td th:text="${car.account.name + ' ' + car.account.surname}"/>
-            <td th:text="${car.account.email}"/>
-            <td th:text="${car.age}"/>
-            <td th:text="${car.model}"/>
-            <td th:text="${car.proposal.price}"/>
-            <td th:text="${car.proposal.proposalDate}"/>
             <td th:if="${accepted} == false">
-                <form th:action="@{/proposals/car/{id}(id=${car.id})}" action="#" method="post">
-                    <button type="submit" class="btn btn-primary">Accept</button>
+                <form th:action="@{/proposals/accept/{id}(id=${proposal.id})}" action="#" method="post">
+                    <button type="submit" class="btn btn-primary">
+                        Accept
+                    </button>
                 </form>
             </td>
         </tr>

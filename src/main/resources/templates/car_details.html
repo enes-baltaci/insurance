@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/styles.css}">
+  <meta charset="UTF-8">
+  <title>Insurance App :: Car Details</title>
+</head>
+<body>
+<div class="container">
+
+  <h2>Car Details</h2>
+  <hr>
+
+  <div class="parent_center">
+    <p>
+      <strong>Car Insurance ID:</strong>&nbsp
+    </p>
+    <p th:text="${car.id}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Car Model:</strong>&nbsp
+    </p>
+    <p th:text="${car.model}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Car Brand:</strong>&nbsp
+    </p>
+    <p th:text="${car.brand}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Plate Number:</strong>&nbsp
+    </p>
+    <p th:text="${car.plateNumber}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Age:</strong>&nbsp
+    </p>
+    <p th:text="${car.age}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Proposal Price:</strong>&nbsp
+    </p>
+    <p th:text="${car.proposal.price}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Proposal Date:</strong>&nbsp
+    </p>
+    <p th:text="${car.proposal.proposalDate}"/>
+  </div>
+
+  <div th:if="${car.proposal.status} == false" class="parent_center">
+    <form th:action="@{/proposals/accept/{id}(id=${car.id})}" action="#" method="post">
+      <button type="submit" class="btn btn-primary">
+        Accept
+      </button>
+    </form>
+  </div>
+
+  <hr>
+
+  <ul>
+    <li th:if="${car.proposal.status} == false"><a th:href="@{/proposals}">Back</a></li>
+    <li th:if="${car.proposal.status} == true"><a th:href="@{/proposals/accepted}">Back</a></li>
+  </ul>
+
+</div>
+</body>
+</html>

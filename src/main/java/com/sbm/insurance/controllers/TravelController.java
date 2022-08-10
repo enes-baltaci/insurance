@@ -70,6 +70,7 @@ public class TravelController {
         Proposal proposal = Proposal.builder()
                 .price(price)
                 .proposalDate(formatter.format(date))
+                .type("Travel")
                 .build();
 
         proposalService.save(proposal);

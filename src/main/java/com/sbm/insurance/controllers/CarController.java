@@ -79,6 +79,7 @@ public class CarController {
         Proposal proposal = Proposal.builder()
                 .price(price)
                 .proposalDate(formatter.format(date))
+                .type("Car")
                 .build();
 
         proposalService.save(proposal);
