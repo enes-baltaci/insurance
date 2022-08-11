@@ -8,6 +8,11 @@
   <link rel="stylesheet" th:href="@{/styles.css}">
   <meta charset="UTF-8">
   <title>Insurance App :: Car Details</title>
+  <style>
+    p {
+      color: blue;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
@@ -20,6 +25,20 @@
       <strong>Car Insurance ID:</strong>&nbsp
     </p>
     <p th:text="${car.id}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Client Name:</strong>&nbsp
+    </p>
+    <p th:text="${car.account.name + ' ' + car.account.surname}"/>
+  </div>
+
+  <div class="parent_center">
+    <p>
+      <strong>Client Email:</strong>&nbsp
+    </p>
+    <p th:text="${car.account.email}"/>
   </div>
 
   <div class="parent_center">

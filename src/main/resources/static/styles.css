@@ -34,3 +34,7 @@ input {
 .radioright {
     padding-right: 100px;
 }
+
+strong {
+    color: red;
+}
