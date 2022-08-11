@@ -29,4 +29,8 @@ public class ProposalService {
     public int updateStatusById(Long id) {
         return proposalRepository.updateStatusById(id);
     }
+
+    public void deleteProposal(Long id) {
+        proposalRepository.deleteProposalById(id);
+    }
 }

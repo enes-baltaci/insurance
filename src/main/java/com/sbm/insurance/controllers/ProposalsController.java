@@ -88,4 +88,10 @@ public class ProposalsController {
             return "id_error";
         }
     }
+
+    @GetMapping("/proposal/delete/{id}")
+    public String deleteProposal(@PathVariable Long id) {
+        proposalService.deleteProposal(id);
+        return "redirect:/proposals";
+    }
 }

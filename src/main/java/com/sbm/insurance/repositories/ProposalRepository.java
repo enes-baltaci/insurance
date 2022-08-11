@@ -17,4 +17,8 @@ public interface ProposalRepository extends JpaRepository<Proposal, Long> {
             nativeQuery = true
     )
     int updateStatusById(Long id);
+
+    @Modifying
+    @Transactional
+    long deleteProposalById(Long id);
 }

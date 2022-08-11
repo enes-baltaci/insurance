@@ -25,6 +25,7 @@
             <th scope="col">Proposal Date</th>
             <th scope="col">Details</th>
             <th scope="col" th:if="${accepted} == false">Action</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -55,6 +56,11 @@
                         Accept
                     </button>
                 </form>
+            </td>
+            <td>
+                <a th:href="@{/proposal/delete/{id}(id=${proposal.id})}" class="btn btn-danger">
+                    Delete
+                </a>
             </td>
         </tr>
         </tbody>
