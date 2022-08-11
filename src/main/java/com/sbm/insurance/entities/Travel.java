@@ -34,11 +34,11 @@ public class Travel {
     private int days;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "proposal_id", referencedColumnName = "id", nullable = false)
     private Proposal proposal;
 }

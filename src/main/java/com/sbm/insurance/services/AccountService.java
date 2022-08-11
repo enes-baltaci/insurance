@@ -27,4 +27,8 @@ public class AccountService {
         return accountRepository.findById(id);
     }
 
+    public void deleteAccount(Long id) {
+        accountRepository.deleteAccountById(id);
+    }
+
 }

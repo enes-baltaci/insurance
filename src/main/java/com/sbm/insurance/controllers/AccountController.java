@@ -108,4 +108,14 @@ public class AccountController {
             return "id_error";
         }
     }
+
+    @GetMapping("/account/delete/{id}")
+    public String deleteAccount(@PathVariable Long id) {
+        try {
+            accountService.deleteAccount(id);
+            return "redirect:/account_list";
+        } catch (Exception e) {
+            return "id_error";
+        }
+    }
 }

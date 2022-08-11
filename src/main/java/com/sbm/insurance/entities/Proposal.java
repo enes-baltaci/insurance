@@ -25,9 +25,9 @@ public class Proposal {
 
     private String proposalDate;
 
-    @OneToOne(mappedBy = "proposal")
+    @OneToOne(mappedBy = "proposal", cascade = CascadeType.REMOVE)
     private Car car;
 
-    @OneToOne(mappedBy = "proposal")
+    @OneToOne(mappedBy = "proposal", cascade = CascadeType.REMOVE)
     private Travel travel;
 }
