@@ -52,7 +52,7 @@
 
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button th:text="${processName}" type="submit" class="btn btn-primary"/>
             </div>
         </div>
     </form>
@@ -61,7 +61,7 @@
 
     <ul>
         <li>
-            <h6><a th:href="@{/static}">Home</a></h6>
+            <h6><a th:href="@{/}">Home</a></h6>
         </li>
         <li>
             <h6><a th:href="@{/account_list}">Account List</a></h6>

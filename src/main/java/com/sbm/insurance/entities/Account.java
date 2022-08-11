@@ -39,9 +39,17 @@ public class Account {
     @Email
     private String email;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
+    @OneToMany(
+            mappedBy = "account",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.LAZY
+    )
     private List<Car> cars;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
+    @OneToMany(
+            mappedBy = "account",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.LAZY
+    )
     private List<Travel> travels;
 }
