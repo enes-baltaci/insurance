@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,7 +36,7 @@ public class TravelController {
     }
 
     @PostMapping("/travel_registration")
-    public String travelRegistration(@ModelAttribute Travel travel, Model model) {
+    public String travelRegistration(@Valid @ModelAttribute Travel travel, Model model) {
 
         int price;
 
