@@ -19,12 +19,12 @@
 
         <div>
             <label for="name">Name</label>
-            <input th:field="*{name}" type="text" name="name" id="name" placeholder="Name" required>
+            <input th:field="*{name}" type="text" name="name" id="name" placeholder="Name" minlength="3" required>
         </div>
 
         <div>
             <label for="surname">Surname</label>
-            <input th:field="*{surname}" type="text" name="surname" id="surname" placeholder="Surname" required>
+            <input th:field="*{surname}" type="text" name="surname" id="surname" placeholder="Surname" minlength="2" required>
         </div>
 
         <div>
@@ -45,7 +45,7 @@
 
     <ul>
         <li>
-            <h6><a th:href="@{/}">Home</a></h6>
+            <h6><a th:href="@{/static}">Home</a></h6>
         </li>
         <li>
             <h6><a th:href="@{/account_list}">Account List</a></h6>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -31,7 +32,7 @@ public class AccountController {
     }
 
     @PostMapping("/account_registration")
-    public String registration(@ModelAttribute Account account) {
+    public String registration(@Valid @ModelAttribute Account account) {
 
         try {
             accountService.save(account);
