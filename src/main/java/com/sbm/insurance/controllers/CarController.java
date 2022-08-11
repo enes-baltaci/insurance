@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,7 +36,7 @@ public class CarController {
     }
 
     @PostMapping("/car_registration")
-    public String carRegistration(@ModelAttribute Car car, Model model) {
+    public String carRegistration(@Valid @ModelAttribute Car car, Model model) {
 
         int price;
 
