@@ -32,7 +32,7 @@ public class Car {
     private String brand;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne()
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 
