@@ -25,19 +25,27 @@ public class Account {
     private Long id;
 
     @NotEmpty(message = "Name may not be empty")
-    @Size(min = 1, max = 25, message = "Minimum name length is 1")
+    @Size(min = 1, message = "Name length may be in between 1 to 30 character")
+    @Column(length = 30)
     private String name;
 
     @NotEmpty(message = "Surname may not be empty.")
-    @Size(min = 1, max = 30, message = "")
+    @Size(min = 1, message = "Surname length may be in between 1 to 30 character")
+    @Column(length = 30)
     private String surname;
 
     @Min(value = 0, message = "Minimum age is 0.")
+    @Max(value = 125, message = "Maximum age is 125")
     private int age;
 
-    @NotBlank
+    @NotBlank(message = "Email may not be empty")
     @Email
+    @Column(length = 70)
     private String email;
+
+    @NotBlank(message = "You must enter the city you live in")
+    @Column(length = 21)
+    private String city;
 
     @OneToMany(
             mappedBy = "account",

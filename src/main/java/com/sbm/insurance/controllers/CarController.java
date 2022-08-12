@@ -44,9 +44,9 @@ public class CarController {
 
             price = 3000;
 
-            if (car.getAge() < 2) {
+            if (car.getModelYear() < 2) {
                 price += 2400;
-            } else if (car.getAge() > 2 && car.getAge() < 6) {
+            } else if (car.getModelYear() > 2 && car.getModelYear() < 6) {
                 price += 1800;
             } else {
                 price += 1000;
@@ -55,9 +55,9 @@ public class CarController {
 
             price = 3600;
 
-            if (car.getAge() < 2) {
+            if (car.getModelYear() < 2) {
                 price += 2700;
-            } else if (car.getAge() > 2 && car.getAge() < 6) {
+            } else if (car.getModelYear() > 2 && car.getModelYear() < 6) {
                 price += 2400;
             } else {
                 price += 1800;
@@ -65,9 +65,9 @@ public class CarController {
         } else {
             price = 2400;
 
-            if (car.getAge() < 2) {
+            if (car.getModelYear() < 2) {
                 price += 1500;
-            } else if (car.getAge() > 2 && car.getAge() < 6) {
+            } else if (car.getModelYear() > 2 && car.getModelYear() < 6) {
                 price += 1200;
             } else {
                 price += 800;

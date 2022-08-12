@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Getter
@@ -20,8 +17,9 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(value = 0, message = "Minimum age is 0.")
-    private int age;
+    @Min(value = 1900, message = "Minimum model year is 1900.")
+    @Max(value = 2023, message = "Maximum model year is 2023")
+    private int modelYear;
 
     private String model;
 
