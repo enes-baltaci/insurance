@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @Controller
@@ -38,44 +39,53 @@ public class CarController {
     @PostMapping("/car_registration")
     public String carRegistration(@Valid @ModelAttribute Car car, Model model) {
 
-        int price;
+        float price = 1000;
 
-        if (car.getModel().equalsIgnoreCase("SUV")) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
 
-            price = 3000;
+        if (car.getBrand().equalsIgnoreCase("Mercedes-Benz") ||
+                car.getBrand().equalsIgnoreCase("BMW") ||
+                car.getBrand().equalsIgnoreCase("Audi")) {
 
-            if (car.getModelYear() < 2) {
-                price += 2400;
-            } else if (car.getModelYear() > 2 && car.getModelYear() < 6) {
-                price += 1800;
-            } else {
-                price += 1000;
-            }
-        } else if (car.getModel().equalsIgnoreCase("Sedan")) {
+            price *= 3;
 
-            price = 3600;
+        } else if (car.getBrand().equalsIgnoreCase("Volkswagen") ||
+                car.getBrand().equalsIgnoreCase("Nissan") ||
+                car.getBrand().equalsIgnoreCase("Mini Cooper")) {
 
-            if (car.getModelYear() < 2) {
-                price += 2700;
-            } else if (car.getModelYear() > 2 && car.getModelYear() < 6) {
-                price += 2400;
-            } else {
-                price += 1800;
-            }
+            price *= 2;
+
+        } else if (car.getBrand().equalsIgnoreCase("Peugeot") ||
+                car.getBrand().equalsIgnoreCase("Skoda") ||
+                car.getBrand().equalsIgnoreCase("Kia")) {
+
+            price *= 1.5;
+
         } else {
-            price = 2400;
-
-            if (car.getModelYear() < 2) {
-                price += 1500;
-            } else if (car.getModelYear() > 2 && car.getModelYear() < 6) {
-                price += 1200;
-            } else {
-                price += 800;
-            }
+            price *= 1.25;
         }
 
-        SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
-        Date date = new Date(System.currentTimeMillis());
+        if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() == 0) {
+            price *= 2;
+        }
+        else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 3) {
+            price *= 1.75;
+        }
+        else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 5) {
+            price *= 1.5;
+        }
+        else {
+            price *= 1.25;
+        }
+
+        if (car.getModel().equalsIgnoreCase("SUV")) {
+            price += (price * (15 / 100));
+        } else if (car.getModel().equalsIgnoreCase("Sedan")) {
+            price += (price * (1 / 5));
+        } else {
+            price += (price * (1 / 10));
+        }
 
         Proposal proposal = Proposal.builder()
                 .price(price)

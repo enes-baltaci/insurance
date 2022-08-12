@@ -18,7 +18,7 @@ public class Proposal {
 
     private String type;
 
-    private int price;
+    private float price;
 
     @Column(columnDefinition = "boolean default false")
     private boolean status;

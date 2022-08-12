@@ -39,27 +39,23 @@
 
                     <div class="form-check">
                         <input class="form-check-input"
-                               th:field="*{type}" type="radio" name="flight" id="flight" value="Flight"
-                        checked>
-                        <label class="form-check-label" for="flight">
-                            Flight
-                        </label>
+                               th:field="*{type}" type="radio" name="flight" id="flight" value="Flight" checked>
+
+                        <label class="form-check-label" for="flight">Flight</label>
                     </div>
 
                     <div class="form-check">
                         <input class="form-check-input"
                                th:field="*{type}" type="radio" name="bus" id="bus" value="Bus">
-                        <label class="form-check-label" for="bus">
-                            Bus
-                        </label>
+
+                        <label class="form-check-label" for="bus">Bus</label>
                     </div>
 
-                    <div class="form-check disabled">
+                    <div class="form-check">
                         <input class="form-check-input"
                                th:field="*{type}" type="radio" name="personal" id="personal" value="Personal">
-                        <label class="form-check-label" for="personal">
-                            Personal
-                        </label>
+
+                        <label class="form-check-label" for="personal">Personal</label>
                     </div>
 
                 </div>
@@ -72,8 +68,10 @@
         </div>
 
         <div>
-            <label for="distance">Distance</label>
+            <label for="distance">How much distance</label>
             <input th:field="*{distance}" type="number" name="distance" id="distance" min="0" value="0">
+            <input th:field="*{distanceType}" type="radio" value="Kilometer" name="km" th:text="'Kilometer'">
+            <input th:field="*{distanceType}" type="radio" value="Mile" name="mile" th:text="'Mile'">
         </div>
 
         <div>

@@ -27,6 +27,7 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Age</th>
+            <th scope="col">City</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
@@ -37,6 +38,7 @@
             <td th:text="${account.name + ' ' + account.surname}"/>
             <td th:text="${account.email}"/>
             <td th:text="${account.age}"/>
+            <td th:text="${account.city}"/>
             <td>
                 <a th:href="@{/account_edit/{id}(id=${account.id})}" class="btn btn-primary">
                     Edit

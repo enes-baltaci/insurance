@@ -31,22 +31,36 @@
         <br>
 
         <div>
-            <label for="age">Car Age</label>
-            <input th:field="*{modelYear}" type="number" name="age" id="age" placeholder="Car Age" value="0" min="0" required>
+            <label for="age">Model Year</label>
+            <input th:field="*{modelYear}"
+                   type="number" name="age" id="age" placeholder="Car Age" min="1900" max="2023" required>
         </div>
 
         <div>
             <label for="plateNumber">Plate Number</label>
             <input th:field="*{plateNumber}"
                    type="text" name="plateNumber"
-                   id="plateNumber" placeholder="Plate Number" minlength="8" maxlength="8" required>
+                   id="plateNumber" placeholder="Plate Number" minlength="4" maxlength="15" required>
         </div>
 
         <div>
-            <label for="brand">Brand</label>
-            <input th:field="*{brand}"
-                   type="text" name="brand"
-                   id="brand" placeholder="Brand" required>
+
+            <label for="brands">Brand</label>
+
+            <select th:field="*{brand}" class="form-control" style="width: auto;" id="brands" required>
+                <option th:text="'Mercedes-Benz'" th:value="'Mercedes-Benz'"/>
+                <option th:text="'BMW'" th:value="'BMW'"/>
+                <option th:text="'Audi'" th:value="'Audi'"/>
+                <option th:text="'Volkswagen'" th:value="'Volkswagen'"/>
+                <option th:text="'Nissan'" th:value="'Nissan'"/>
+                <option th:text="'Renault'" th:value="'Renault'"/>
+                <option th:text="'Peugeot'" th:value="'Peugeot'"/>
+                <option th:text="'Skoda'" th:value="'Skoda'"/>
+                <option th:text="'Opel'" th:value="'Opel'"/>
+                <option th:text="'Mini Cooper'" th:value="'Mini Cooper'"/>
+                <option th:text="'Hyundai'" th:value="'Hyundai'"/>
+                <option th:text="'Kia'" th:value="'Kia'"/>
+            </select>
         </div>
 
         <br>

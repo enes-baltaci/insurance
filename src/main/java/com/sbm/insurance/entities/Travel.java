@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -29,6 +30,10 @@ public class Travel {
 
     @Min(0)
     private int distance;
+
+    @Size(min = 4)
+    @Column(length = 9)
+    private String distanceType;
 
     @Min(1)
     private int days;

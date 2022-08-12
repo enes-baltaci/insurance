@@ -23,10 +23,12 @@ public class Car {
 
     private String model;
 
-    @Size(min = 8, max = 8, message = "Plate number should be exactly 8 character long.")
+    @Size(min = 4, message = "Plate number length may be in between 4 to 15 characters")
+    @Column(length = 15)
     private String plateNumber;
 
     @NotBlank(message = "Brand may not be blank nor empty")
+    @Column(length = 30)
     private String brand;
 
     @NotNull
