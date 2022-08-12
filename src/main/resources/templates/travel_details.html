@@ -52,7 +52,7 @@
         <p>
             <strong>Travel Date:</strong>&nbsp
         </p>
-        <p th:text="${travel.date}"/>
+        <p th:text="${#dates.format(travel.travelDate, 'dd/MM/yyyy')}"/>
     </div>
 
     <div class="parent_center">

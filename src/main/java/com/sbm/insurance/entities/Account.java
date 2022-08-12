@@ -25,11 +25,11 @@ public class Account {
     private Long id;
 
     @NotEmpty(message = "Name may not be empty")
-    @Size(min = 3, message = "Minimum name length is 3")
+    @Size(min = 1, max = 25, message = "Minimum name length is 1")
     private String name;
 
     @NotEmpty(message = "Surname may not be empty.")
-    @Size(min = 2, message = "Minimum surname length is 2")
+    @Size(min = 1, max = 30, message = "")
     private String surname;
 
     @Min(value = 0, message = "Minimum age is 0.")
