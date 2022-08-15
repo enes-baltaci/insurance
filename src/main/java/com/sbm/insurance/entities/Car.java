@@ -21,7 +21,7 @@ public class Car {
     @Max(value = 2023, message = "Maximum model year is 2023")
     private int modelYear;
 
-    private String model;
+    private String type = "SUV";
 
     @Size(min = 4, message = "Plate number length may be in between 4 to 15 characters")
     @Column(length = 15)

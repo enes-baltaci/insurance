@@ -18,92 +18,74 @@
 
     <form action="#" th:action="@{/car_registration}" th:object="${car}" method="post">
 
-        <div>
-            <label for="accounts">Choose an account:</label>
-
-            <select th:field="*{account}" class="form-control" style="width: auto;" id="accounts" required>
-                <option th:each="account : ${accounts}"
-                        th:value="${account.id}"
-                        th:text="${account.name + ' ' + account.surname + ' - '  + account.email}"/>
-            </select>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="selectAccount">Choose an account</label>
+            <div class="col-sm-10">
+                <select th:field="*{account}" class="custom-select my-1 mr-sm-2" id="selectAccount">
+                    <option th:each="account : ${accounts}"
+                            th:value="${account.id}"
+                            th:text="${account.name + ' ' + account.surname + ' - ' + account.email}"/>
+                </select>
+            </div>
         </div>
 
-        <br>
-
-        <div>
-            <label for="age">Model Year</label>
-            <input th:field="*{modelYear}"
-                   type="number" name="age" id="age" placeholder="Car Age" min="1900" max="2023" required>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="modelYear">Model Year</label>
+            <div class="col-sm-10">
+                <input class="form-control" th:field="*{modelYear}" type="number" name="modelYear" id="modelYear" placeholder="Model Year" min="1900" max="2023" required>
+            </div>
         </div>
 
-        <div>
-            <label for="plateNumber">Plate Number</label>
-            <input th:field="*{plateNumber}"
-                   type="text" name="plateNumber"
-                   id="plateNumber" placeholder="Plate Number" minlength="4" maxlength="15" required>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="plateNumber">Plate Number</label>
+            <div class="col-sm-10">
+                <input class="form-control" th:field="*{plateNumber}"
+                       type="text" name="plateNumber"
+                       id="plateNumber" placeholder="Plate Number" minlength="4" maxlength="15" required>
+            </div>
         </div>
 
-        <div>
-
-            <label for="brands">Brand</label>
-
-            <select th:field="*{brand}" class="form-control" style="width: auto;" id="brands" required>
-                <option th:text="'Mercedes-Benz'" th:value="'Mercedes-Benz'"/>
-                <option th:text="'BMW'" th:value="'BMW'"/>
-                <option th:text="'Audi'" th:value="'Audi'"/>
-                <option th:text="'Volkswagen'" th:value="'Volkswagen'"/>
-                <option th:text="'Nissan'" th:value="'Nissan'"/>
-                <option th:text="'Renault'" th:value="'Renault'"/>
-                <option th:text="'Peugeot'" th:value="'Peugeot'"/>
-                <option th:text="'Skoda'" th:value="'Skoda'"/>
-                <option th:text="'Opel'" th:value="'Opel'"/>
-                <option th:text="'Mini Cooper'" th:value="'Mini Cooper'"/>
-                <option th:text="'Hyundai'" th:value="'Hyundai'"/>
-                <option th:text="'Kia'" th:value="'Kia'"/>
-            </select>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="brands">Brand</label>
+            <div class="col-sm-10">
+                <select class="custom-select my-1 mr-sm-2" th:field="*{brand}" style="width: auto;" id="brands" required>
+                    <option th:text="'Mercedes-Benz'" th:value="'Mercedes-Benz'"/>
+                    <option th:text="'BMW'" th:value="'BMW'"/>
+                    <option th:text="'Audi'" th:value="'Audi'"/>
+                    <option th:text="'Volkswagen'" th:value="'Volkswagen'"/>
+                    <option th:text="'Nissan'" th:value="'Nissan'"/>
+                    <option th:text="'Renault'" th:value="'Renault'"/>
+                    <option th:text="'Peugeot'" th:value="'Peugeot'"/>
+                    <option th:text="'Skoda'" th:value="'Skoda'"/>
+                    <option th:text="'Opel'" th:value="'Opel'"/>
+                    <option th:text="'Mini Cooper'" th:value="'Mini Cooper'"/>
+                    <option th:text="'Hyundai'" th:value="'Hyundai'"/>
+                    <option th:text="'Kia'" th:value="'Kia'"/>
+                </select>
+            </div>
         </div>
-
-        <br>
 
         <fieldset class="form-group">
-
             <div class="row">
-
-                <legend class="col-form-label col-sm-2 pt-0">Car Model</legend>
-
-                <div class="col-sm-10 radioright">
-
+                <legend class="col-form-label col-sm-2 pt-0">Car Type</legend>
+                <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input"
-                               th:field="*{model}" type="radio" name="suv" id="suv" value="SUV" checked>
-                        <label class="form-check-label" for="suv">
-                            SUV
-                        </label>
+                        <input class="form-check-input" type="radio" th:field="*{type}" name="carType" id="suv" value="SUV">
+                        <label class="form-check-label" for="suv" th:text="SUV"/>
                     </div>
-
                     <div class="form-check">
-                        <input class="form-check-input"
-                               th:field="*{model}" type="radio" name="sedan" id="sedan" value="Sedan">
-                        <label class="form-check-label" for="sedan">
-                            Sedan
-                        </label>
+                        <input class="form-check-input" type="radio" th:field="*{type}" name="carType" id="sedan" value="Sedan">
+                        <label class="form-check-label" for="sedan" th:text="Sedan"/>
                     </div>
-
-                    <div class="form-check disabled">
-                        <input class="form-check-input"
-                               th:field="*{model}" type="radio" name="hatchback" id="hatchback" value="Hatchback">
-                        <label class="form-check-label" for="hatchback">
-                            Hatchback
-                        </label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" th:field="*{type}" name="carType" id="hatchback" value="Hatchback">
+                        <label class="form-check-label" for="hatchback" th:text="Hatchback"/>
                     </div>
-
                 </div>
             </div>
         </fieldset>
 
-        <br>
-
-        <button type="submit">Submit!</button>
+        <button class="btn btn-primary" type="submit">Submit!</button>
 
     </form>
 

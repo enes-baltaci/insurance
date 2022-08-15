@@ -79,9 +79,9 @@ public class CarController {
             price *= 1.25;
         }
 
-        if (car.getModel().equalsIgnoreCase("SUV")) {
+        if (car.getType().equalsIgnoreCase("SUV")) {
             price += (price * (15 / 100));
-        } else if (car.getModel().equalsIgnoreCase("Sedan")) {
+        } else if (car.getType().equalsIgnoreCase("Sedan")) {
             price += (price * (1 / 5));
         } else {
             price += (price * (1 / 10));

@@ -20,7 +20,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="selectAccount">Choose an account</label>
             <div class="col-sm-10">
-                <select th:field="*{account}" class="custom-select my-1 mr-sm-2" id="selectAccount">
+                <select class="custom-select my-1 mr-sm-2" th:field="*{account}" id="selectAccount">
                     <option th:each="account : ${accounts}"
                             th:value="${account.id}"
                             th:text="${account.name + ' ' + account.surname + ' - ' + account.email}"/>
@@ -33,15 +33,15 @@
                 <legend class="col-form-label col-sm-2 pt-0">Travel Type</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" th:field="*{type}" name="typeRadios" id="flight" value="Flight">
+                        <input class="form-check-input" type="radio" th:field="*{type}" name="travelType" id="flight" value="Flight">
                         <label class="form-check-label" for="flight" th:text="Flight"/>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" th:field="*{type}" name="typeRadios" id="bus" value="Bus">
-                        <label class="form-check-label" for="bus" th:text="Bus"></label>
+                        <input class="form-check-input" type="radio" th:field="*{type}" name="travelType" id="bus" value="Bus">
+                        <label class="form-check-label" for="bus" th:text="Bus"/>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" th:field="*{type}" name="typeRadios" id="personal" value="Personal">
+                        <input class="form-check-input" type="radio" th:field="*{type}" name="travelType" id="personal" value="Personal">
                         <label class="form-check-label" for="personal" th:text="Personal"/>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="days">How many days</label>
             <div class="col-sm-10">
-                <input class="form-control" th:field="*{days}" type="number" name="days" id="days" min="1" value="1">
+                <input class="form-control" th:field="*{days}" type="number" name="days" id="days" min="1" value="1" required>
             </div>
         </div>
 
