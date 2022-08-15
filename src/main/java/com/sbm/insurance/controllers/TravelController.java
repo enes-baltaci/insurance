@@ -38,7 +38,7 @@ public class TravelController {
     @PostMapping("/travel_registration")
     public String travelRegistration(@Valid @ModelAttribute Travel travel, Model model) {
 
-        int price;
+        float price;
 
         if (travel.getType().equalsIgnoreCase("Flight")) {
 

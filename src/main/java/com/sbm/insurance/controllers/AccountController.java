@@ -101,6 +101,10 @@ public class AccountController {
                 accountDatabase.setAge(account.getAge());
             }
 
+            if (!account.getCity().equalsIgnoreCase(accountDatabase.getCity())) {
+                accountDatabase.setCity(account.getCity());
+            }
+
             accountService.save(accountDatabase);
 
             return "redirect:/";
