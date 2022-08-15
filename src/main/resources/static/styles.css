@@ -18,21 +18,8 @@ td {
     color: cornflowerblue;
 }
 
-fieldset {
-    border: 2px solid;
-    display: inline-block;
-}
-
-button {
-    border: 3px solid crimson;
-}
-
 input {
     margin: .4rem;
-}
-
-.radioright {
-    padding-right: 100px;
 }
 
 strong {

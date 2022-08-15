@@ -23,7 +23,7 @@ public class Travel {
     private Long id;
 
     @NotBlank(message = "Choosing travel type is mandatory")
-    private String type;
+    private String type = "Flight";
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date travelDate;
@@ -33,7 +33,7 @@ public class Travel {
 
     @Size(min = 4)
     @Column(length = 9)
-    private String distanceType;
+    private String distanceType = "Kilometer";
 
     @Min(1)
     private int days;
