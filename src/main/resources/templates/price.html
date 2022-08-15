@@ -17,17 +17,19 @@
 
     <p th:text="'Total price is: ' + ${price}"/>
 
-    <ul>
-        <li>
-            <h6><a th:href="@{/}">Home</a></h6>
-        </li>
-        <li>
-            <h6><a th:href="@{/proposals}">Proposals</a></h6>
-        </li>
-        <li>
-            <h6><a th:href="@{/proposals/accepted}">Accepted Proposals</a></h6>
-        </li>
-    </ul>
+    <nav>
+        <ul>
+            <li>
+                <h6><a th:href="@{/}">Home</a></h6>
+            </li>
+            <li>
+                <h6><a th:href="@{/proposals}">Proposals</a></h6>
+            </li>
+            <li>
+                <h6><a th:href="@{/proposals/accepted}">Accepted Proposals</a></h6>
+            </li>
+        </ul>
+    </nav>
 
 </div>
 </body>

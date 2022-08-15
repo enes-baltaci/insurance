@@ -93,10 +93,12 @@
 
     <hr>
 
-    <ul>
-        <li th:if="${travel.proposal.status} == false"><a th:href="@{/proposals}">Back</a></li>
-        <li th:if="${travel.proposal.status} == true"><a th:href="@{/proposals/accepted}">Back</a></li>
-    </ul>
+    <nav>
+        <ul>
+            <li th:if="${travel.proposal.status} == false"><a th:href="@{/proposals}">Back</a></li>
+            <li th:if="${travel.proposal.status} == true"><a th:href="@{/proposals/accepted}">Back</a></li>
+        </ul>
+    </nav>
 
 </div>
 </body>
