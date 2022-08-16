@@ -59,8 +59,12 @@
             <label class="col-sm-2 col-form-label" for="distance">How much distance</label>
             <div class="col-sm-10">
                 <input class="form-control" th:field="*{distance_km}" type="number" name="distance" id="distance" min="0" value="0">
-                <input th:field="*{distanceType}" type="radio" value="Kilometer" name="km" th:text="'Kilometer'">
-                <input th:field="*{distanceType}" type="radio" value="Mile" name="mile" th:text="'Mile'">
+                <div class="col-sm-10">
+                    <select class="custom-select my-1 mr-sm-2" th:field="*{distanceType}" style="width: auto">
+                        <option value="Kilometer">Kilometer</option>
+                        <option value="Mile">Mile</option>
+                    </select>
+                </div>
             </div>
         </div>
 
