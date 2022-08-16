@@ -40,11 +40,15 @@ public class TravelController {
 
         float price;
 
+        if (travel.getDistanceType().equalsIgnoreCase("Mile")) { // Convert it into kilometer
+            travel.setDistance_km((float) (travel.getDistance_km() * 1.6));
+        }
+
         if (travel.getType().equalsIgnoreCase("Flight")) {
 
             price = 6500;
 
-            price += (travel.getDistance() / 1000) * 320;
+            price += (travel.getDistance_km() / 1000) * 320;
 
             price += travel.getDays() * 50;
 
@@ -52,7 +56,7 @@ public class TravelController {
 
             price = 4250;
 
-            price += (travel.getDistance() / 1000) * 120;
+            price += (travel.getDistance_km() / 1000) * 120;
 
             price += travel.getDays() * 25;
 
@@ -60,7 +64,7 @@ public class TravelController {
 
             price = 7000;
 
-            price += (travel.getDistance() / 1000) * 340;
+            price += (travel.getDistance_km() / 1000) * 340;
 
             price += travel.getDays() * 60;
         }

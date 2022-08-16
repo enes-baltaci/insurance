@@ -29,7 +29,7 @@ public class Travel {
     private Date travelDate;
 
     @Min(0)
-    private int distance;
+    private float distance_km;
 
     @Size(min = 4)
     @Column(length = 9)
