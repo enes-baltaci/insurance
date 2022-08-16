@@ -27,10 +27,6 @@ public class Car {
     @Column(length = 15)
     private String plateNumber;
 
-    @NotBlank(message = "Brand may not be blank nor empty")
-    @Column(length = 30)
-    private String brand;
-
     @NotNull
     @ManyToOne()
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
@@ -39,4 +35,8 @@ public class Car {
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "proposal_id", referencedColumnName = "id", nullable = false)
     private Proposal proposal;
+
+    @ManyToOne
+    @JoinColumn(name = "car_brand_id", referencedColumnName = "id", nullable = false)
+    private CarBrands brand;
 }

@@ -3,6 +3,7 @@ package com.sbm.insurance.controllers;
 import com.sbm.insurance.entities.Car;
 import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.services.AccountService;
+import com.sbm.insurance.services.CarBrandsService;
 import com.sbm.insurance.services.CarService;
 import com.sbm.insurance.services.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,36 +30,40 @@ public class CarController {
     @Autowired
     private ProposalService proposalService;
 
+    @Autowired
+    private CarBrandsService carBrandsService;
+
     @GetMapping("/car_insurance")
     public String carInsurance(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("accounts", accountService.getAll());
+        model.addAttribute("brands", carBrandsService.getAll());
         return "car_insurance";
     }
 
     @PostMapping("/car_registration")
     public String carRegistration(@Valid @ModelAttribute Car car, Model model) {
 
-        float price = 1000;
+        float price = 1125;
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
-        if (car.getBrand().equalsIgnoreCase("Mercedes-Benz") ||
-                car.getBrand().equalsIgnoreCase("BMW") ||
-                car.getBrand().equalsIgnoreCase("Audi")) {
+        if (car.getBrand().getCarBrand().equalsIgnoreCase("Mercedes-Benz") ||
+                car.getBrand().getCarBrand().equalsIgnoreCase("BMW") ||
+                car.getBrand().getCarBrand().equalsIgnoreCase("Audi")) {
 
             price *= 3;
 
-        } else if (car.getBrand().equalsIgnoreCase("Volkswagen") ||
-                car.getBrand().equalsIgnoreCase("Nissan") ||
-                car.getBrand().equalsIgnoreCase("Mini Cooper")) {
+        } else if (car.getBrand().getCarBrand().equalsIgnoreCase("Volkswagen") ||
+                car.getBrand().getCarBrand().equalsIgnoreCase("Nissan") ||
+                car.getBrand().getCarBrand().equalsIgnoreCase("Mini Cooper")) {
 
             price *= 2;
 
-        } else if (car.getBrand().equalsIgnoreCase("Peugeot") ||
-                car.getBrand().equalsIgnoreCase("Skoda") ||
-                car.getBrand().equalsIgnoreCase("Kia")) {
+        } else if (car.getBrand().getCarBrand().equalsIgnoreCase("Peugeot") ||
+                car.getBrand().getCarBrand().equalsIgnoreCase("Skoda") ||
+                car.getBrand().getCarBrand().equalsIgnoreCase("Kia")) {
 
             price *= 1.5;
 
