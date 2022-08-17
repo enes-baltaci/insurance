@@ -52,7 +52,7 @@
     <p>
       <strong>Car Brand:</strong>&nbsp
     </p>
-    <p th:text="${car.brand}"/>
+    <p th:text="${car.brand.carBrand}"/>
   </div>
 
   <div class="parent_center">
@@ -84,7 +84,7 @@
   </div>
 
   <div th:if="${car.proposal.status} == false" class="parent_center">
-    <form th:action="@{/proposals/accept/{id}(id=${car.id})}" action="#" method="post">
+    <form th:action="@{/proposals/accept/{id}(id=${car.proposal.id})}" action="#" method="post">
       <button type="submit" class="btn btn-primary">
         Accept
       </button>

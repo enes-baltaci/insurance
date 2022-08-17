@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,8 +38,7 @@ public class AccountController {
             accountService.save(account);
             flag = true;
             return "redirect:/info";
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             flag = false;
             return "redirect:/info";
         }
@@ -50,8 +48,7 @@ public class AccountController {
     public String info(Model model) {
         if (flag) {
             model.addAttribute("flag", true);
-        }
-        else {
+        } else {
             model.addAttribute("flag", false);
         }
         return "account_creation_info";
