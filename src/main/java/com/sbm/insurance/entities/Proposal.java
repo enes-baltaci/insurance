@@ -23,7 +23,11 @@ public class Proposal {
     @Column(columnDefinition = "boolean default false")
     private boolean status;
 
+    @Column(length = 40)
     private String proposalDate;
+
+    @Column(length = 40)
+    private String proposalAcceptedDate;
 
     @OneToOne(mappedBy = "proposal", cascade = CascadeType.REMOVE)
     private Car car;

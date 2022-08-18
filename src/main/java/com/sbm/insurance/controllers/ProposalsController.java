@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -80,7 +82,12 @@ public class ProposalsController {
         if (optionalProposal.isPresent()) {
 
             if (!optionalProposal.get().isStatus()) {
-                proposalService.updateStatusById(optionalProposal.get().getId());
+
+                proposalService.updateStatusById(optionalProposal.get().getId()); // Update status
+
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");    // Set
+                Date date = new Date(System.currentTimeMillis());                                        // accepted
+                proposalService.setAcceptedDate(optionalProposal.get().getId(), formatter.format(date)); // date
             }
             return "redirect:/proposals";
         }

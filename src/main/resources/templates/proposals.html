@@ -23,6 +23,7 @@
             <th scope="col">Proposal Type</th>
             <th scope="col">Price</th>
             <th scope="col">Proposal Date</th>
+            <th scope="col" th:if="${accepted} == true">Accepted Date</th>
             <th scope="col">Details</th>
             <th scope="col" th:if="${accepted} == false">Action</th>
             <th scope="col">Delete</th>
@@ -38,6 +39,7 @@
             <td th:text="${proposal.type}"/>
             <td th:text="${proposal.price}"/>
             <td th:text="${proposal.proposalDate}"/>
+            <td th:text="${proposal.proposalAcceptedDate}" th:if="${accepted} == true"/>
             <td>
                 <form th:if="${proposal.type} == 'Travel'"
                       th:action="@{/proposal/details/travel/{id}(id=${proposal.travel.id})}"

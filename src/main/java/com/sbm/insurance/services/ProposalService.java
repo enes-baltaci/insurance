@@ -30,6 +30,10 @@ public class ProposalService {
         return proposalRepository.updateStatusById(id);
     }
 
+    public int setAcceptedDate(Long id, String date) {
+        return proposalRepository.setAcceptedDateById(id, date);
+    }
+
     public void deleteProposal(Long id) {
         proposalRepository.deleteProposalById(id);
     }

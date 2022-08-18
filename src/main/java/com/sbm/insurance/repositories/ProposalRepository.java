@@ -20,5 +20,13 @@ public interface ProposalRepository extends JpaRepository<Proposal, Long> {
 
     @Modifying
     @Transactional
+    @Query(
+            value = "UPDATE proposal SET proposal_accepted_date = ?2 WHERE id = ?1",
+            nativeQuery = true
+    )
+    int setAcceptedDateById(Long id, String date);
+
+    @Modifying
+    @Transactional
     long deleteProposalById(Long id);
 }
