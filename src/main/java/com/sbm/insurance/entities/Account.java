@@ -13,16 +13,27 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(
-        uniqueConstraints = @UniqueConstraint(
-                name = "email",
-                columnNames = "email"
-        )
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "email",
+                        columnNames = "email"
+                ),
+                @UniqueConstraint(
+                        name = "identity",
+                        columnNames = "identity"
+                )
+        }
+
 )
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Min(1)
+    @Max(99999999999L)
+    private Long identity;
 
     @NotEmpty(message = "Name may not be empty")
     @Size(min = 1, message = "Name length may be in between 1 to 30 character")

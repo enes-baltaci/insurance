@@ -82,6 +82,10 @@ public class AccountController {
 
             Account accountDatabase = accountService.getById(id).get();
 
+            if (account.getIdentity() != accountDatabase.getIdentity()) {
+                accountDatabase.setIdentity(account.getIdentity());
+            }
+
             if (!account.getName().equalsIgnoreCase(accountDatabase.getName())) {
                 accountDatabase.setName(account.getName());
             }
