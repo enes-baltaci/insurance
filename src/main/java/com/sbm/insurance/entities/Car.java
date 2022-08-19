@@ -34,7 +34,7 @@ public class Car {
     private String plateNumber;
 
     @NotNull
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 

@@ -39,7 +39,7 @@ public class Travel {
     private int days;
 
     @NotNull
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
     private Account account;
 

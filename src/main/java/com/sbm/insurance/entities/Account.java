@@ -71,4 +71,11 @@ public class Account {
             fetch = FetchType.LAZY
     )
     private List<Travel> travels;
+
+    @OneToMany(
+            mappedBy = "account",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.LAZY
+    )
+    private List<Dask> dasks;
 }

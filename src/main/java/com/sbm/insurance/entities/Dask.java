@@ -37,4 +37,12 @@ public class Dask {
     @Min(20)
     @Max(999999)
     private int area;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
+    private Account account;
+
+    @OneToOne(mappedBy = "dask", cascade = CascadeType.REMOVE)
+    private Address address;
 }
