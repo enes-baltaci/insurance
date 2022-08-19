@@ -70,28 +70,7 @@
 
     <hr>
 
-    <nav>
-        <ul>
-            <li>
-                <h6><a th:href="@{/}">Home</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/{link}(link=${link})}" th:text="${linkName}"/></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/create_account}">Create Account</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/account_list}">Account List</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/car_insurance}">Make Car Insurance</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/travel_insurance}">Make Travel Insurance</a></h6>
-            </li>
-        </ul>
-    </nav>
+    <div th:replace="fragments :: footer"/>
 
 </div>
 </body>
