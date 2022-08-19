@@ -11,6 +11,12 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(
+        uniqueConstraints = @UniqueConstraint(
+                name = "plateNumber",
+                columnNames = "plateNumber"
+        )
+)
 public class Car {
     
     @Id
