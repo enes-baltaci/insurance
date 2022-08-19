@@ -17,6 +17,12 @@
 <body>
 <div class="container">
 
+    <hr>
+
+    <div th:replace="fragments :: navbar"/>
+
+    <hr>
+
     <h2>Travel Details</h2>
     <hr>
 
@@ -100,13 +106,9 @@
 
     <hr>
 
-    <nav>
-        <ul>
-            <li th:if="${travel.proposal.status} == false"><a th:href="@{/proposals}">Back</a></li>
-            <li th:if="${travel.proposal.status} == true"><a th:href="@{/proposals/accepted}">Back</a></li>
-        </ul>
-    </nav>
-
 </div>
+
+<div th:replace="fragments :: scripts"/>
+
 </body>
 </html>

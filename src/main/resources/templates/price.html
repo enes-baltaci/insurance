@@ -12,25 +12,20 @@
 <body>
 <div class="container">
 
+    <hr>
+
+    <div th:replace="fragments :: navbar"/>
+
+    <hr>
+
     <h2>Price</h2>
     <hr>
 
-    <p th:text="'Total price is: ' + ${price}"/>
-
-    <nav>
-        <ul>
-            <li>
-                <h6><a th:href="@{/}">Home</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/proposals}">Proposals</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/proposals/accepted}">Accepted Proposals</a></h6>
-            </li>
-        </ul>
-    </nav>
+    <p class="parent_center" th:text="'Total price is: ' + ${price}"/>
 
 </div>
+
+<div th:replace="fragments :: scripts"/>
+
 </body>
 </html>

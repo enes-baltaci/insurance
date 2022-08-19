@@ -13,6 +13,12 @@
 
 <div class="container">
 
+    <hr>
+
+    <div th:replace="fragments :: navbar"/>
+
+    <hr>
+
     <h2 th:text="${processName} + ' Account'"/>
     <hr>
 
@@ -67,30 +73,9 @@
 
     <hr>
 
-    <nav>
-        <ul>
-            <li>
-                <h6><a th:href="@{/}">Home</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/account_list}">Account List</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/car_insurance}">Make Car Insurance</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/travel_insurance}">Make Travel Insurance</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/proposals}">Proposals</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/proposals/accepted}">Accepted Proposals</a></h6>
-            </li>
-        </ul>
-    </nav>
-
 </div>
+
+<div th:replace="fragments :: scripts"/>
 
 </body>
 </html>
