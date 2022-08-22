@@ -34,4 +34,7 @@ public class Proposal {
 
     @OneToOne(mappedBy = "proposal", cascade = CascadeType.REMOVE)
     private Travel travel;
+
+    @OneToOne(mappedBy = "proposal", cascade = CascadeType.REMOVE)
+    private Dask dask;
 }
