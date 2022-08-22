@@ -23,8 +23,7 @@ public class AccountController {
 
     @GetMapping("/create_account")
     public String createAccount(Model model) {
-        Account account = new Account();
-        model.addAttribute("account", account);
+        model.addAttribute("account", new Account());
         model.addAttribute("processName", "Create");
         model.addAttribute("action", "account_registration");
 
