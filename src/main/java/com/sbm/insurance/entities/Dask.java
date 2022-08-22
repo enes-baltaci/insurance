@@ -1,9 +1,6 @@
 package com.sbm.insurance.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -15,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Dask {
 
     @Id
@@ -30,9 +28,12 @@ public class Dask {
     private String buildingStyle;
 
     @Min(1)
+    @Max(200)
     private int floorNumber;
 
-    private String damageStatus;
+    @Min(1)
+    @Max(5)
+    private int damageStatus;
 
     @Min(20)
     @Max(999999)
