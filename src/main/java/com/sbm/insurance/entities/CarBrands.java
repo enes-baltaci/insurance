@@ -3,6 +3,8 @@ package com.sbm.insurance.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
@@ -26,6 +28,10 @@ public class CarBrands {
 
     @NotBlank(message = "Car Brand can't be null or empty")
     private String carBrand;
+
+    @Min(1)
+    @Max(999999)
+    private float carBrandMultiplier;
 
     @OneToMany(
             mappedBy = "brand",

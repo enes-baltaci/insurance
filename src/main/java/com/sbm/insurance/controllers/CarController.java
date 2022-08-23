@@ -49,27 +49,7 @@ public class CarController {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
-        if (car.getBrand().getCarBrand().equalsIgnoreCase("Mercedes-Benz") ||
-                car.getBrand().getCarBrand().equalsIgnoreCase("BMW") ||
-                car.getBrand().getCarBrand().equalsIgnoreCase("Audi")) {
-
-            price *= 3;
-
-        } else if (car.getBrand().getCarBrand().equalsIgnoreCase("Volkswagen") ||
-                car.getBrand().getCarBrand().equalsIgnoreCase("Nissan") ||
-                car.getBrand().getCarBrand().equalsIgnoreCase("Mini Cooper")) {
-
-            price *= 2;
-
-        } else if (car.getBrand().getCarBrand().equalsIgnoreCase("Peugeot") ||
-                car.getBrand().getCarBrand().equalsIgnoreCase("Skoda") ||
-                car.getBrand().getCarBrand().equalsIgnoreCase("Kia")) {
-
-            price *= 1.5;
-
-        } else {
-            price *= 1.25;
-        }
+        price *= car.getBrand().getCarBrandMultiplier();
 
         if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() == 0) {
             price *= 2;

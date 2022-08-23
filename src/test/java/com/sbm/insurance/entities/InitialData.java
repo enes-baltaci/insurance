@@ -20,20 +20,20 @@ class InitialData {
     @Test
     void initialData() {
 
-        ArrayList<String> brands = new ArrayList<String>() {
+        ArrayList<CarBrands> carBrands = new ArrayList<>() {
             {
-                add("Mercedes-Benz");
-                add("BMW");
-                add("Audi");
-                add("Volkswagen");
-                add("Nissan");
-                add("Renault");
-                add("Peugeot");
-                add("Skoda");
-                add("Opel");
-                add("Mini Cooper");
-                add("Hyundai");
-                add("Kia");
+                add(CarBrands.builder().carBrand("Mercedes-Benz").carBrandMultiplier(3f).build());
+                add(CarBrands.builder().carBrand("BMW").carBrandMultiplier(3f).build());
+                add(CarBrands.builder().carBrand("Audi").carBrandMultiplier(3f).build());
+                add(CarBrands.builder().carBrand("Volkswagen").carBrandMultiplier(2f).build());
+                add(CarBrands.builder().carBrand("Nissan").carBrandMultiplier(2f).build());
+                add(CarBrands.builder().carBrand("Renault").carBrandMultiplier(2f).build());
+                add(CarBrands.builder().carBrand("Peugeot").carBrandMultiplier(1.5f).build());
+                add(CarBrands.builder().carBrand("Skoda").carBrandMultiplier(1.5f).build());
+                add(CarBrands.builder().carBrand("Opel").carBrandMultiplier(1.5f).build());
+                add(CarBrands.builder().carBrand("Mini Cooper").carBrandMultiplier(1.25f).build());
+                add(CarBrands.builder().carBrand("Hyundai").carBrandMultiplier(1.25f).build());
+                add(CarBrands.builder().carBrand("Kia").carBrandMultiplier(1.25f).build());
             }
         };
 
@@ -49,9 +49,8 @@ class InitialData {
             accountService.save(account);
         }
 
-        for (String str : brands) {
-            CarBrands carBrands = CarBrands.builder().carBrand(str).build();
-            carBrandsService.save(carBrands);
+        for (CarBrands brands : carBrands) {
+            carBrandsService.save(brands);
         }
     }
 
