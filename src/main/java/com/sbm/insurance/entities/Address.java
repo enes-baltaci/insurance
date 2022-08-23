@@ -36,6 +36,6 @@ public class Address {
     private String openAddress;
 
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Dask dask;
 }

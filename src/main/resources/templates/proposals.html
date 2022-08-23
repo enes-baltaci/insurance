@@ -36,6 +36,8 @@
                 th:text="${proposal.car.account.name + ' ' + proposal.car.account.surname}"/>
             <td th:if="${proposal.type} == 'Travel'"
                 th:text="${proposal.travel.account.name + ' ' + proposal.travel.account.surname}"/>
+            <td th:if="${proposal.type} == 'Dask'"
+                th:text="${proposal.dask.account.name + ' ' + proposal.dask.account.surname}"/>
             <td th:text="${proposal.type}"/>
             <td th:text="${proposal.price}"/>
             <td th:text="${proposal.proposalDate}"/>
@@ -48,6 +50,11 @@
                 </form>
                 <form th:if="${proposal.type} == 'Car'"
                       th:action="@{/proposal/details/car/{id}(id=${proposal.car.id})}"
+                      action="#" method="get">
+                    <button type="submit" class="btn btn-info">Details</button>
+                </form>
+                <form th:if="${proposal.type} == 'Dask'"
+                      th:action="@{/proposal/details/dask/{id}(id=${proposal.dask.id})}"
                       action="#" method="get">
                     <button type="submit" class="btn btn-info">Details</button>
                 </form>

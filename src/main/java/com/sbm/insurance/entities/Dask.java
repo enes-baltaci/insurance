@@ -24,7 +24,7 @@ public class Dask {
     private int buildYear;
 
     @NotNull
-    @Column(length = 30)
+    @Column(length = 45)
     private String buildingStyle = "Masonry";
 
     @Min(1)
@@ -48,6 +48,6 @@ public class Dask {
     private Address address;
 
     @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "proposal_id", referencedColumnName = "id", nullable = true) // id not null
+    @JoinColumn(name = "proposal_id", referencedColumnName = "id")
     private Proposal proposal;
 }

@@ -39,28 +39,13 @@ public class DaskController {
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {
         model.addAttribute("dask", new Dask());
+        model.addAttribute("address", new Address());
         model.addAttribute("accounts", accountService.getAll());
         return "dask_insurance";
     }
 
-    @GetMapping("/dask_insurance/address")
-    public String daskInsuranceAddress(@Valid @ModelAttribute Dask dask, Model model) {
-
-        daskService.save(dask);
-
-        model.addAttribute("address", new Address());
-        model.addAttribute("daskId", dask.getId());
-        return "dask_address";
-    }
-
-    @PostMapping("/dask_registration/{id}")
-    public String daskRegistration(@Valid @ModelAttribute Address address, @PathVariable Long id, Model model) {
-
-        Optional<Dask> dask = daskService.getDaskById(id);
-
-        if (!dask.isPresent()) {
-            return "id_error";
-        }
+    @PostMapping("/dask_registration")
+    public String daskRegistration(@Valid @ModelAttribute Dask dask, @Valid @ModelAttribute Address address, Model model) {
 
         float price = 2430;
 
@@ -70,27 +55,27 @@ public class DaskController {
             price *= 2.2;
         }
 
-        if (dask.get().getBuildingStyle().equalsIgnoreCase("Masonry")) {
+        if (dask.getBuildingStyle().equalsIgnoreCase("Masonry")) {
             price *= 1.7;
-        } else if (dask.get().getBuildingStyle().equalsIgnoreCase("Other")) {
+        } else if (dask.getBuildingStyle().equalsIgnoreCase("Other")) {
             price *= 2.5;
         } else {
             price *= 1.2;
         }
 
-        if (dask.get().getArea() > 250) {
+        if (dask.getArea() > 250) {
             price *= 3.5;
-        } else if (dask.get().getArea() > 200) {
+        } else if (dask.getArea() > 200) {
             price *= 3;
-        } else if (dask.get().getArea() > 150) {
+        } else if (dask.getArea() > 150) {
             price *= 2.5;
-        } else if (dask.get().getArea() > 100) {
+        } else if (dask.getArea() > 100) {
             price *= 2;
         } else {
             price *= 1.5;
         }
 
-        switch (dask.get().getDamageStatus()) {
+        switch (dask.getDamageStatus()) {
             case 1:
                 price += 250;
                 break;
@@ -108,23 +93,23 @@ public class DaskController {
                 break;
         }
 
-        if (dask.get().getFloorNumber() > 50) {
+        if (dask.getFloorNumber() > 50) {
             price *= 1.5;
-        } else if (dask.get().getFloorNumber() > 40) {
+        } else if (dask.getFloorNumber() > 40) {
             price *= 1.4;
-        } else if (dask.get().getFloorNumber() > 30) {
+        } else if (dask.getFloorNumber() > 30) {
             price *= 1.3;
-        } else if (dask.get().getFloorNumber() > 20) {
+        } else if (dask.getFloorNumber() > 20) {
             price *= 1.2;
         } else {
             price *= 1.1;
         }
 
-        if (Calendar.getInstance().get(Calendar.YEAR) - dask.get().getBuildYear() > 100) {
+        if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 100) {
             price *= 5;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.get().getBuildYear() > 75) {
+        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 75) {
             price *= 3.75;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.get().getBuildYear() > 50) {
+        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 50) {
             price *= 2.5;
         } else {
             price *= 1.25;
@@ -141,13 +126,19 @@ public class DaskController {
 
         proposalService.save(proposal);
 
-        dask.get().setProposal(proposal);
+        dask.setProposal(proposal);
 
-        address.setDask(dask.get());
         addressService.save(address);
 
-        dask.get().setAddress(address);
-        daskService.save(dask.get());
+        daskService.save(dask);
+
+        address.setDask(dask);
+
+        dask.setAddress(address);
+
+        addressService.save(address);
+
+        daskService.save(dask);
 
         model.addAttribute("price", price);
 
