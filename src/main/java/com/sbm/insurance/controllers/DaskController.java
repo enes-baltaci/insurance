@@ -9,14 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Optional;
 
 @Controller
 public class DaskController {
@@ -36,10 +34,14 @@ public class DaskController {
     @Autowired
     private CitiesService citiesService;
 
+    @Autowired
+    private DaskDamageStatusService daskDamageStatusService;
+
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {
         model.addAttribute("dask", new Dask());
         model.addAttribute("cities", citiesService.getAll());
+        model.addAttribute("daskDamages", daskDamageStatusService.getAll());
         model.addAttribute("address", new Address());
         model.addAttribute("accounts", accountService.getAll());
         return "dask_insurance";
@@ -72,23 +74,7 @@ public class DaskController {
             price *= 1.5;
         }
 
-        switch (dask.getDamageStatus()) {
-            case 1:
-                price += 250;
-                break;
-            case 2:
-                price *= 1.4;
-                break;
-            case 3:
-                price *= 1.7;
-                break;
-            case 4:
-                price *= 2.5;
-                break;
-            case 5:
-                price *= 5;
-                break;
-        }
+        price *= dask.getDaskDamageStatus().getPriceMultiplier();
 
         if (dask.getFloorNumber() > 50) {
             price *= 1.5;

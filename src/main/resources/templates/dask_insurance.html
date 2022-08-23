@@ -78,12 +78,8 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="damage-status">Damage Status</label>
             <div class="col-sm-10">
-                <select class="custom-select my-1 mr-sm-2" th:field="*{dask.damageStatus}" id="damage-status" required>
-                    <option th:text="${'Undamaged'}" th:value="${1}"/>
-                    <option th:text="${'Little Damaged'}" th:value="${2}"/>
-                    <option th:text="${'Medium Damaged'}" th:value="${3}"/>
-                    <option th:text="${'Heavy Damaged'}" th:value="${4}"/>
-                    <option th:text="${'Demolish Immediately'}" th:value="${5}"/>
+                <select class="custom-select my-1 mr-sm-2" th:field="*{dask.daskDamageStatus}" id="damage-status" required>
+                    <option th:each="dmg : ${daskDamages}" th:value="${dmg.id}" th:text="${dmg.damageStatus}"/>
                 </select>
             </div>
         </div>

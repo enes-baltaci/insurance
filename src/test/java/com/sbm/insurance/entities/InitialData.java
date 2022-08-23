@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @SpringBootTest
@@ -25,8 +26,25 @@ class InitialData {
     @Autowired
     private CitiesService citiesService;
 
+    @Autowired
+    private DaskDamageStatusService daskDamageStatusService;
+
     @Test
     void initialData() {
+
+        ArrayList<DaskDamageStatus> daskDamageStatuses = new ArrayList<>() {
+            {
+                add(DaskDamageStatus.builder().damageStatus("Undamaged").damageId(1).priceMultiplier(1.1f).build());
+                add(DaskDamageStatus.builder().damageStatus("Little Damaged").damageId(2).priceMultiplier(1.4f).build());
+                add(DaskDamageStatus.builder().damageStatus("Medium Damaged").damageId(3).priceMultiplier(1.7f).build());
+                add(DaskDamageStatus.builder().damageStatus("Heavy Damaged").damageId(4).priceMultiplier(2.5f).build());
+                add(DaskDamageStatus.builder().damageStatus("Demolish Immediately").damageId(5).priceMultiplier(5f).build());
+            }
+        };
+
+        for (DaskDamageStatus daskDamageStatus : daskDamageStatuses) {
+            daskDamageStatusService.save(daskDamageStatus);
+        }
 
         ArrayList<CarBrands> carBrands = new ArrayList<>() {
             {

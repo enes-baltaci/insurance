@@ -31,10 +31,6 @@ public class Dask {
     @Max(200)
     private int floorNumber;
 
-    @Min(1)
-    @Max(5)
-    private int damageStatus;
-
     @Min(20)
     @Max(999999)
     private int area;
@@ -50,4 +46,8 @@ public class Dask {
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "proposal_id", referencedColumnName = "id")
     private Proposal proposal;
+
+    @ManyToOne
+    @JoinColumn(name = "daskdamage_id", referencedColumnName = "id", nullable = false)
+    private DaskDamageStatus daskDamageStatus;
 }
