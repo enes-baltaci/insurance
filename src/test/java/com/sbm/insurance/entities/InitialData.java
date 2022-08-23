@@ -1,8 +1,6 @@
 package com.sbm.insurance.entities;
 
-import com.sbm.insurance.services.AccountService;
-import com.sbm.insurance.services.CarBrandsService;
-import com.sbm.insurance.services.CarTypesService;
+import com.sbm.insurance.services.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +18,9 @@ class InitialData {
 
     @Autowired
     private CarTypesService carTypesService;
+
+    @Autowired
+    private TravelTypesService travelTypesService;
 
     @Test
     void initialData() {
@@ -41,6 +42,10 @@ class InitialData {
             }
         };
 
+        for (CarBrands brands : carBrands) {
+            carBrandsService.save(brands);
+        }
+
         ArrayList<Account> accounts = new ArrayList<>() {
             {
                 add(Account.builder().identity(12345L).name("Enes").surname("Baltacı").email("enes@gmail.com").age(24).city("İstanbul").build());
@@ -48,6 +53,10 @@ class InitialData {
                 add(Account.builder().identity(12347L).name("İrem").surname("Er").email("irem@gmail.com").age(23).city("Muğla").build());
             }
         };
+
+        for (Account account : accounts) {
+            accountService.save(account);
+        }
 
         ArrayList<CarTypes> carTypes = new ArrayList<>() {
             {
@@ -61,16 +70,22 @@ class InitialData {
             }
         };
 
-        for (Account account : accounts) {
-            accountService.save(account);
-        }
-
-        for (CarBrands brands : carBrands) {
-            carBrandsService.save(brands);
-        }
-
         for (CarTypes types : carTypes) {
             carTypesService.save(types);
+        }
+
+        ArrayList<TravelTypes> travelTypes = new ArrayList<>() {
+            {
+                add(TravelTypes.builder().travelType("Flight").price(6500).distanceMultiplier(320).dayMultiplier(50).build());
+                add(TravelTypes.builder().travelType("Bus").price(4250).distanceMultiplier(120).dayMultiplier(25).build());
+                add(TravelTypes.builder().travelType("Train").price(3000).distanceMultiplier(200).dayMultiplier(35).build());
+                add(TravelTypes.builder().travelType("Ship").price(5200).distanceMultiplier(525).dayMultiplier(70).build());
+                add(TravelTypes.builder().travelType("Personal").price(7000).distanceMultiplier(340).dayMultiplier(60).build());
+            }
+        };
+
+        for (TravelTypes types : travelTypes) {
+            travelTypesService.save(types);
         }
     }
 

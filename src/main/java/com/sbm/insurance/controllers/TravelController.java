@@ -5,6 +5,7 @@ import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.AccountService;
 import com.sbm.insurance.services.ProposalService;
 import com.sbm.insurance.services.TravelService;
+import com.sbm.insurance.services.TravelTypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,45 +29,26 @@ public class TravelController {
     @Autowired
     private ProposalService proposalService;
 
+    @Autowired
+    private TravelTypesService travelTypesService;
+
     @GetMapping("/travel_insurance")
     public String travelInsurance(Model model) {
         model.addAttribute("travel", new Travel());
         model.addAttribute("accounts", accountService.getAll());
+        model.addAttribute("travelTypes", travelTypesService.getAll());
         return "travel_insurance";
     }
 
     @PostMapping("/travel_registration")
     public String travelRegistration(@Valid @ModelAttribute Travel travel, Model model) {
 
-        float price;
+        float price = (travel.getTravelTypes().getPrice()) +
+              ((travel.getDistance_km() / 1000) * travel.getTravelTypes().getDistanceMultiplier()) +
+              (travel.getDays() * travel.getTravelTypes().getDayMultiplier());
 
         if (travel.getDistanceType().equalsIgnoreCase("Mile")) { // Convert it into kilometer
             travel.setDistance_km((float) (travel.getDistance_km() * 1.6));
-        }
-
-        if (travel.getType().equalsIgnoreCase("Flight")) {
-
-            price = 6500;
-
-            price += (travel.getDistance_km() / 1000) * 320;
-
-            price += travel.getDays() * 50;
-
-        } else if (travel.getType().equalsIgnoreCase("Bus")) {
-
-            price = 4250;
-
-            price += (travel.getDistance_km() / 1000) * 120;
-
-            price += travel.getDays() * 25;
-
-        } else {
-
-            price = 7000;
-
-            price += (travel.getDistance_km() / 1000) * 340;
-
-            price += travel.getDays() * 60;
         }
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");

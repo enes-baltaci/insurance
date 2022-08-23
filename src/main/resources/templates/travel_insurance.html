@@ -34,25 +34,14 @@
             </div>
         </div>
 
-        <fieldset class="form-group">
-            <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">Travel Type</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" th:field="*{type}" name="travelType" id="flight" value="Flight">
-                        <label class="form-check-label" for="flight" th:text="Flight"/>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" th:field="*{type}" name="travelType" id="bus" value="Bus">
-                        <label class="form-check-label" for="bus" th:text="Bus"/>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" th:field="*{type}" name="travelType" id="personal" value="Personal">
-                        <label class="form-check-label" for="personal" th:text="Personal"/>
-                    </div>
-                </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="travel-type">Travel Type</label>
+            <div class="col-sm-10">
+                <select class="custom-select my-1 mr-sm-2" th:field="*{travelTypes}" id="travel-type">
+                    <option th:each="type : ${travelTypes}" th:value="${type.id}" th:text="${type.travelType}"/>
+                </select>
             </div>
-        </fieldset>
+        </div>
 
         <div class="form-group row">
             <label class="col-sm-2 col-form-label" for="date">Travel Date</label>

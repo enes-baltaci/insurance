@@ -22,9 +22,6 @@ public class Travel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Choosing travel type is mandatory")
-    private String type = "Flight";
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date travelDate;
 
