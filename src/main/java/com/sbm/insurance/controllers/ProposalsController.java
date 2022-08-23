@@ -1,9 +1,11 @@
 package com.sbm.insurance.controllers;
 
 import com.sbm.insurance.entities.Car;
+import com.sbm.insurance.entities.Dask;
 import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.CarService;
+import com.sbm.insurance.services.DaskService;
 import com.sbm.insurance.services.ProposalService;
 import com.sbm.insurance.services.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class ProposalsController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private DaskService daskService;
 
     @Autowired
     private ProposalService proposalService;
@@ -69,6 +74,19 @@ public class ProposalsController {
         if (optionalCar.isPresent()) {
             model.addAttribute("car", optionalCar.get());
             return "car_details";
+        }
+        else {
+            return "id_error";
+        }
+    }
+
+    @GetMapping("/proposal/details/dask/{id}")
+    public String daskDetails(@PathVariable Long id, Model model) {
+        Optional<Dask> optionalDask = daskService.getDaskById(id);
+
+        if (optionalDask.isPresent()) {
+            model.addAttribute("dask", optionalDask.get());
+            return "dask_details";
         }
         else {
             return "id_error";

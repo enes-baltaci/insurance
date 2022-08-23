@@ -65,7 +65,7 @@
         <p>
             <strong>Travel Distance:</strong>&nbsp
         </p>
-        <p th:text="${travel.distance_km}"/>
+        <p th:text="${travel.distance_km} + ' KM'"/>
     </div>
 
     <div class="parent_center">
@@ -79,7 +79,7 @@
         <p>
             <strong>Proposal Price:</strong>&nbsp
         </p>
-        <p th:text="${travel.proposal.price}"/>
+        <p th:text="${travel.proposal.price} + ' TL'"/>
     </div>
 
     <div class="parent_center">
