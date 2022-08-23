@@ -23,10 +23,6 @@ public class Dask {
     @Max(2022)
     private int buildYear;
 
-    @NotNull
-    @Column(length = 45)
-    private String buildingStyle = "Masonry";
-
     @Min(1)
     @Max(200)
     private int floorNumber;
@@ -50,4 +46,8 @@ public class Dask {
     @ManyToOne
     @JoinColumn(name = "daskdamage_id", referencedColumnName = "id", nullable = false)
     private DaskDamageStatus daskDamageStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "buildingstyle_id", referencedColumnName = "id", nullable = false)
+    private DaskBuildingStyle daskBuildingStyle;
 }

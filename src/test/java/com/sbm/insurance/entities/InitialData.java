@@ -29,8 +29,23 @@ class InitialData {
     @Autowired
     private DaskDamageStatusService daskDamageStatusService;
 
+    @Autowired
+    private DaskBuildingStyleService daskBuildingStyleService;
+
     @Test
     void initialData() {
+
+        ArrayList<DaskBuildingStyle> daskBuildingStyles = new ArrayList<>() {
+            {
+                add(DaskBuildingStyle.builder().buildingStyle("Masonry").priceMultiplier(1.7f).build());
+                add(DaskBuildingStyle.builder().buildingStyle("Steel, Reinforced Concrete Carcass").priceMultiplier(1.2f).build());
+                add(DaskBuildingStyle.builder().buildingStyle("Other").priceMultiplier(2.5f).build());
+            }
+        };
+
+        for (DaskBuildingStyle buildingStyle : daskBuildingStyles) {
+            daskBuildingStyleService.save(buildingStyle);
+        }
 
         ArrayList<DaskDamageStatus> daskDamageStatuses = new ArrayList<>() {
             {

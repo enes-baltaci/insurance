@@ -37,12 +37,16 @@ public class DaskController {
     @Autowired
     private DaskDamageStatusService daskDamageStatusService;
 
+    @Autowired
+    private DaskBuildingStyleService daskBuildingStyleService;
+
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {
         model.addAttribute("dask", new Dask());
+        model.addAttribute("address", new Address());
         model.addAttribute("cities", citiesService.getAll());
         model.addAttribute("daskDamages", daskDamageStatusService.getAll());
-        model.addAttribute("address", new Address());
+        model.addAttribute("daskBuildings", daskBuildingStyleService.getAll());
         model.addAttribute("accounts", accountService.getAll());
         return "dask_insurance";
     }
@@ -54,13 +58,7 @@ public class DaskController {
 
         price *= address.getCity().getPriceMultiplier();
 
-        if (dask.getBuildingStyle().equalsIgnoreCase("Masonry")) {
-            price *= 1.7;
-        } else if (dask.getBuildingStyle().equalsIgnoreCase("Other")) {
-            price *= 2.5;
-        } else {
-            price *= 1.2;
-        }
+        price *= dask.getDaskBuildingStyle().getPriceMultiplier();
 
         if (dask.getArea() > 250) {
             price *= 3.5;
