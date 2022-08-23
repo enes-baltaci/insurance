@@ -1,11 +1,10 @@
 package com.sbm.insurance.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -14,26 +13,25 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(length = 60)
-    private String country;
-
     @NotBlank
     @Column(length = 30)
     private String city;
 
-    @NotNull
     @Column(length = 100)
     private String county;
 
-    @NotNull
     private String openAddress;
+
+    @Min(1)
+    @Max(999999)
+    private float priceMultiplier = 1;
 
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
