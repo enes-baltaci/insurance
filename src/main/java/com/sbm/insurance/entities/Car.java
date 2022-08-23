@@ -27,8 +27,6 @@ public class Car {
     @Max(value = 2023, message = "Maximum model year is 2023")
     private int modelYear;
 
-    private String type = "SUV";
-
     @Size(min = 4, message = "Plate number length may be in between 4 to 15 characters")
     @Column(length = 15)
     private String plateNumber;
@@ -45,4 +43,8 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "car_brand_id", referencedColumnName = "id", nullable = false)
     private CarBrands brand;
+
+    @ManyToOne
+    @JoinColumn(name = "car_type_id", referencedColumnName = "id", nullable = false)
+    private CarTypes type;
 }

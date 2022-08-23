@@ -2,10 +2,7 @@ package com.sbm.insurance.controllers;
 
 import com.sbm.insurance.entities.Car;
 import com.sbm.insurance.entities.Proposal;
-import com.sbm.insurance.services.AccountService;
-import com.sbm.insurance.services.CarBrandsService;
-import com.sbm.insurance.services.CarService;
-import com.sbm.insurance.services.ProposalService;
+import com.sbm.insurance.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,11 +30,15 @@ public class CarController {
     @Autowired
     private CarBrandsService carBrandsService;
 
+    @Autowired
+    private CarTypesService carTypesService;
+
     @GetMapping("/car_insurance")
     public String carInsurance(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("accounts", accountService.getAll());
         model.addAttribute("brands", carBrandsService.getAll());
+        model.addAttribute("types", carTypesService.getAll());
         return "car_insurance";
     }
 
@@ -53,24 +54,15 @@ public class CarController {
 
         if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() == 0) {
             price *= 2;
-        }
-        else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 3) {
+        } else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 3) {
             price *= 1.75;
-        }
-        else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 5) {
+        } else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 5) {
             price *= 1.5;
-        }
-        else {
+        } else {
             price *= 1.25;
         }
 
-        if (car.getType().equalsIgnoreCase("SUV")) {
-            price += (price * (15 / 100));
-        } else if (car.getType().equalsIgnoreCase("Sedan")) {
-            price += (price * (1 / 5));
-        } else {
-            price += (price * (1 / 10));
-        }
+        price += (price * car.getType().getCarTypeMultiplier());
 
         Proposal proposal = Proposal.builder()
                 .price(price)
