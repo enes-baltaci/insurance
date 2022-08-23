@@ -46,4 +46,8 @@ public class Travel {
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "proposal_id", referencedColumnName = "id", nullable = false)
     private Proposal proposal;
+
+    @ManyToOne
+    @JoinColumn(name = "travel_type_id", referencedColumnName = "id", nullable = false)
+    private TravelTypes travelTypes;
 }
