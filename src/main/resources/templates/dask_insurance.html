@@ -103,21 +103,16 @@
         <hr>
 
         <div class="form-group row">
-            <label for="country" class="col-sm-2 col-form-label">Country</label>
+            <label class="col-sm-2 col-form-label" for="city">City</label>
             <div class="col-sm-10">
-                <input th:field="*{address.country}" type="text" name="country" class="form-control" id="country" placeholder="Country">
+                <select th:field="*{address.city}" class="custom-select my-1 mr-sm-2" id="city">
+                    <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.cityName}"/>
+                </select>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="city" class="col-sm-2 col-form-label">City</label>
-            <div class="col-sm-10">
-                <input th:field="*{address.city}" type="text" name="city" class="form-control" id="city" placeholder="City" required>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="city" class="col-sm-2 col-form-label">County</label>
+            <label for="county" class="col-sm-2 col-form-label">County</label>
             <div class="col-sm-10">
                 <input th:field="*{address.county}" type="text" name="county" class="form-control" id="county" placeholder="County">
             </div>

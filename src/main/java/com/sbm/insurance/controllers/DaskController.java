@@ -3,10 +3,7 @@ package com.sbm.insurance.controllers;
 import com.sbm.insurance.entities.Address;
 import com.sbm.insurance.entities.Dask;
 import com.sbm.insurance.entities.Proposal;
-import com.sbm.insurance.services.AccountService;
-import com.sbm.insurance.services.AddressService;
-import com.sbm.insurance.services.DaskService;
-import com.sbm.insurance.services.ProposalService;
+import com.sbm.insurance.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,9 +33,13 @@ public class DaskController {
     @Autowired
     private ProposalService proposalService;
 
+    @Autowired
+    private CitiesService citiesService;
+
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {
         model.addAttribute("dask", new Dask());
+        model.addAttribute("cities", citiesService.getAll());
         model.addAttribute("address", new Address());
         model.addAttribute("accounts", accountService.getAll());
         return "dask_insurance";
@@ -49,11 +50,7 @@ public class DaskController {
 
         float price = 2430;
 
-        if (address.getCity().equalsIgnoreCase("İstanbul") ||
-                address.getCity().equalsIgnoreCase("İzmir") ||
-                address.getCity().equalsIgnoreCase("Ankara")) {
-            price *= 2.2;
-        }
+        price *= address.getCity().getPriceMultiplier();
 
         if (dask.getBuildingStyle().equalsIgnoreCase("Masonry")) {
             price *= 1.7;

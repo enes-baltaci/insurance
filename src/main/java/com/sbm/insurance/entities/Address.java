@@ -20,20 +20,16 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Column(length = 30)
-    private String city;
-
     @Column(length = 100)
     private String county;
 
     private String openAddress;
 
-    @Min(1)
-    @Max(999999)
-    private float priceMultiplier = 1;
-
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Dask dask;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id", nullable = false)
+    private Cities city;
 }

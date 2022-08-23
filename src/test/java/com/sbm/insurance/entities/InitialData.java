@@ -23,7 +23,7 @@ class InitialData {
     private TravelTypesService travelTypesService;
 
     @Autowired
-    private AddressService addressService;
+    private CitiesService citiesService;
 
     @Test
     void initialData() {
@@ -91,94 +91,94 @@ class InitialData {
             travelTypesService.save(types);
         }
 
-        ArrayList<Address> addresses = new ArrayList<>() {
+        ArrayList<Cities> cities = new ArrayList<>() {
             {
-                add(Address.builder().city("Adana").priceMultiplier(3f).build());
-                add(Address.builder().city("Adıyaman").priceMultiplier(1f).build());
-                add(Address.builder().city("Afyonkarahisar").priceMultiplier(1f).build());
-                add(Address.builder().city("Ağrı").priceMultiplier(1f).build());
-                add(Address.builder().city("Aksaray").priceMultiplier(1f).build());
-                add(Address.builder().city("Amasya").priceMultiplier(1f).build());
-                add(Address.builder().city("Ankara").priceMultiplier(4f).build());
-                add(Address.builder().city("Antalya").priceMultiplier(3f).build());
-                add(Address.builder().city("Ardahan").priceMultiplier(1f).build());
-                add(Address.builder().city("Artvin").priceMultiplier(1f).build());
-                add(Address.builder().city("Aydın").priceMultiplier(6f).build());
-                add(Address.builder().city("Balıkesir").priceMultiplier(6f).build());
-                add(Address.builder().city("Bartın").priceMultiplier(1f).build());
-                add(Address.builder().city("Batman").priceMultiplier(1f).build());
-                add(Address.builder().city("Bayburt").priceMultiplier(1f).build());
-                add(Address.builder().city("Bilecik").priceMultiplier(1f).build());
-                add(Address.builder().city("Bingöl").priceMultiplier(2f).build());
-                add(Address.builder().city("Bitlis").priceMultiplier(1f).build());
-                add(Address.builder().city("Bolu").priceMultiplier(2f).build());
-                add(Address.builder().city("Burdur").priceMultiplier(2f).build());
-                add(Address.builder().city("Bursa").priceMultiplier(6f).build());
-                add(Address.builder().city("Çanakkale").priceMultiplier(1f).build());
-                add(Address.builder().city("Çankırı").priceMultiplier(1f).build());
-                add(Address.builder().city("Çorum").priceMultiplier(1f).build());
-                add(Address.builder().city("Denizli").priceMultiplier(6f).build());
-                add(Address.builder().city("Diyarbakır").priceMultiplier(3f).build());
-                add(Address.builder().city("Düzce").priceMultiplier(1f).build());
-                add(Address.builder().city("Edirne").priceMultiplier(1f).build());
-                add(Address.builder().city("Elazığ").priceMultiplier(1f).build());
-                add(Address.builder().city("Erzincan").priceMultiplier(2f).build());
-                add(Address.builder().city("Erzurum").priceMultiplier(6f).build());
-                add(Address.builder().city("Eskişehir").priceMultiplier(6f).build());
-                add(Address.builder().city("Gaziantep").priceMultiplier(3f).build());
-                add(Address.builder().city("Giresun").priceMultiplier(1f).build());
-                add(Address.builder().city("Gümüşhane").priceMultiplier(1f).build());
-                add(Address.builder().city("Hakkari").priceMultiplier(2f).build());
-                add(Address.builder().city("Hatay").priceMultiplier(6f).build());
-                add(Address.builder().city("Iğdır").priceMultiplier(1f).build());
-                add(Address.builder().city("Isparta").priceMultiplier(1f).build());
-                add(Address.builder().city("İstanbul").priceMultiplier(10f).build());
-                add(Address.builder().city("İzmir").priceMultiplier(6f).build());
-                add(Address.builder().city("Kahramanmaraş").priceMultiplier(6f).build());
-                add(Address.builder().city("Karabük").priceMultiplier(1f).build());
-                add(Address.builder().city("Karaman").priceMultiplier(1f).build());
-                add(Address.builder().city("Kars").priceMultiplier(1f).build());
-                add(Address.builder().city("Kastamonu").priceMultiplier(1f).build());
-                add(Address.builder().city("Kayseri").priceMultiplier(6f).build());
-                add(Address.builder().city("Kırıkkale").priceMultiplier(1f).build());
-                add(Address.builder().city("Kırklareli").priceMultiplier(1f).build());
-                add(Address.builder().city("Kırşehir").priceMultiplier(1f).build());
-                add(Address.builder().city("Kilis").priceMultiplier(1f).build());
-                add(Address.builder().city("Kocaeli").priceMultiplier(6f).build());
-                add(Address.builder().city("Konya").priceMultiplier(3f).build());
-                add(Address.builder().city("Kütahya").priceMultiplier(2f).build());
-                add(Address.builder().city("Malatya").priceMultiplier(3f).build());
-                add(Address.builder().city("Manisa").priceMultiplier(6f).build());
-                add(Address.builder().city("Mardin").priceMultiplier(3f).build());
-                add(Address.builder().city("Mersin").priceMultiplier(3f).build());
-                add(Address.builder().city("Muğla").priceMultiplier(6f).build());
-                add(Address.builder().city("Muş").priceMultiplier(1f).build());
-                add(Address.builder().city("Nevşehir").priceMultiplier(1f).build());
-                add(Address.builder().city("Niğde").priceMultiplier(1f).build());
-                add(Address.builder().city("Ordu").priceMultiplier(3f).build());
-                add(Address.builder().city("Osmaniye").priceMultiplier(2f).build());
-                add(Address.builder().city("Rize").priceMultiplier(1f).build());
-                add(Address.builder().city("Sakarya").priceMultiplier(6f).build());
-                add(Address.builder().city("Samsun").priceMultiplier(3f).build());
-                add(Address.builder().city("Siirt").priceMultiplier(1f).build());
-                add(Address.builder().city("Sinop").priceMultiplier(1f).build());
-                add(Address.builder().city("Sivas").priceMultiplier(1f).build());
-                add(Address.builder().city("Şanlıurfa").priceMultiplier(3f).build());
-                add(Address.builder().city("Şırnak").priceMultiplier(1f).build());
-                add(Address.builder().city("Tekirdağ").priceMultiplier(3f).build());
-                add(Address.builder().city("Tokat").priceMultiplier(6f).build());
-                add(Address.builder().city("Trabzon").priceMultiplier(3f).build());
-                add(Address.builder().city("Tunceli").priceMultiplier(1f).build());
-                add(Address.builder().city("Uşak").priceMultiplier(1f).build());
-                add(Address.builder().city("Van").priceMultiplier(3f).build());
-                add(Address.builder().city("Yalova").priceMultiplier(1f).build());
-                add(Address.builder().city("Yozgat").priceMultiplier(1f).build());
-                add(Address.builder().city("Zonguldak").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Adana").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Adıyaman").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Afyonkarahisar").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Ağrı").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Aksaray").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Amasya").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Ankara").priceMultiplier(4f).build());
+                add(Cities.builder().cityName("Antalya").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Ardahan").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Artvin").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Aydın").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Balıkesir").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Bartın").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Batman").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Bayburt").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Bilecik").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Bingöl").priceMultiplier(2f).build());
+                add(Cities.builder().cityName("Bitlis").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Bolu").priceMultiplier(2f).build());
+                add(Cities.builder().cityName("Burdur").priceMultiplier(2f).build());
+                add(Cities.builder().cityName("Bursa").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Çanakkale").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Çankırı").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Çorum").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Denizli").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Diyarbakır").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Düzce").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Edirne").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Elazığ").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Erzincan").priceMultiplier(2f).build());
+                add(Cities.builder().cityName("Erzurum").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Eskişehir").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Gaziantep").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Giresun").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Gümüşhane").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Hakkari").priceMultiplier(2f).build());
+                add(Cities.builder().cityName("Hatay").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Iğdır").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Isparta").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("İstanbul").priceMultiplier(10f).build());
+                add(Cities.builder().cityName("İzmir").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Kahramanmaraş").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Karabük").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Karaman").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Kars").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Kastamonu").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Kayseri").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Kırıkkale").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Kırklareli").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Kırşehir").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Kilis").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Kocaeli").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Konya").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Kütahya").priceMultiplier(2f).build());
+                add(Cities.builder().cityName("Malatya").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Manisa").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Mardin").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Mersin").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Muğla").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Muş").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Nevşehir").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Niğde").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Ordu").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Osmaniye").priceMultiplier(2f).build());
+                add(Cities.builder().cityName("Rize").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Sakarya").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Samsun").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Siirt").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Sinop").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Sivas").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Şanlıurfa").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Şırnak").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Tekirdağ").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Tokat").priceMultiplier(6f).build());
+                add(Cities.builder().cityName("Trabzon").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Tunceli").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Uşak").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Van").priceMultiplier(3f).build());
+                add(Cities.builder().cityName("Yalova").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Yozgat").priceMultiplier(1f).build());
+                add(Cities.builder().cityName("Zonguldak").priceMultiplier(1f).build());
             }
         };
 
-        for (Address address : addresses) {
-            addressService.save(address);
+        for (Cities city : cities) {
+            citiesService.save(city);
         }
     }
 
