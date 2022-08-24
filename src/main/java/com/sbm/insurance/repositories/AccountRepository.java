@@ -3,7 +3,6 @@ package com.sbm.insurance.repositories;
 import com.sbm.insurance.entities.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -13,5 +12,5 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Transactional
     @Modifying
-    long deleteAccountById(Long id);
+    void deleteAccountById(Long id);
 }

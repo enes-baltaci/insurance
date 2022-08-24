@@ -21,6 +21,7 @@ public class CitiesService {
         return citiesRepository.findAll();
     }
 
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public Cities getCityById(Long id) {
         return citiesRepository.findById(id).get();
     }

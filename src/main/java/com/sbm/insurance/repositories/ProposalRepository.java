@@ -16,7 +16,7 @@ public interface ProposalRepository extends JpaRepository<Proposal, Long> {
             value = "UPDATE proposal SET status = true WHERE id = ?1",
             nativeQuery = true
     )
-    int updateStatusById(Long id);
+    void updateStatusById(Long id);
 
     @Modifying
     @Transactional
@@ -24,9 +24,9 @@ public interface ProposalRepository extends JpaRepository<Proposal, Long> {
             value = "UPDATE proposal SET proposal_accepted_date = ?2 WHERE id = ?1",
             nativeQuery = true
     )
-    int setAcceptedDateById(Long id, String date);
+    void setAcceptedDateById(Long id, String date);
 
     @Modifying
     @Transactional
-    long deleteProposalById(Long id);
+    void deleteProposalById(Long id);
 }

@@ -73,6 +73,7 @@ public class AccountController {
         if (accountOptional.isPresent()) {
             model.addAttribute("account", accountOptional.get());
             model.addAttribute("processName", "Update");
+            model.addAttribute("cities", citiesService.getAll());
             model.addAttribute("action", "account_edit/" + accountOptional.get().getId());
             return "account";
         } else {
@@ -83,40 +84,43 @@ public class AccountController {
     @PostMapping("/account_edit/{id}")
     public String editAccount(@PathVariable("id") Long id, Account account) {
 
-        if (accountService.getById(id).isPresent()) {
-
-            Account accountDatabase = accountService.getById(id).get();
-
-            if (!Objects.equals(account.getIdentity(), accountDatabase.getIdentity())) {
-                accountDatabase.setIdentity(account.getIdentity());
-            }
-
-            if (!account.getName().equalsIgnoreCase(accountDatabase.getName())) {
-                accountDatabase.setName(account.getName());
-            }
-
-            if (!account.getSurname().equalsIgnoreCase(accountDatabase.getSurname())) {
-                accountDatabase.setSurname(account.getSurname());
-            }
-
-            if (!account.getEmail().equalsIgnoreCase(accountDatabase.getEmail())) {
-                accountDatabase.setEmail(account.getEmail());
-            }
-
-            if (account.getAge() != accountDatabase.getAge()) {
-                accountDatabase.setAge(account.getAge());
-            }
-
-            if (!account.getCity().getCityName().equalsIgnoreCase(accountDatabase.getCity().getCityName())) {
-                accountDatabase.setCity(account.getCity());
-            }
-
-            accountService.save(accountDatabase);
-
-            return "redirect:/";
-
-        } else {
+        if (accountService.getById(id).isEmpty()) {
             return "id_error";
+        }
+
+        Account accountDatabase = accountService.getById(id).get();
+
+        if (!Objects.equals(account.getIdentity(), accountDatabase.getIdentity())) {
+            accountDatabase.setIdentity(account.getIdentity());
+        }
+
+        if (!account.getName().equalsIgnoreCase(accountDatabase.getName())) {
+            accountDatabase.setName(account.getName());
+        }
+
+        if (!account.getSurname().equalsIgnoreCase(accountDatabase.getSurname())) {
+            accountDatabase.setSurname(account.getSurname());
+        }
+
+        if (!account.getEmail().equalsIgnoreCase(accountDatabase.getEmail())) {
+            accountDatabase.setEmail(account.getEmail());
+        }
+
+        if (account.getAge() != accountDatabase.getAge()) {
+            accountDatabase.setAge(account.getAge());
+        }
+
+        if (!account.getCity().getCityName().equalsIgnoreCase(accountDatabase.getCity().getCityName())) {
+            accountDatabase.setCity(account.getCity());
+        }
+
+        try {
+            accountService.save(account);
+            flag = true;
+            return "redirect:/info";
+        } catch (Exception e) {
+            flag = false;
+            return "redirect:/info";
         }
     }
 

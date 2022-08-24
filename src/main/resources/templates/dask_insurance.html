@@ -15,7 +15,7 @@
 
     <hr>
 
-    <div th:replace="fragments :: navbar"/>
+    <div th:replace="fragments :: navbar"></div>
 
     <hr>
 
@@ -103,7 +103,9 @@
         <div class="form-group row">
             <label for="open-address" class="col-sm-2 col-form-label">Open Address</label>
             <div class="col-sm-10">
-                <textarea th:field="*{address.openAddress}" class="form-control" name="open-address" id="open-address" rows="3" placeholder="Open Address"/>
+                <textarea th:field="*{address.openAddress}"
+                          class="form-control" name="open-address" id="open-address" rows="3" placeholder="Open Address">
+                </textarea>
             </div>
         </div>
 
@@ -117,7 +119,7 @@
 
 </div>
 
-<div th:replace="fragments :: scripts"/>
+<div th:replace="fragments :: scripts"></div>
 
 </body>
 </html>

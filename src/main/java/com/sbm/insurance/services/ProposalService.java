@@ -26,12 +26,12 @@ public class ProposalService {
         return proposalRepository.findById(id);
     }
 
-    public int updateStatusById(Long id) {
-        return proposalRepository.updateStatusById(id);
+    public void updateStatusById(Long id) {
+        proposalRepository.updateStatusById(id);
     }
 
-    public int setAcceptedDate(Long id, String date) {
-        return proposalRepository.setAcceptedDateById(id, date);
+    public void setAcceptedDate(Long id, String date) {
+        proposalRepository.setAcceptedDateById(id, date);
     }
 
     public void deleteProposal(Long id) {

@@ -14,7 +14,7 @@
 
     <hr>
 
-    <div th:replace="fragments :: navbar"/>
+    <div th:replace="fragments :: navbar"></div>
 
     <hr>
 
@@ -55,10 +55,12 @@
             <div class="col-sm-10">
                 <input class="form-control" th:field="*{distance_km}" type="number" name="distance" id="distance" min="0" value="0">
                 <div class="col-sm-10">
-                    <select class="custom-select my-1 mr-sm-2" th:field="*{distanceType}" style="width: auto">
-                        <option value="Kilometer">Kilometer</option>
-                        <option value="Mile">Mile</option>
-                    </select>
+                    <label>
+                        <select class="custom-select my-1 mr-sm-2" th:field="*{distanceType}" style="width: auto">
+                            <option value="Kilometer">Kilometer</option>
+                            <option value="Mile">Mile</option>
+                        </select>
+                    </label>
                 </div>
             </div>
         </div>
@@ -77,7 +79,7 @@
 
 </div>
 
-<div th:replace="fragments :: scripts"/>
+<div th:replace="fragments :: scripts"></div>
 
 </body>
 </html>
