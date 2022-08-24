@@ -34,4 +34,11 @@ public class Cities {
             fetch = FetchType.LAZY
     )
     private List<Address> addresses;
+
+    @OneToMany(
+            mappedBy = "city",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.LAZY
+    )
+    private List<Account> accounts;
 }

@@ -2,6 +2,7 @@ package com.sbm.insurance.controllers;
 
 import com.sbm.insurance.entities.Account;
 import com.sbm.insurance.services.AccountService;
+import com.sbm.insurance.services.CitiesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -19,11 +21,15 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private CitiesService citiesService;
+
     private boolean flag = false;
 
     @GetMapping("/create_account")
     public String createAccount(Model model) {
         model.addAttribute("account", new Account());
+        model.addAttribute("cities", citiesService.getAll());
         model.addAttribute("processName", "Create");
         model.addAttribute("action", "account_registration");
 
@@ -81,7 +87,7 @@ public class AccountController {
 
             Account accountDatabase = accountService.getById(id).get();
 
-            if (account.getIdentity() != accountDatabase.getIdentity()) {
+            if (!Objects.equals(account.getIdentity(), accountDatabase.getIdentity())) {
                 accountDatabase.setIdentity(account.getIdentity());
             }
 
@@ -101,7 +107,7 @@ public class AccountController {
                 accountDatabase.setAge(account.getAge());
             }
 
-            if (!account.getCity().equalsIgnoreCase(accountDatabase.getCity())) {
+            if (!account.getCity().getCityName().equalsIgnoreCase(accountDatabase.getCity().getCityName())) {
                 accountDatabase.setCity(account.getCity());
             }
 

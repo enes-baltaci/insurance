@@ -54,10 +54,6 @@ public class Account {
     @Column(length = 70)
     private String email;
 
-    @NotBlank(message = "You must enter the city you live in")
-    @Column(length = 21)
-    private String city;
-
     @OneToMany(
             mappedBy = "account",
             cascade = CascadeType.REMOVE,
@@ -78,4 +74,8 @@ public class Account {
             fetch = FetchType.LAZY
     )
     private List<Dask> dasks;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id", nullable = false)
+    private Cities city;
 }

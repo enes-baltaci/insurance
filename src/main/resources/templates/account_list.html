@@ -38,7 +38,7 @@
             <td th:text="${account.name + ' ' + account.surname}"/>
             <td th:text="${account.email}"/>
             <td th:text="${account.age}"/>
-            <td th:text="${account.city}"/>
+            <td th:text="${account.city.cityName}"/>
             <td>
                 <a th:href="@{/account_edit/{id}(id=${account.id})}" class="btn btn-primary">
                     Edit

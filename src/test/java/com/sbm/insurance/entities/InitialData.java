@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @SpringBootTest
@@ -84,9 +83,30 @@ class InitialData {
 
         ArrayList<Account> accounts = new ArrayList<>() {
             {
-                add(Account.builder().identity(12345L).name("Enes").surname("Baltacı").email("enes@gmail.com").age(24).city("İstanbul").build());
-                add(Account.builder().identity(12346L).name("Nazif").surname("İlbek").email("nazif@gmail.com").age(30).city("İstanbul").build());
-                add(Account.builder().identity(12347L).name("İrem").surname("Er").email("irem@gmail.com").age(23).city("Muğla").build());
+                add(Account.builder()
+                        .identity(12345L)
+                        .name("Enes")
+                        .surname("Baltacı")
+                        .email("enes@gmail.com")
+                        .age(24)
+                        .city(Cities.builder().cityName("İstanbul").build())
+                        .build());
+                add(Account.builder()
+                        .identity(12346L)
+                        .name("Nazif")
+                        .surname("İlbek")
+                        .email("nazif@gmail.com")
+                        .age(30)
+                        .city(Cities.builder().cityName("Ankara").build())
+                        .build());
+                add(Account.builder()
+                        .identity(12347L)
+                        .name("İrem")
+                        .surname("Er")
+                        .email("irem@gmail.com")
+                        .age(23)
+                        .city(Cities.builder().cityName("İzmir").build())
+                        .build());
             }
         };
 
