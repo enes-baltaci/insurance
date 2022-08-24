@@ -22,7 +22,7 @@
     <h2 th:text="${processName} + ' Account'"/>
     <hr>
 
-    <form th:object="${account}" th:action="@{/{action}(action=${action})}" action="#" method="post">
+    <form th:object="${account}" th:action="@{/{action}(action=${action})}" method="post">
 
         <div class="form-group row">
             <label for="identity" class="col-sm-2 col-form-label">Identity</label>

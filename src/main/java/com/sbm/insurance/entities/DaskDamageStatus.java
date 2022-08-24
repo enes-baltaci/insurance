@@ -25,10 +25,6 @@ public class DaskDamageStatus {
     private String damageStatus;
 
     @Min(1)
-    @Max(5)
-    private int damageId;
-
-    @Min(1)
     @Max(999999)
     private float priceMultiplier;
 

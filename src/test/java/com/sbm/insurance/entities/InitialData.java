@@ -48,11 +48,11 @@ class InitialData {
 
         ArrayList<DaskDamageStatus> daskDamageStatuses = new ArrayList<>() {
             {
-                add(DaskDamageStatus.builder().damageStatus("Undamaged").damageId(1).priceMultiplier(1.1f).build());
-                add(DaskDamageStatus.builder().damageStatus("Little Damaged").damageId(2).priceMultiplier(1.4f).build());
-                add(DaskDamageStatus.builder().damageStatus("Medium Damaged").damageId(3).priceMultiplier(1.7f).build());
-                add(DaskDamageStatus.builder().damageStatus("Heavy Damaged").damageId(4).priceMultiplier(2.5f).build());
-                add(DaskDamageStatus.builder().damageStatus("Demolish Immediately").damageId(5).priceMultiplier(5f).build());
+                add(DaskDamageStatus.builder().damageStatus("Undamaged").priceMultiplier(1.1f).build());
+                add(DaskDamageStatus.builder().damageStatus("Little Damaged").priceMultiplier(1.4f).build());
+                add(DaskDamageStatus.builder().damageStatus("Medium Damaged").priceMultiplier(1.7f).build());
+                add(DaskDamageStatus.builder().damageStatus("Heavy Damaged").priceMultiplier(2.5f).build());
+                add(DaskDamageStatus.builder().damageStatus("Demolish Immediately").priceMultiplier(5f).build());
             }
         };
 
@@ -79,39 +79,6 @@ class InitialData {
 
         for (CarBrands brands : carBrands) {
             carBrandsService.save(brands);
-        }
-
-        ArrayList<Account> accounts = new ArrayList<>() {
-            {
-                add(Account.builder()
-                        .identity(12345L)
-                        .name("Enes")
-                        .surname("Baltacı")
-                        .email("enes@gmail.com")
-                        .age(24)
-                        .city(Cities.builder().cityName("İstanbul").build())
-                        .build());
-                add(Account.builder()
-                        .identity(12346L)
-                        .name("Nazif")
-                        .surname("İlbek")
-                        .email("nazif@gmail.com")
-                        .age(30)
-                        .city(Cities.builder().cityName("Ankara").build())
-                        .build());
-                add(Account.builder()
-                        .identity(12347L)
-                        .name("İrem")
-                        .surname("Er")
-                        .email("irem@gmail.com")
-                        .age(23)
-                        .city(Cities.builder().cityName("İzmir").build())
-                        .build());
-            }
-        };
-
-        for (Account account : accounts) {
-            accountService.save(account);
         }
 
         ArrayList<CarTypes> carTypes = new ArrayList<>() {
@@ -233,6 +200,38 @@ class InitialData {
         for (Cities city : cities) {
             citiesService.save(city);
         }
-    }
 
+        ArrayList<Account> accounts = new ArrayList<>() {
+            {
+                add(Account.builder()
+                        .identity(12345L)
+                        .name("Enes")
+                        .surname("Baltacı")
+                        .email("enes@gmail.com")
+                        .age(24)
+                        .city(citiesService.getCityById(40L))
+                        .build());
+                add(Account.builder()
+                        .identity(12346L)
+                        .name("Nazif")
+                        .surname("İlbek")
+                        .email("nazif@gmail.com")
+                        .age(30)
+                        .city(citiesService.getCityById(7L))
+                        .build());
+                add(Account.builder()
+                        .identity(12347L)
+                        .name("İrem")
+                        .surname("Er")
+                        .email("irem@gmail.com")
+                        .age(23)
+                        .city(citiesService.getCityById(41L))
+                        .build());
+            }
+        };
+
+        for (Account account : accounts) {
+            accountService.save(account);
+        }
+    }
 }

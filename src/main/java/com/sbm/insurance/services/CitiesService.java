@@ -20,4 +20,8 @@ public class CitiesService {
     public List<Cities> getAll() {
         return citiesRepository.findAll();
     }
+
+    public Cities getCityById(Long id) {
+        return citiesRepository.findById(id).get();
+    }
 }
