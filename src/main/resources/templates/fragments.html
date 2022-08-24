@@ -56,37 +56,6 @@
 
 </div>
 
-<div th:fragment="footer">
-    <nav>
-        <ul>
-            <li>
-                <h6><a th:href="@{/}">Home</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/create_account}">Create Account</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/account_list}">Account List</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/car_insurance}">Make Car Insurance</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/travel_insurance}">Make Travel Insurance</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/dask_insurance}">Make Dask Insurance</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/proposals}">Proposals</a></h6>
-            </li>
-            <li>
-                <h6><a th:href="@{/proposals/accepted}">Accepted Proposals</a></h6>
-            </li>
-        </ul>
-    </nav>
-</div>
-
 <div th:fragment="scripts">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -98,6 +67,8 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </div>
+
+<div th:replace="fragments :: scripts"/>
 
 </body>
 </html>

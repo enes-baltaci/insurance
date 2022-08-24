@@ -17,6 +17,12 @@
 <body style="background-color: darkgrey">
 <div class="container">
 
+    <hr>
+
+    <div th:replace="fragments :: navbar"/>
+
+    <hr>
+
     <h2>Accounts</h2>
     <hr>
 
@@ -55,8 +61,9 @@
 
     <hr>
 
-    <div th:replace="fragments :: footer"/>
-
 </div>
+
+<div th:replace="fragments :: scripts"/>
+
 </body>
 </html>

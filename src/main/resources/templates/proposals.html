@@ -12,6 +12,12 @@
 <body style="background-color: lightsteelblue">
 <div class="container">
 
+    <hr>
+
+    <div th:replace="fragments :: navbar"/>
+
+    <hr>
+
     <h2 th:text="${title}"/>
     <hr>
 
@@ -80,5 +86,8 @@
     <div th:replace="fragments :: footer"/>
 
 </div>
+
+<div th:replace="fragments :: scripts"/>
+
 </body>
 </html>
