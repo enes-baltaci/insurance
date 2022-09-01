@@ -24,7 +24,8 @@ public class AccountController {
     @Autowired
     private CitiesService citiesService;
 
-    private boolean flag = false;
+    private boolean emailExist = true;
+    private boolean updated = false;
 
     @GetMapping("/create_account")
     public String createAccount(Model model) {
@@ -41,21 +42,25 @@ public class AccountController {
 
         try {
             accountService.save(account);
-            flag = true;
+            emailExist = false;
             return "redirect:/info";
         } catch (Exception e) {
-            flag = false;
+            emailExist = true;
             return "redirect:/info";
         }
     }
 
     @GetMapping("/info")
     public String info(Model model) {
-        if (flag) {
+        if (emailExist) {
             model.addAttribute("flag", true);
+        } else if (updated) {
+            model.addAttribute("updated", true);
         } else {
             model.addAttribute("flag", false);
         }
+        emailExist = true;
+        updated = false;
         return "account_creation_info";
     }
 
@@ -75,6 +80,7 @@ public class AccountController {
             model.addAttribute("processName", "Update");
             model.addAttribute("cities", citiesService.getAll());
             model.addAttribute("action", "account_edit/" + accountOptional.get().getId());
+            updated = true;
             return "account";
         } else {
             return "id_error";
@@ -116,10 +122,10 @@ public class AccountController {
 
         try {
             accountService.save(account);
-            flag = true;
+            emailExist = false;
             return "redirect:/info";
         } catch (Exception e) {
-            flag = false;
+            emailExist = true;
             return "redirect:/info";
         }
     }

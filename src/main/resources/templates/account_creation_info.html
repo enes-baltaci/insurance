@@ -6,14 +6,21 @@
 </head>
 <body>
 
-<script th:if="${flag} == true">
-    alert('Account created successfully!');
-    window.location.href = "/";
-</script>
+<script th:inline="javascript">
+    let flag = [[${flag}]];
+    let updated = [[${updated}]];
 
-<script th:if="${flag} == false">
-    alert('Email already exists!');
-    window.location.href = "/create_account";
+    if (flag) {
+        alert("Email already exists!");
+        window.location.href = "/create_account";
+    }
+    else if (updated) {
+        alert("Account updated successfully!");
+    }
+    else {
+        alert("Account created successfully");
+    }
+    window.location.href = "/";
 </script>
 
 </body>
