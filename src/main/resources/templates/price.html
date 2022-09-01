@@ -23,6 +23,14 @@
 
     <p class="parent_center" th:text="'Total price is: ' + ${price}"/>
 
+    <p><em>You will be redirected in 5 seconds...</em></p>
+
+    <script>
+        setTimeout(function () {
+            window.location.href = "/proposals";
+        }, 5000);
+    </script>
+
 </div>
 
 <div th:replace="fragments :: scripts"></div>
