@@ -42,9 +42,9 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "car_brand_id", referencedColumnName = "id", nullable = false)
-    private CarBrands brand;
+    private CarBrand brand;
 
     @ManyToOne
     @JoinColumn(name = "car_type_id", referencedColumnName = "id", nullable = false)
-    private CarTypes type;
+    private CarModel model;
 }

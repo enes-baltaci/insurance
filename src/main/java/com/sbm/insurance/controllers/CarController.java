@@ -62,7 +62,7 @@ public class CarController {
             price *= 1.25;
         }
 
-        price += (price * car.getType().getCarTypeMultiplier());
+        price += (price * car.getModel().getCarTypeMultiplier());
 
         Proposal proposal = Proposal.builder()
                 .price(price)

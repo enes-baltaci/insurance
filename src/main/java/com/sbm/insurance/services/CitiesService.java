@@ -1,6 +1,6 @@
 package com.sbm.insurance.services;
 
-import com.sbm.insurance.entities.Cities;
+import com.sbm.insurance.entities.City;
 import com.sbm.insurance.repositories.CitiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,16 +13,16 @@ public class CitiesService {
     @Autowired
     private CitiesRepository citiesRepository;
 
-    public void save(Cities cities) {
-        citiesRepository.save(cities);
+    public void save(City city) {
+        citiesRepository.save(city);
     }
 
-    public List<Cities> getAll() {
+    public List<City> getAll() {
         return citiesRepository.findAll();
     }
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public Cities getCityById(Long id) {
+    public City getCityById(Long id) {
         return citiesRepository.findById(id).get();
     }
 }

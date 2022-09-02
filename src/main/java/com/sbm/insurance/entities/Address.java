@@ -27,5 +27,5 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "city_id", referencedColumnName = "id", nullable = false)
-    private Cities city;
+    private City city;
 }

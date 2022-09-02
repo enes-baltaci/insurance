@@ -45,5 +45,5 @@ public class Travel {
 
     @ManyToOne
     @JoinColumn(name = "travel_type_id", referencedColumnName = "id", nullable = false)
-    private TravelTypes travelTypes;
+    private TravelType travelType;
 }

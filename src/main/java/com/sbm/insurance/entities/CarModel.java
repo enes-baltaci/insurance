@@ -14,32 +14,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TravelTypes {
+public class CarModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(0)
-    @Max(999999)
-    private int price;
-
     @NotNull
-    @Column(length = 10)
-    private String travelType;
+    @Column(length = 15)
+    private String carType;
 
-    @Min(2)
-    @Max(999999)
-    private int distanceMultiplier;
-
-    @Min(1)
-    @Max(999999)
-    private int dayMultiplier;
+    @Min(0)
+    @Max(1)
+    private float carTypeMultiplier;
 
     @OneToMany(
-            mappedBy = "travelTypes",
+            mappedBy = "model",
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
-    private List<Travel> travels;
+    private List<Car> car;
 }

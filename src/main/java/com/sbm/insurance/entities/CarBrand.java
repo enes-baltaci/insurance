@@ -20,7 +20,7 @@ import java.util.List;
                 columnNames = "carBrand"
         )
 )
-public class CarBrands {
+public class CarBrand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

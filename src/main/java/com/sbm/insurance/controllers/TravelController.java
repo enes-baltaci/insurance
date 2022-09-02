@@ -43,9 +43,9 @@ public class TravelController {
     @PostMapping("/travel_registration")
     public String travelRegistration(@Valid @ModelAttribute Travel travel, Model model) {
 
-        float price = (travel.getTravelTypes().getPrice()) +
-              ((travel.getDistance_km() / 1000) * travel.getTravelTypes().getDistanceMultiplier()) +
-              (travel.getDays() * travel.getTravelTypes().getDayMultiplier());
+        float price = (travel.getTravelType().getPrice()) +
+              ((travel.getDistance_km() / 1000) * travel.getTravelType().getDistanceMultiplier()) +
+              (travel.getDays() * travel.getTravelType().getDayMultiplier());
 
         if (travel.getDistanceType().equalsIgnoreCase("Mile")) { // Convert it into kilometer
             travel.setDistance_km((float) (travel.getDistance_km() * 1.6));

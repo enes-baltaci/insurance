@@ -1,6 +1,6 @@
 package com.sbm.insurance.services;
 
-import com.sbm.insurance.entities.TravelTypes;
+import com.sbm.insurance.entities.TravelType;
 import com.sbm.insurance.repositories.TravelTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,11 @@ public class TravelTypesService {
     @Autowired
     private TravelTypesRepository travelTypesRepository;
 
-    public void save(TravelTypes travelTypes) {
-        travelTypesRepository.save(travelTypes);
+    public void save(TravelType travelType) {
+        travelTypesRepository.save(travelType);
     }
 
-    public List<TravelTypes> getAll() {
+    public List<TravelType> getAll() {
         return travelTypesRepository.findAll();
     }
 }
