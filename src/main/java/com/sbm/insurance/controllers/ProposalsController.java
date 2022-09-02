@@ -119,4 +119,10 @@ public class ProposalsController {
         proposalService.deleteProposal(id);
         return "redirect:/proposals";
     }
+
+    @GetMapping("/proposal/delete/accepted/{id}")
+    public String deleteAcceptedProposal(@PathVariable Long id) {
+        proposalService.deleteProposal(id);
+        return "redirect:/proposals/accepted";
+    }
 }

@@ -72,8 +72,13 @@
                     </button>
                 </form>
             </td>
-            <td>
+            <td th:if="${accepted} == false">
                 <a th:href="@{/proposal/delete/{id}(id=${proposal.id})}" class="btn btn-danger">
+                    Delete
+                </a>
+            </td>
+            <td th:if="${accepted} == true">
+                <a th:href="@{/proposal/delete/accepted/{id}(id=${proposal.id})}" class="btn btn-danger">
                     Delete
                 </a>
             </td>
