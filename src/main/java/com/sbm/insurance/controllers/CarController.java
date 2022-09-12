@@ -33,6 +33,9 @@ public class CarController {
     @Autowired
     private CarTypesService carTypesService;
 
+    @Autowired
+    private CarModelAgeService carModelAgeService;
+
     @GetMapping("/car_insurance")
     public String carInsurance(Model model) {
         model.addAttribute("car", new Car());
@@ -52,15 +55,7 @@ public class CarController {
 
         price *= car.getBrand().getCarBrandMultiplier();
 
-        if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() == 0) {
-            price *= 2;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 3) {
-            price *= 1.75;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear() < 5) {
-            price *= 1.5;
-        } else {
-            price *= 1.25;
-        }
+        price *= carModelAgeService.getAgeMultiplier(Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear());
 
         price += (price * car.getModel().getCarTypeMultiplier());
 

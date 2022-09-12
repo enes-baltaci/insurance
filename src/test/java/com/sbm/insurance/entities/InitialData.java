@@ -40,8 +40,24 @@ class InitialData {
     @Autowired
     private DaskBuildYearService daskBuildYearService;
 
+    @Autowired
+    private CarModelAgeService carModelAgeService;
+
     @Test
     void initialData() {
+
+        ArrayList<CarModelAge> carModelAges = new ArrayList<>() {
+            {
+                add(CarModelAge.builder().modelAge(10).modelAgeMultiplier(1.25f).build());
+                add(CarModelAge.builder().modelAge(5).modelAgeMultiplier(1.5f).build());
+                add(CarModelAge.builder().modelAge(3).modelAgeMultiplier(1.75f).build());
+                add(CarModelAge.builder().modelAge(1).modelAgeMultiplier(2f).build());
+            }
+        };
+
+        for (CarModelAge carModelAge : carModelAges) {
+            carModelAgeService.save(carModelAge);
+        }
 
         ArrayList<DaskBuildYear> daskBuildYears = new ArrayList<>() {
             {
