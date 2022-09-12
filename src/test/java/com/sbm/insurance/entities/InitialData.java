@@ -31,8 +31,25 @@ class InitialData {
     @Autowired
     private DaskBuildingStyleService daskBuildingStyleService;
 
+    @Autowired
+    private DaskAreaService daskAreaService;
+
     @Test
     void initialData() {
+
+        ArrayList<DaskArea> daskAreas = new ArrayList<>() {
+            {
+                add(DaskArea.builder().area(250).areaPriceMultiplier(3.5f).build());
+                add(DaskArea.builder().area(200).areaPriceMultiplier(3f).build());
+                add(DaskArea.builder().area(150).areaPriceMultiplier(2.5f).build());
+                add(DaskArea.builder().area(100).areaPriceMultiplier(2f).build());
+                add(DaskArea.builder().area(50).areaPriceMultiplier(1.5f).build());
+            }
+        };
+
+        for (DaskArea daskArea : daskAreas) {
+            daskAreaService.save(daskArea);
+        }
 
         ArrayList<DaskBuildingStyle> daskBuildingStyles = new ArrayList<>() {
             {

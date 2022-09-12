@@ -37,6 +37,7 @@ public class Dask {
     private Account account;
 
     @OneToOne(mappedBy = "dask", cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @OneToOne(cascade = CascadeType.REMOVE)
