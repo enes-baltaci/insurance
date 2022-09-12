@@ -26,12 +26,6 @@ public class DaskController {
     private AccountService accountService;
 
     @Autowired
-    private AddressService addressService;
-
-    @Autowired
-    private ProposalService proposalService;
-
-    @Autowired
     private CitiesService citiesService;
 
     @Autowired
@@ -39,15 +33,6 @@ public class DaskController {
 
     @Autowired
     private DaskBuildingStyleService daskBuildingStyleService;
-
-    @Autowired
-    private DaskAreaService daskAreaService;
-
-    @Autowired
-    private DaskFloorNumberService daskFloorNumberService;
-
-    @Autowired
-    private DaskBuildYearService daskBuildYearService;
 
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {
@@ -63,46 +48,9 @@ public class DaskController {
     @PostMapping("/dask_registration")
     public String daskRegistration(@Valid @ModelAttribute Dask dask, @Valid @ModelAttribute Address address, Model model) {
 
-        float price = 12;
+        daskService.daskRegistration(dask, address);
 
-        price *= address.getCity().getPriceMultiplier();
-
-        price *= dask.getDaskBuildingStyle().getPriceMultiplier();
-
-        price *= daskAreaService.getAreaMultiplier(dask.getArea());
-
-        price *= dask.getDaskDamageStatus().getPriceMultiplier();
-
-        price *= daskFloorNumberService.getFloorMultiplier(dask.getFloorNumber());
-
-        price *= daskBuildYearService.getBuildYearMultiplier(Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear());
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
-        Date date = new Date(System.currentTimeMillis());
-
-        Proposal proposal = Proposal.builder()
-                .price(price)
-                .proposalDate(formatter.format(date))
-                .type("Dask")
-                .build();
-
-        proposalService.save(proposal);
-
-        dask.setProposal(proposal);
-
-        addressService.save(address);
-
-        daskService.save(dask);
-
-        address.setDask(dask);
-
-        dask.setAddress(address);
-
-        addressService.save(address);
-
-        daskService.save(dask);
-
-        model.addAttribute("price", price);
+        model.addAttribute("price", dask.getProposal().getPrice());
 
         return "price";
     }
