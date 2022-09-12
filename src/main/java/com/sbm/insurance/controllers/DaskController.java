@@ -43,6 +43,9 @@ public class DaskController {
     @Autowired
     private DaskAreaService daskAreaService;
 
+    @Autowired
+    private DaskFloorNumberService daskFloorNumberService;
+
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {
         model.addAttribute("dask", new Dask());
@@ -67,17 +70,7 @@ public class DaskController {
 
         price *= dask.getDaskDamageStatus().getPriceMultiplier();
 
-        if (dask.getFloorNumber() > 50) {
-            price *= 1.5;
-        } else if (dask.getFloorNumber() > 40) {
-            price *= 1.4;
-        } else if (dask.getFloorNumber() > 30) {
-            price *= 1.3;
-        } else if (dask.getFloorNumber() > 20) {
-            price *= 1.2;
-        } else {
-            price *= 1.1;
-        }
+        price *= daskFloorNumberService.getFloorMultiplier(dask.getFloorNumber());
 
         if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 10) {
             price *= 5;

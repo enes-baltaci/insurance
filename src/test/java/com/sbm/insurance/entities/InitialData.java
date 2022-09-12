@@ -34,8 +34,25 @@ class InitialData {
     @Autowired
     private DaskAreaService daskAreaService;
 
+    @Autowired
+    private DaskFloorNumberService daskFloorNumberService;
+
     @Test
     void initialData() {
+
+        ArrayList<DaskFloorNumber> daskFloorNumbers = new ArrayList<>() {
+            {
+                add(DaskFloorNumber.builder().floorNumber(50).floorNumberMultiplier(1.5f).build());
+                add(DaskFloorNumber.builder().floorNumber(40).floorNumberMultiplier(1.4f).build());
+                add(DaskFloorNumber.builder().floorNumber(30).floorNumberMultiplier(1.3f).build());
+                add(DaskFloorNumber.builder().floorNumber(20).floorNumberMultiplier(1.2f).build());
+                add(DaskFloorNumber.builder().floorNumber(10).floorNumberMultiplier(1.1f).build());
+            }
+        };
+
+        for (DaskFloorNumber daskFloorNumber : daskFloorNumbers) {
+            daskFloorNumberService.save(daskFloorNumber);
+        }
 
         ArrayList<DaskArea> daskAreas = new ArrayList<>() {
             {
