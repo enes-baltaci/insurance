@@ -27,13 +27,10 @@ public class TravelController {
     private AccountService accountService;
 
     @Autowired
-    private ProposalService proposalService;
-
-    @Autowired
     private TravelTypesService travelTypesService;
 
     @GetMapping("/travel_insurance")
-    public String travelInsurance(Model model) {
+    public String travel_insurance(Model model) {
         model.addAttribute("travel", new Travel());
         model.addAttribute("accounts", accountService.getAll());
         model.addAttribute("travelTypes", travelTypesService.getAll());
@@ -41,32 +38,11 @@ public class TravelController {
     }
 
     @PostMapping("/travel_registration")
-    public String travelRegistration(@Valid @ModelAttribute Travel travel, Model model) {
+    public String travel_registration(@Valid @ModelAttribute Travel travel, Model model) {
 
-        float price = (travel.getTravelType().getPrice()) +
-              ((travel.getDistance_km() / 1000) * travel.getTravelType().getDistanceMultiplier()) +
-              (travel.getDays() * travel.getTravelType().getDayMultiplier());
+        travelService.travelRegistration(travel);
 
-        if (travel.getDistanceType().equalsIgnoreCase("Mile")) { // Convert it into kilometer
-            travel.setDistance_km((float) (travel.getDistance_km() * 1.6));
-        }
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
-        Date date = new Date(System.currentTimeMillis());
-
-        Proposal proposal = Proposal.builder()
-                .price(price)
-                .proposalDate(formatter.format(date))
-                .type("Travel")
-                .build();
-
-        proposalService.save(proposal);
-
-        travel.setProposal(proposal);
-
-        travelService.save(travel);
-
-        model.addAttribute("price", price);
+        model.addAttribute("price", travel.getProposal().getPrice());
 
         return "price";
     }
