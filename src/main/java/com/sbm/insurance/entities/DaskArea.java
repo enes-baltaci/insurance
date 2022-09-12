@@ -2,10 +2,12 @@ package com.sbm.insurance.entities;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 @Entity
 @Getter
@@ -19,7 +21,7 @@ public class DaskArea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(30)
+    @Min(0)
     @Max(1000)
     private int area;
 

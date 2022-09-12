@@ -1,9 +1,7 @@
 package com.sbm.insurance.controllers;
 
-import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.AccountService;
-import com.sbm.insurance.services.ProposalService;
 import com.sbm.insurance.services.TravelService;
 import com.sbm.insurance.services.TravelTypesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 public class TravelController {

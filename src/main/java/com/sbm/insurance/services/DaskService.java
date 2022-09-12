@@ -43,7 +43,7 @@ public class DaskService {
 
     public void daskRegistration(Dask dask, Address address) {
 
-        float price = 12;
+        float price = 4;
 
         price *= address.getCity().getPriceMultiplier();
 

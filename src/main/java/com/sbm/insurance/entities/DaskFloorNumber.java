@@ -21,8 +21,8 @@ public class DaskFloorNumber {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(1)
-    @Max(250)
+    @Min(0)
+    @Max(200)
     private int floorNumber;
 
     @Min(1)

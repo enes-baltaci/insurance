@@ -51,7 +51,7 @@ class InitialData {
                 add(CarModelAge.builder().modelAge(10).modelAgeMultiplier(1.25f).build());
                 add(CarModelAge.builder().modelAge(5).modelAgeMultiplier(1.5f).build());
                 add(CarModelAge.builder().modelAge(3).modelAgeMultiplier(1.75f).build());
-                add(CarModelAge.builder().modelAge(1).modelAgeMultiplier(2f).build());
+                add(CarModelAge.builder().modelAge(0).modelAgeMultiplier(2f).build());
             }
         };
 
@@ -64,7 +64,7 @@ class InitialData {
                 add(DaskBuildYear.builder().buildYear(10).buildYearMultiplier(5f).build());
                 add(DaskBuildYear.builder().buildYear(5).buildYearMultiplier(3.75f).build());
                 add(DaskBuildYear.builder().buildYear(2).buildYearMultiplier(2.5f).build());
-                add(DaskBuildYear.builder().buildYear(1).buildYearMultiplier(1.25f).build());
+                add(DaskBuildYear.builder().buildYear(0).buildYearMultiplier(1.25f).build());
             }
         };
 
@@ -74,11 +74,12 @@ class InitialData {
 
         ArrayList<DaskFloorNumber> daskFloorNumbers = new ArrayList<>() {
             {
-                add(DaskFloorNumber.builder().floorNumber(50).floorNumberMultiplier(1.5f).build());
-                add(DaskFloorNumber.builder().floorNumber(40).floorNumberMultiplier(1.4f).build());
-                add(DaskFloorNumber.builder().floorNumber(30).floorNumberMultiplier(1.3f).build());
-                add(DaskFloorNumber.builder().floorNumber(20).floorNumberMultiplier(1.2f).build());
-                add(DaskFloorNumber.builder().floorNumber(10).floorNumberMultiplier(1.1f).build());
+                add(DaskFloorNumber.builder().floorNumber(50).floorNumberMultiplier(1.6f).build());
+                add(DaskFloorNumber.builder().floorNumber(40).floorNumberMultiplier(1.5f).build());
+                add(DaskFloorNumber.builder().floorNumber(30).floorNumberMultiplier(1.4f).build());
+                add(DaskFloorNumber.builder().floorNumber(20).floorNumberMultiplier(1.3f).build());
+                add(DaskFloorNumber.builder().floorNumber(10).floorNumberMultiplier(1.2f).build());
+                add(DaskFloorNumber.builder().floorNumber(0).floorNumberMultiplier(1.1f).build());
             }
         };
 
@@ -88,11 +89,12 @@ class InitialData {
 
         ArrayList<DaskArea> daskAreas = new ArrayList<>() {
             {
-                add(DaskArea.builder().area(250).areaPriceMultiplier(3.5f).build());
-                add(DaskArea.builder().area(200).areaPriceMultiplier(3f).build());
-                add(DaskArea.builder().area(150).areaPriceMultiplier(2.5f).build());
-                add(DaskArea.builder().area(100).areaPriceMultiplier(2f).build());
-                add(DaskArea.builder().area(50).areaPriceMultiplier(1.5f).build());
+                add(DaskArea.builder().area(250).areaPriceMultiplier(2f).build());
+                add(DaskArea.builder().area(200).areaPriceMultiplier(1.8f).build());
+                add(DaskArea.builder().area(150).areaPriceMultiplier(1.6f).build());
+                add(DaskArea.builder().area(100).areaPriceMultiplier(1.4f).build());
+                add(DaskArea.builder().area(50).areaPriceMultiplier(1.2f).build());
+                add(DaskArea.builder().area(0).areaPriceMultiplier(1.1f).build());
             }
         };
 
@@ -102,9 +104,9 @@ class InitialData {
 
         ArrayList<DaskBuildingStyle> daskBuildingStyles = new ArrayList<>() {
             {
-                add(DaskBuildingStyle.builder().buildingStyle("Masonry").priceMultiplier(1.7f).build());
+                add(DaskBuildingStyle.builder().buildingStyle("Masonry").priceMultiplier(1.5f).build());
                 add(DaskBuildingStyle.builder().buildingStyle("Steel, Reinforced Concrete Carcass").priceMultiplier(1.2f).build());
-                add(DaskBuildingStyle.builder().buildingStyle("Other").priceMultiplier(2.5f).build());
+                add(DaskBuildingStyle.builder().buildingStyle("Other").priceMultiplier(1.8f).build());
             }
         };
 
@@ -115,10 +117,10 @@ class InitialData {
         ArrayList<DaskDamageStatus> daskDamageStatuses = new ArrayList<>() {
             {
                 add(DaskDamageStatus.builder().damageStatus("Undamaged").priceMultiplier(1.1f).build());
-                add(DaskDamageStatus.builder().damageStatus("Little Damaged").priceMultiplier(1.4f).build());
-                add(DaskDamageStatus.builder().damageStatus("Medium Damaged").priceMultiplier(1.7f).build());
-                add(DaskDamageStatus.builder().damageStatus("Heavy Damaged").priceMultiplier(2.5f).build());
-                add(DaskDamageStatus.builder().damageStatus("Demolish Immediately").priceMultiplier(5f).build());
+                add(DaskDamageStatus.builder().damageStatus("Little Damaged").priceMultiplier(1.2f).build());
+                add(DaskDamageStatus.builder().damageStatus("Medium Damaged").priceMultiplier(1.3f).build());
+                add(DaskDamageStatus.builder().damageStatus("Heavy Damaged").priceMultiplier(1.4f).build());
+                add(DaskDamageStatus.builder().damageStatus("Demolish Immediately").priceMultiplier(1.5f).build());
             }
         };
 
