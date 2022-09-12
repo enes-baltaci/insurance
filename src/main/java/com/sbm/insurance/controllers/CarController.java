@@ -25,19 +25,13 @@ public class CarController {
     private AccountService accountService;
 
     @Autowired
-    private ProposalService proposalService;
-
-    @Autowired
     private CarBrandsService carBrandsService;
 
     @Autowired
     private CarTypesService carTypesService;
 
-    @Autowired
-    private CarModelAgeService carModelAgeService;
-
     @GetMapping("/car_insurance")
-    public String carInsurance(Model model) {
+    public String car_insurance(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("accounts", accountService.getAll());
         model.addAttribute("brands", carBrandsService.getAll());
@@ -46,32 +40,11 @@ public class CarController {
     }
 
     @PostMapping("/car_registration")
-    public String carRegistration(@Valid @ModelAttribute Car car, Model model) {
+    public String car_registration(@Valid @ModelAttribute Car car, Model model) {
 
-        float price = 1125;
+        carService.carRegistration(car);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
-        Date date = new Date(System.currentTimeMillis());
-
-        price *= car.getBrand().getCarBrandMultiplier();
-
-        price *= carModelAgeService.getAgeMultiplier(Calendar.getInstance().get(Calendar.YEAR) - car.getModelYear());
-
-        price += (price * car.getModel().getCarTypeMultiplier());
-
-        Proposal proposal = Proposal.builder()
-                .price(price)
-                .proposalDate(formatter.format(date))
-                .type("Car")
-                .build();
-
-        proposalService.save(proposal);
-
-        car.setProposal(proposal);
-
-        carService.save(car);
-
-        model.addAttribute("price", price);
+        model.addAttribute("price", car.getProposal().getPrice());
 
         return "price";
     }
