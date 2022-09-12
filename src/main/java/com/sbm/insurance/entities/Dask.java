@@ -19,7 +19,7 @@ public class Dask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(1000)
+    @Min(1900)
     @Max(2022)
     private int buildYear;
 

@@ -37,8 +37,24 @@ class InitialData {
     @Autowired
     private DaskFloorNumberService daskFloorNumberService;
 
+    @Autowired
+    private DaskBuildYearService daskBuildYearService;
+
     @Test
     void initialData() {
+
+        ArrayList<DaskBuildYear> daskBuildYears = new ArrayList<>() {
+            {
+                add(DaskBuildYear.builder().buildYear(10).buildYearMultiplier(5f).build());
+                add(DaskBuildYear.builder().buildYear(5).buildYearMultiplier(3.75f).build());
+                add(DaskBuildYear.builder().buildYear(2).buildYearMultiplier(2.5f).build());
+                add(DaskBuildYear.builder().buildYear(1).buildYearMultiplier(1.25f).build());
+            }
+        };
+
+        for (DaskBuildYear daskBuildYear : daskBuildYears) {
+            daskBuildYearService.save(daskBuildYear);
+        }
 
         ArrayList<DaskFloorNumber> daskFloorNumbers = new ArrayList<>() {
             {

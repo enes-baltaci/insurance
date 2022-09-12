@@ -46,6 +46,9 @@ public class DaskController {
     @Autowired
     private DaskFloorNumberService daskFloorNumberService;
 
+    @Autowired
+    private DaskBuildYearService daskBuildYearService;
+
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {
         model.addAttribute("dask", new Dask());
@@ -72,15 +75,7 @@ public class DaskController {
 
         price *= daskFloorNumberService.getFloorMultiplier(dask.getFloorNumber());
 
-        if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 10) {
-            price *= 5;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 5) {
-            price *= 3.75;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 2) {
-            price *= 2.5;
-        } else {
-            price *= 1.25;
-        }
+        price *= daskBuildYearService.getBuildYearMultiplier(Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear());
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
