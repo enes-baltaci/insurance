@@ -54,7 +54,7 @@ public class DaskController {
     @PostMapping("/dask_registration")
     public String daskRegistration(@Valid @ModelAttribute Dask dask, @Valid @ModelAttribute Address address, Model model) {
 
-        float price = 2430;
+        float price = 12;
 
         price *= address.getCity().getPriceMultiplier();
 
@@ -86,11 +86,11 @@ public class DaskController {
             price *= 1.1;
         }
 
-        if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 100) {
+        if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 10) {
             price *= 5;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 75) {
+        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 5) {
             price *= 3.75;
-        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 50) {
+        } else if (Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear() > 2) {
             price *= 2.5;
         } else {
             price *= 1.25;
