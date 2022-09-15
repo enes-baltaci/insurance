@@ -107,7 +107,7 @@ public class ProposalsController {
                 Date date = new Date(System.currentTimeMillis());                                        // accepted
                 proposalService.setAcceptedDate(optionalProposal.get().getId(), formatter.format(date)); // date
             }
-            return "redirect:/proposals";
+            return "redirect:/proposals/accepted";
         }
         else {
             return "id_error";

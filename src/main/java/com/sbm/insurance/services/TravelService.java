@@ -33,6 +33,7 @@ public class TravelService {
     }
 
     public void travelRegistration(Travel travel) {
+
         float price = (travel.getTravelType().getPrice()) +
                 ((travel.getDistance_km() / 1000) * travel.getTravelType().getDistanceMultiplier()) +
                 (travel.getDays() * travel.getTravelType().getDayMultiplier());

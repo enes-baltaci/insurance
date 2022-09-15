@@ -38,7 +38,7 @@ public class CarService {
 
     public void carRegistration(Car car) {
 
-        float price = 1125;
+        float price = 1025;
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());

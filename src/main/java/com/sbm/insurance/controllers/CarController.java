@@ -5,7 +5,6 @@ import com.sbm.insurance.services.AccountService;
 import com.sbm.insurance.services.CarBrandsService;
 import com.sbm.insurance.services.CarService;
 import com.sbm.insurance.services.CarTypesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,17 +16,20 @@ import javax.validation.Valid;
 @Controller
 public class CarController {
 
-    @Autowired
-    private CarService carService;
+    private final CarService carService;
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    @Autowired
-    private CarBrandsService carBrandsService;
+    private final CarBrandsService carBrandsService;
 
-    @Autowired
-    private CarTypesService carTypesService;
+    private final CarTypesService carTypesService;
+
+    public CarController(CarService carService, AccountService accountService, CarBrandsService carBrandsService, CarTypesService carTypesService) {
+        this.carService = carService;
+        this.accountService = accountService;
+        this.carBrandsService = carBrandsService;
+        this.carTypesService = carTypesService;
+    }
 
     @GetMapping("/car_insurance")
     public String car_insurance(Model model) {
