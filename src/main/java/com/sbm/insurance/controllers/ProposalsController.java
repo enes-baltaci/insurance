@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.xml.ws.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -45,6 +46,17 @@ public class ProposalsController {
     public String listProposals(Model model) {
         detailsFlag = false;
         model.addAttribute("proposals", proposalService.getAll());
+        model.addAttribute("accepted", false);
+        model.addAttribute("title", "Proposals");
+        model.addAttribute("link", "proposals/accepted");
+        model.addAttribute("linkName", "Accepted Proposals");
+        return "proposals";
+    }
+
+    @GetMapping("/proposals/account/{id}")
+    public String listProposalsByAccount(@PathVariable("id") Long id, Model model) {
+        detailsFlag = false;
+        model.addAttribute("proposals", proposalService.proposalsByAccountId(id));
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
         model.addAttribute("link", "proposals/accepted");

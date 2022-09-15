@@ -36,12 +36,18 @@
         </thead>
         <tbody>
         <tr th:each="proposal : ${proposals}" th:if="${proposal.status} == ${accepted}">
-            <td th:if="${proposal.type} == 'Car'"
-                th:text="${proposal.car.account.name + ' ' + proposal.car.account.surname}"/>
-            <td th:if="${proposal.type} == 'Travel'"
-                th:text="${proposal.travel.account.name + ' ' + proposal.travel.account.surname}"/>
-            <td th:if="${proposal.type} == 'Dask'"
-                th:text="${proposal.dask.account.name + ' ' + proposal.dask.account.surname}"/>
+            <td th:if="${proposal.type} == 'Car'">
+                <a th:text="${proposal.car.account.name + ' ' + proposal.car.account.surname}"
+                   th:href="@{/proposals/account/{id}(id=${proposal.car.account.id})}"/>
+            </td>
+            <td th:if="${proposal.type} == 'Travel'">
+                <a th:text="${proposal.travel.account.name + ' ' + proposal.travel.account.surname}"
+                   th:href="@{/proposals/account/{id}(id=${proposal.travel.account.id})}"/>
+            </td>
+            <td th:if="${proposal.type} == 'Dask'">
+                <a th:text="${proposal.dask.account.name + ' ' + proposal.dask.account.surname}"
+                   th:href="@{/proposals/account/{id}(id=${proposal.dask.account.id})}"/>
+            </td>
             <td th:text="${proposal.type}"/>
             <td th:text="${proposal.price}"/>
             <td th:text="${proposal.proposalDate}"/>
