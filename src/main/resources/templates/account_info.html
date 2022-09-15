@@ -9,18 +9,24 @@
 <script th:inline="javascript">
     let flag = [[${flag}]];
     let updated = [[${updated}]];
+    let id = [[${id}]];
 
     if (flag) {
         alert("Email already exists!");
-        window.location.href = "/create_account";
-    }
-    else if (updated) {
+        if (updated) {
+            let link = "/account_edit/";
+            let result = link.concat(id);
+            window.location.href = result;
+        } else {
+            window.location.href = "/create_account";
+        }
+    } else if (updated) {
         alert("Account updated successfully!");
-    }
-    else {
+        window.location.href = "/account_list";
+    } else {
         alert("Account created successfully");
+        window.location.href = "/account_list";
     }
-    window.location.href = "/";
 </script>
 
 </body>

@@ -31,6 +31,7 @@ public class AccountController {
 
     @GetMapping("/create_account")
     public String createAccount(Model model) {
+        updated = false;
         model.addAttribute("account", new Account());
         model.addAttribute("cities", citiesService.getAll());
         model.addAttribute("processName", "Create");
@@ -45,29 +46,32 @@ public class AccountController {
         try {
             accountService.save(account);
             emailExist = false;
-            return "redirect:/info";
+            return "redirect:/info/0";
         } catch (Exception e) {
             emailExist = true;
-            return "redirect:/info";
+            return "redirect:/info/0";
         }
     }
 
-    @GetMapping("/info")
-    public String info(Model model) {
+    @GetMapping("/info/{id}")
+    public String info(@PathVariable("id") Long id, Model model) {
         if (emailExist) {
             model.addAttribute("flag", true);
+            if (updated) {
+                model.addAttribute("id", id);
+                model.addAttribute("updated", true);
+            }
         } else if (updated) {
             model.addAttribute("updated", true);
         } else {
             model.addAttribute("flag", false);
         }
         emailExist = true;
-        updated = false;
         return "account_info";
     }
 
     @GetMapping("/account_list")
-    public String selectAccount(Model model) {
+    public String accountList(Model model) {
         model.addAttribute("accounts", accountService.getAll());
         return "account_list";
     }
@@ -125,10 +129,10 @@ public class AccountController {
         try {
             accountService.save(account);
             emailExist = false;
-            return "redirect:/info";
+            return "redirect:/info/" + accountDatabase.getId();
         } catch (Exception e) {
             emailExist = true;
-            return "redirect:/info";
+            return "redirect:/info/" + accountDatabase.getId();
         }
     }
 
