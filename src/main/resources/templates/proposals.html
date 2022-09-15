@@ -38,15 +38,15 @@
         <tr th:each="proposal : ${proposals}" th:if="${proposal.status} == ${accepted}">
             <td th:if="${proposal.type} == 'Car'">
                 <a th:text="${proposal.car.account.name + ' ' + proposal.car.account.surname}"
-                   th:href="@{/proposals/account/{id}(id=${proposal.car.account.id})}"/>
+                   th:href="@{{link}{id}(link=${link}, id=${proposal.car.account.id})}"/>
             </td>
             <td th:if="${proposal.type} == 'Travel'">
                 <a th:text="${proposal.travel.account.name + ' ' + proposal.travel.account.surname}"
-                   th:href="@{/proposals/account/{id}(id=${proposal.travel.account.id})}"/>
+                   th:href="@{{link}{id}(link=${link}, id=${proposal.travel.account.id})}"/>
             </td>
             <td th:if="${proposal.type} == 'Dask'">
                 <a th:text="${proposal.dask.account.name + ' ' + proposal.dask.account.surname}"
-                   th:href="@{/proposals/account/{id}(id=${proposal.dask.account.id})}"/>
+                   th:href="@{{link}{id}(link=${link}, id=${proposal.dask.account.id})}"/>
             </td>
             <td th:text="${proposal.type}"/>
             <td th:text="${proposal.price}"/>

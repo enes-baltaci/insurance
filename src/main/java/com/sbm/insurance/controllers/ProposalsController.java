@@ -48,8 +48,7 @@ public class ProposalsController {
         model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
-        model.addAttribute("link", "proposals/accepted");
-        model.addAttribute("linkName", "Accepted Proposals");
+        model.addAttribute("link", "/proposals/account/");
         return "proposals";
     }
 
@@ -59,8 +58,7 @@ public class ProposalsController {
         model.addAttribute("proposals", proposalService.proposalsByAccountId(id));
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
-        model.addAttribute("link", "proposals/accepted");
-        model.addAttribute("linkName", "Accepted Proposals");
+        model.addAttribute("link", "/proposals/account/");
         return "proposals";
     }
 
@@ -70,8 +68,17 @@ public class ProposalsController {
         model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", true);
         model.addAttribute("title", "Accepted Proposals");
-        model.addAttribute("link", "proposals");
-        model.addAttribute("linkName", "Proposals");
+        model.addAttribute("link", "/proposals/accepted/account/");
+        return "proposals";
+    }
+
+    @GetMapping("/proposals/accepted/account/{id}")
+    public String listAcceptedProposalsByAccount(@PathVariable("id") Long id, Model model) {
+        detailsFlag = false;
+        model.addAttribute("proposals", proposalService.proposalsByAccountId(id));
+        model.addAttribute("accepted", true);
+        model.addAttribute("title", "Accepted Proposals");
+        model.addAttribute("link", "/proposals/accepted/account/");
         return "proposals";
     }
 
