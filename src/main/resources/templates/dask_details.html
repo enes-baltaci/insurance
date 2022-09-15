@@ -1,131 +1,132 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
-  <link rel="stylesheet" th:href="@{/styles.css}">
-  <meta charset="UTF-8">
-  <title>Insurance App :: Dask Details</title>
-  <style>
-    p {
-      color: blue;
-    }
-  </style>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <meta charset="UTF-8">
+    <title>Insurance App :: Dask Details</title>
+    <style>
+        p {
+            color: blue;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
 
-  <hr>
+    <hr>
 
-  <div th:replace="fragments :: navbar"></div>
+    <div th:replace="fragments :: navbar"></div>
 
-  <hr>
+    <hr>
 
-  <h2>Dask Details</h2>
-  <hr>
+    <h2>Dask Details</h2>
+    <hr>
 
-  <div class="parent_center">
-    <p>
-      <strong>Client Name:</strong>&nbsp
-    </p>
-    <p th:text="${dask.account.name + ' ' + dask.account.surname}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Client Name:</strong>&nbsp
+        </p>
+        <p th:text="${dask.account.name + ' ' + dask.account.surname}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Client Email:</strong>&nbsp
-    </p>
-    <p th:text="${dask.account.email}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Client Email:</strong>&nbsp
+        </p>
+        <p th:text="${dask.account.email}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Build Year:</strong>&nbsp
-    </p>
-    <p th:text="${dask.buildYear}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Build Year:</strong>&nbsp
+        </p>
+        <p th:text="${dask.buildYear}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Building Style:</strong>&nbsp
-    </p>
-    <p th:text="${dask.daskBuildingStyle.buildingStyle}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Building Style:</strong>&nbsp
+        </p>
+        <p th:text="${dask.daskBuildingStyle.buildingStyle}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Floor Number:</strong>&nbsp
-    </p>
-    <p th:text="${dask.floorNumber}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Floor Number:</strong>&nbsp
+        </p>
+        <p th:text="${dask.floorNumber}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Damage Status:</strong>&nbsp
-    </p>
-    <p th:text="${dask.daskDamageStatus.damageStatus}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Damage Status:</strong>&nbsp
+        </p>
+        <p th:text="${dask.daskDamageStatus.damageStatus}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Area:</strong>&nbsp
-    </p>
-    <p th:text="${dask.area}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Area:</strong>&nbsp
+        </p>
+        <p th:text="${dask.area}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>City:</strong>&nbsp
-    </p>
-    <p th:text="${dask.address.city.cityName}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>City:</strong>&nbsp
+        </p>
+        <p th:text="${dask.address.city.cityName}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>County:</strong>&nbsp
-    </p>
-    <p th:text="${dask.address.county}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>County:</strong>&nbsp
+        </p>
+        <p th:text="${dask.address.county}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Open Address:</strong>&nbsp
-    </p>
-    <p th:text="${dask.address.openAddress}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Open Address:</strong>&nbsp
+        </p>
+        <p th:text="${dask.address.openAddress}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Proposal Price:</strong>&nbsp
-    </p>
-    <p th:text="${dask.proposal.price} + ' TL'"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Proposal Price:</strong>&nbsp
+        </p>
+        <p th:text="${dask.proposal.price} + ' TL'"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Proposal Date:</strong>&nbsp
-    </p>
-    <p th:text="${dask.proposal.proposalDate}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Proposal Date:</strong>&nbsp
+        </p>
+        <p th:text="${dask.proposal.proposalDate}"/>
+    </div>
 
-  <div class="parent_center">
-    <p>
-      <strong>Proposal Accepted Date:</strong>&nbsp
-    </p>
-    <p th:text="${dask.proposal.proposalAcceptedDate}"/>
-  </div>
+    <div class="parent_center">
+        <p>
+            <strong>Proposal Accepted Date:</strong>&nbsp
+        </p>
+        <p th:text="${dask.proposal.proposalAcceptedDate}"/>
+    </div>
 
-  <div th:if="${dask.proposal.status} == false" class="parent_center">
-    <form th:action="@{/proposals/accept/{id}(id=${dask.proposal.id})}" action="#" method="post">
-      <button type="submit" class="btn btn-primary">
-        Accept
-      </button>
-    </form>
-  </div>
+    <div th:if="${dask.proposal.status} == false" class="parent_center">
+        <form th:action="@{/proposals/accept/{id}(id=${dask.proposal.id})}" th:object="${dto}" method="post">
+            <input type="hidden" th:attr="name='flag'" th:value="${true}">
+            <button type="submit" class="btn btn-primary">
+                Accept
+            </button>
+        </form>
+    </div>
 
-  <hr>
+    <hr>
 
 </div>
 

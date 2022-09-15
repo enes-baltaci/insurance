@@ -1,9 +1,6 @@
 package com.sbm.insurance.controllers;
 
-import com.sbm.insurance.entities.Car;
-import com.sbm.insurance.entities.Dask;
-import com.sbm.insurance.entities.Proposal;
-import com.sbm.insurance.entities.Travel;
+import com.sbm.insurance.entities.*;
 import com.sbm.insurance.services.CarService;
 import com.sbm.insurance.services.DaskService;
 import com.sbm.insurance.services.ProposalService;
@@ -11,10 +8,10 @@ import com.sbm.insurance.services.TravelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.xml.ws.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -40,11 +37,8 @@ public class ProposalsController {
         this.proposalService = proposalService;
     }
 
-    private boolean detailsFlag = false;
-
     @GetMapping("/proposals")
     public String listProposals(Model model) {
-        detailsFlag = false;
         model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
@@ -54,7 +48,6 @@ public class ProposalsController {
 
     @GetMapping("/proposals/account/{id}")
     public String listProposalsByAccount(@PathVariable("id") Long id, Model model) {
-        detailsFlag = false;
         model.addAttribute("proposals", proposalService.proposalsByAccountId(id));
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
@@ -64,7 +57,6 @@ public class ProposalsController {
 
     @GetMapping("/proposals/accepted")
     public String listAcceptedProposals(Model model) {
-        detailsFlag = false;
         model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", true);
         model.addAttribute("title", "Accepted Proposals");
@@ -74,7 +66,6 @@ public class ProposalsController {
 
     @GetMapping("/proposals/accepted/account/{id}")
     public String listAcceptedProposalsByAccount(@PathVariable("id") Long id, Model model) {
-        detailsFlag = false;
         model.addAttribute("proposals", proposalService.proposalsByAccountId(id));
         model.addAttribute("accepted", true);
         model.addAttribute("title", "Accepted Proposals");
@@ -88,7 +79,7 @@ public class ProposalsController {
 
         if (optionalTravel.isPresent()) {
             model.addAttribute("travel", optionalTravel.get());
-            detailsFlag = true;
+            model.addAttribute("dto", new IdDTO());
             return "travel_details";
         } else {
             return "id_error";
@@ -101,7 +92,7 @@ public class ProposalsController {
 
         if (optionalCar.isPresent()) {
             model.addAttribute("car", optionalCar.get());
-            detailsFlag = true;
+            model.addAttribute("dto", new IdDTO());
             return "car_details";
         } else {
             return "id_error";
@@ -114,7 +105,7 @@ public class ProposalsController {
 
         if (optionalDask.isPresent()) {
             model.addAttribute("dask", optionalDask.get());
-            detailsFlag = true;
+            model.addAttribute("dto", new IdDTO());
             return "dask_details";
         } else {
             return "id_error";
@@ -122,7 +113,7 @@ public class ProposalsController {
     }
 
     @PostMapping("/proposals/accept/{id}")
-    public String accept(@PathVariable Long id) {
+    public String accept(@PathVariable Long id, @ModelAttribute("dto") IdDTO dto) {
         Optional<Proposal> optionalProposal = proposalService.getById(id);
 
         if (optionalProposal.isPresent()) {
@@ -136,7 +127,7 @@ public class ProposalsController {
                 proposalService.setAcceptedDate(optionalProposal.get().getId(), formatter.format(date)); // date
             }
 
-            return detailsFlag ? "redirect:/proposals/accepted" : "redirect:/proposals";
+            return dto.isFlag() ? "redirect:/proposals/accepted" : "redirect:/proposals";
         } else {
             return "id_error";
         }

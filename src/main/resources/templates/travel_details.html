@@ -90,7 +90,8 @@
     </div>
 
     <div th:if="${travel.proposal.status} == false" class="parent_center">
-        <form th:action="@{/proposals/accept/{id}(id=${travel.proposal.id})}" action="#" method="post">
+        <form th:action="@{/proposals/accept/{id}(id=${travel.proposal.id})}" th:object="${dto}" method="post">
+            <input type="hidden" th:attr="name='flag'" th:value="${true}">
             <button type="submit" class="btn btn-primary">
                 Accept
             </button>
