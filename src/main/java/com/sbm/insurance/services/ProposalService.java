@@ -4,10 +4,7 @@ import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.repositories.ProposalRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ProposalService {
@@ -34,7 +31,7 @@ public class ProposalService {
         proposalRepository.updateStatusById(id);
     }
 
-    public void setAcceptedDate(Long id, String date) {
+    public void setAcceptedDate(Long id, Date date) {
         proposalRepository.setAcceptedDateById(id, date);
     }
 

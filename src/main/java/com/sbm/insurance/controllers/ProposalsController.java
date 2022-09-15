@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -120,11 +119,10 @@ public class ProposalsController {
 
             if (!optionalProposal.get().isStatus()) {
 
-                proposalService.updateStatusById(optionalProposal.get().getId()); // Update status
+                proposalService.updateStatusById(optionalProposal.get().getId());
 
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");    // Set
-                Date date = new Date(System.currentTimeMillis());                                        // accepted
-                proposalService.setAcceptedDate(optionalProposal.get().getId(), formatter.format(date)); // date
+                Date date = new Date(System.currentTimeMillis());
+                proposalService.setAcceptedDate(optionalProposal.get().getId(), date);
             }
 
             return dto.isFlag() ? "redirect:/proposals/accepted" : "redirect:/proposals";
