@@ -71,8 +71,7 @@ public class ProposalsController {
             model.addAttribute("travel", optionalTravel.get());
             detailsFlag = true;
             return "travel_details";
-        }
-        else {
+        } else {
             return "id_error";
         }
     }
@@ -85,8 +84,7 @@ public class ProposalsController {
             model.addAttribute("car", optionalCar.get());
             detailsFlag = true;
             return "car_details";
-        }
-        else {
+        } else {
             return "id_error";
         }
     }
@@ -99,8 +97,7 @@ public class ProposalsController {
             model.addAttribute("dask", optionalDask.get());
             detailsFlag = true;
             return "dask_details";
-        }
-        else {
+        } else {
             return "id_error";
         }
     }
@@ -121,8 +118,7 @@ public class ProposalsController {
             }
 
             return detailsFlag ? "redirect:/proposals/accepted" : "redirect:/proposals";
-        }
-        else {
+        } else {
             return "id_error";
         }
     }
