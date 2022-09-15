@@ -44,7 +44,6 @@ public class CarService {
 
         float price = 1025;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
         price *= car.getBrand().getCarBrandMultiplier();
@@ -55,7 +54,7 @@ public class CarService {
 
         Proposal proposal = Proposal.builder()
                 .price(price)
-                .proposalDate(formatter.format(date))
+                .proposalDate(date)
                 .type("Car")
                 .build();
 

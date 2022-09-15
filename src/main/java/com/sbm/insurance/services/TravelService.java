@@ -45,12 +45,11 @@ public class TravelService {
             travel.setDistance_km((float) (travel.getDistance_km() * 1.6));
         }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
         Proposal proposal = Proposal.builder()
                 .price(price)
-                .proposalDate(formatter.format(date))
+                .proposalDate(date)
                 .type("Travel")
                 .build();
 

@@ -79,7 +79,7 @@ public class ProposalsController {
 
         if (optionalTravel.isPresent()) {
             model.addAttribute("travel", optionalTravel.get());
-            model.addAttribute("dto", new IdDTO());
+            model.addAttribute("dto", new BooleanDTO());
             return "travel_details";
         } else {
             return "id_error";
@@ -92,7 +92,7 @@ public class ProposalsController {
 
         if (optionalCar.isPresent()) {
             model.addAttribute("car", optionalCar.get());
-            model.addAttribute("dto", new IdDTO());
+            model.addAttribute("dto", new BooleanDTO());
             return "car_details";
         } else {
             return "id_error";
@@ -105,7 +105,7 @@ public class ProposalsController {
 
         if (optionalDask.isPresent()) {
             model.addAttribute("dask", optionalDask.get());
-            model.addAttribute("dto", new IdDTO());
+            model.addAttribute("dto", new BooleanDTO());
             return "dask_details";
         } else {
             return "id_error";
@@ -113,7 +113,7 @@ public class ProposalsController {
     }
 
     @PostMapping("/proposals/accept/{id}")
-    public String accept(@PathVariable Long id, @ModelAttribute("dto") IdDTO dto) {
+    public String accept(@PathVariable Long id, @ModelAttribute("dto") BooleanDTO dto) {
         Optional<Proposal> optionalProposal = proposalService.getById(id);
 
         if (optionalProposal.isPresent()) {

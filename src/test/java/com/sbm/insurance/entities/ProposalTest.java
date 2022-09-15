@@ -26,7 +26,7 @@ class ProposalTest {
 
         Proposal proposal = Proposal.builder()
                 .price(5)
-                .proposalDate(formatter.format(date))
+                .proposalDate(date)
                 .build();
 
         proposalService.save(proposal);

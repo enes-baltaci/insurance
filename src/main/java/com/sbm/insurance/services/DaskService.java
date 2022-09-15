@@ -64,12 +64,11 @@ public class DaskService {
 
         price *= daskBuildYearService.getBuildYearMultiplier(Calendar.getInstance().get(Calendar.YEAR) - dask.getBuildYear());
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
 
         Proposal proposal = Proposal.builder()
                 .price(price)
-                .proposalDate(formatter.format(date))
+                .proposalDate(date)
                 .type("Dask")
                 .build();
 

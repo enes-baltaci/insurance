@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class IdDTO {
+public class BooleanDTO {
     private boolean flag;
 }

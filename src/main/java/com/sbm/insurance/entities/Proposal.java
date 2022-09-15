@@ -1,8 +1,10 @@
 package com.sbm.insurance.entities;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -23,11 +25,11 @@ public class Proposal {
     @Column(columnDefinition = "boolean default false")
     private boolean status;
 
-    @Column(length = 40)
-    private String proposalDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy 'at' HH:mm:ss")
+    private Date proposalDate;
 
-    @Column(length = 40)
-    private String proposalAcceptedDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy 'at' HH:mm:ss")
+    private Date proposalAcceptedDate;
 
     @OneToOne(mappedBy = "proposal", cascade = CascadeType.REMOVE)
     private Car car;
