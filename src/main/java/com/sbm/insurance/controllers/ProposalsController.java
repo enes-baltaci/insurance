@@ -39,8 +39,11 @@ public class ProposalsController {
         this.proposalService = proposalService;
     }
 
+    private boolean detailsFlag = false;
+
     @GetMapping("/proposals")
     public String listProposals(Model model) {
+        detailsFlag = false;
         model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", false);
         model.addAttribute("title", "Proposals");
@@ -51,6 +54,7 @@ public class ProposalsController {
 
     @GetMapping("/proposals/accepted")
     public String listAcceptedProposals(Model model) {
+        detailsFlag = false;
         model.addAttribute("proposals", proposalService.getAll());
         model.addAttribute("accepted", true);
         model.addAttribute("title", "Accepted Proposals");
@@ -65,6 +69,7 @@ public class ProposalsController {
 
         if (optionalTravel.isPresent()) {
             model.addAttribute("travel", optionalTravel.get());
+            detailsFlag = true;
             return "travel_details";
         }
         else {
@@ -78,6 +83,7 @@ public class ProposalsController {
 
         if (optionalCar.isPresent()) {
             model.addAttribute("car", optionalCar.get());
+            detailsFlag = true;
             return "car_details";
         }
         else {
@@ -91,6 +97,7 @@ public class ProposalsController {
 
         if (optionalDask.isPresent()) {
             model.addAttribute("dask", optionalDask.get());
+            detailsFlag = true;
             return "dask_details";
         }
         else {
@@ -112,7 +119,8 @@ public class ProposalsController {
                 Date date = new Date(System.currentTimeMillis());                                        // accepted
                 proposalService.setAcceptedDate(optionalProposal.get().getId(), formatter.format(date)); // date
             }
-            return "redirect:/proposals";
+
+            return detailsFlag ? "redirect:/proposals/accepted" : "redirect:/proposals";
         }
         else {
             return "id_error";
