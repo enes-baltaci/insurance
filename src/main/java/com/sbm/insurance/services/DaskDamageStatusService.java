@@ -2,7 +2,6 @@ package com.sbm.insurance.services;
 
 import com.sbm.insurance.entities.DaskDamageStatus;
 import com.sbm.insurance.repositories.DaskDamageStatusRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @Service
 public class DaskDamageStatusService {
 
-    @Autowired
-    private DaskDamageStatusRepository daskDamageStatusRepository;
+    private final DaskDamageStatusRepository daskDamageStatusRepository;
+
+    public DaskDamageStatusService(DaskDamageStatusRepository daskDamageStatusRepository) {
+        this.daskDamageStatusRepository = daskDamageStatusRepository;
+    }
 
     public void save(DaskDamageStatus daskDamageStatus) {
         daskDamageStatusRepository.save(daskDamageStatus);

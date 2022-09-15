@@ -4,7 +4,6 @@ import com.sbm.insurance.entities.Address;
 import com.sbm.insurance.entities.Dask;
 import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.repositories.DaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -15,23 +14,31 @@ import java.util.Optional;
 @Service
 public class DaskService {
 
-    @Autowired
-    private DaskRepository daskRepository;
+    private final DaskRepository daskRepository;
 
-    @Autowired
-    private DaskAreaService daskAreaService;
+    private final DaskAreaService daskAreaService;
 
-    @Autowired
-    private DaskFloorNumberService daskFloorNumberService;
+    private final DaskFloorNumberService daskFloorNumberService;
 
-    @Autowired
-    private DaskBuildYearService daskBuildYearService;
+    private final DaskBuildYearService daskBuildYearService;
 
-    @Autowired
-    private AddressService addressService;
+    private final AddressService addressService;
 
-    @Autowired
-    private ProposalService proposalService;
+    private final ProposalService proposalService;
+
+    public DaskService(DaskRepository daskRepository,
+                       DaskAreaService daskAreaService,
+                       DaskFloorNumberService daskFloorNumberService,
+                       DaskBuildYearService daskBuildYearService,
+                       AddressService addressService,
+                       ProposalService proposalService) {
+        this.daskRepository = daskRepository;
+        this.daskAreaService = daskAreaService;
+        this.daskFloorNumberService = daskFloorNumberService;
+        this.daskBuildYearService = daskBuildYearService;
+        this.addressService = addressService;
+        this.proposalService = proposalService;
+    }
 
     public void save(Dask dask) {
         daskRepository.save(dask);

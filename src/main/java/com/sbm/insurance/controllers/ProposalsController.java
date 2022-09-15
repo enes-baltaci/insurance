@@ -8,7 +8,6 @@ import com.sbm.insurance.services.CarService;
 import com.sbm.insurance.services.DaskService;
 import com.sbm.insurance.services.ProposalService;
 import com.sbm.insurance.services.TravelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,17 +21,23 @@ import java.util.Optional;
 @Controller
 public class ProposalsController {
 
-    @Autowired
-    private TravelService travelService;
+    private final TravelService travelService;
 
-    @Autowired
-    private CarService carService;
+    private final CarService carService;
 
-    @Autowired
-    private DaskService daskService;
+    private final DaskService daskService;
 
-    @Autowired
-    private ProposalService proposalService;
+    private final ProposalService proposalService;
+
+    public ProposalsController(TravelService travelService,
+                               CarService carService,
+                               DaskService daskService,
+                               ProposalService proposalService) {
+        this.travelService = travelService;
+        this.carService = carService;
+        this.daskService = daskService;
+        this.proposalService = proposalService;
+    }
 
     @GetMapping("/proposals")
     public String listProposals(Model model) {
@@ -107,7 +112,7 @@ public class ProposalsController {
                 Date date = new Date(System.currentTimeMillis());                                        // accepted
                 proposalService.setAcceptedDate(optionalProposal.get().getId(), formatter.format(date)); // date
             }
-            return "redirect:/proposals/accepted";
+            return "redirect:/proposals";
         }
         else {
             return "id_error";

@@ -3,7 +3,6 @@ package com.sbm.insurance.controllers;
 import com.sbm.insurance.entities.Address;
 import com.sbm.insurance.entities.Dask;
 import com.sbm.insurance.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,20 +14,27 @@ import javax.validation.Valid;
 @Controller
 public class DaskController {
 
-    @Autowired
-    private DaskService daskService;
+    private final DaskService daskService;
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    @Autowired
-    private CitiesService citiesService;
+    private final CitiesService citiesService;
 
-    @Autowired
-    private DaskDamageStatusService daskDamageStatusService;
+    private final DaskDamageStatusService daskDamageStatusService;
 
-    @Autowired
-    private DaskBuildingStyleService daskBuildingStyleService;
+    private final DaskBuildingStyleService daskBuildingStyleService;
+
+    public DaskController(DaskService daskService,
+                          AccountService accountService,
+                          CitiesService citiesService,
+                          DaskDamageStatusService daskDamageStatusService,
+                          DaskBuildingStyleService daskBuildingStyleService) {
+        this.daskService = daskService;
+        this.accountService = accountService;
+        this.citiesService = citiesService;
+        this.daskDamageStatusService = daskDamageStatusService;
+        this.daskBuildingStyleService = daskBuildingStyleService;
+    }
 
     @GetMapping("/dask_insurance")
     public String daskInsurance(Model model) {

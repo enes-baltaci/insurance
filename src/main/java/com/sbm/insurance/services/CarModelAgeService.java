@@ -2,7 +2,6 @@ package com.sbm.insurance.services;
 
 import com.sbm.insurance.entities.CarModelAge;
 import com.sbm.insurance.repositories.CarModelAgeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @Service
 public class CarModelAgeService {
 
-    @Autowired
-    private CarModelAgeRepository carModelAgeRepository;
+    private final CarModelAgeRepository carModelAgeRepository;
+
+    public CarModelAgeService(CarModelAgeRepository carModelAgeRepository) {
+        this.carModelAgeRepository = carModelAgeRepository;
+    }
 
     public void save(CarModelAge carModelAge) {
         carModelAgeRepository.save(carModelAge);

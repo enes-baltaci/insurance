@@ -4,7 +4,6 @@ import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.services.AccountService;
 import com.sbm.insurance.services.TravelService;
 import com.sbm.insurance.services.TravelTypesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +15,19 @@ import javax.validation.Valid;
 @Controller
 public class TravelController {
 
-    @Autowired
-    private TravelService travelService;
+    private final TravelService travelService;
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    @Autowired
-    private TravelTypesService travelTypesService;
+    private final TravelTypesService travelTypesService;
+
+    public TravelController(TravelService travelService,
+                            AccountService accountService,
+                            TravelTypesService travelTypesService) {
+        this.travelService = travelService;
+        this.accountService = accountService;
+        this.travelTypesService = travelTypesService;
+    }
 
     @GetMapping("/travel_insurance")
     public String travel_insurance(Model model) {

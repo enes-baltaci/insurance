@@ -2,7 +2,6 @@ package com.sbm.insurance.services;
 
 import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.repositories.ProposalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.Optional;
 @Service
 public class ProposalService {
 
-    @Autowired
-    private ProposalRepository proposalRepository;
+    private final ProposalRepository proposalRepository;
+
+    public ProposalService(ProposalRepository proposalRepository) {
+        this.proposalRepository = proposalRepository;
+    }
 
     public void save(Proposal proposal) {
         proposalRepository.save(proposal);

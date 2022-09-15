@@ -2,7 +2,6 @@ package com.sbm.insurance.services;
 
 import com.sbm.insurance.entities.DaskFloorNumber;
 import com.sbm.insurance.repositories.DaskFloorNumberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @Service
 public class DaskFloorNumberService {
 
-    @Autowired
-    private DaskFloorNumberRepository daskFloorNumberRepository;
+    private final DaskFloorNumberRepository daskFloorNumberRepository;
+
+    public DaskFloorNumberService(DaskFloorNumberRepository daskFloorNumberRepository) {
+        this.daskFloorNumberRepository = daskFloorNumberRepository;
+    }
 
     public void save(DaskFloorNumber daskFloorNumber) {
         daskFloorNumberRepository.save(daskFloorNumber);

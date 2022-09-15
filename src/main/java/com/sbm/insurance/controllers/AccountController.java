@@ -3,7 +3,6 @@ package com.sbm.insurance.controllers;
 import com.sbm.insurance.entities.Account;
 import com.sbm.insurance.services.AccountService;
 import com.sbm.insurance.services.CitiesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,14 +17,17 @@ import java.util.Optional;
 @Controller
 public class AccountController {
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    @Autowired
-    private CitiesService citiesService;
+    private final CitiesService citiesService;
 
     private boolean emailExist = true;
     private boolean updated = false;
+
+    public AccountController(AccountService accountService, CitiesService citiesService) {
+        this.accountService = accountService;
+        this.citiesService = citiesService;
+    }
 
     @GetMapping("/create_account")
     public String createAccount(Model model) {
@@ -61,7 +63,7 @@ public class AccountController {
         }
         emailExist = true;
         updated = false;
-        return "account_creation_info";
+        return "account_info";
     }
 
     @GetMapping("/account_list")

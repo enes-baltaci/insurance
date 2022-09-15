@@ -2,7 +2,6 @@ package com.sbm.insurance.services;
 
 import com.sbm.insurance.entities.DaskArea;
 import com.sbm.insurance.repositories.DaskAreaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +9,11 @@ import java.util.List;
 @Service
 public class DaskAreaService {
 
-    @Autowired
-    private DaskAreaRepository daskAreaRepository;
+    private final DaskAreaRepository daskAreaRepository;
+
+    public DaskAreaService(DaskAreaRepository daskAreaRepository) {
+        this.daskAreaRepository = daskAreaRepository;
+    }
 
     public void save(DaskArea daskArea) {
         daskAreaRepository.save(daskArea);

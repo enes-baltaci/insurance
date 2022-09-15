@@ -3,7 +3,6 @@ package com.sbm.insurance.services;
 import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.repositories.TravelRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -14,11 +13,15 @@ import java.util.Optional;
 @Service
 public class TravelService {
 
-    @Autowired
-    private TravelRepository travelRepository;
+    private final TravelRepository travelRepository;
 
-    @Autowired
-    private ProposalService proposalService;
+    private final ProposalService proposalService;
+
+    public TravelService(TravelRepository travelRepository,
+                         ProposalService proposalService) {
+        this.travelRepository = travelRepository;
+        this.proposalService = proposalService;
+    }
 
     public void save(Travel travel) {
         travelRepository.save(travel);

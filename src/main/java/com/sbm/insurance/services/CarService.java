@@ -3,7 +3,6 @@ package com.sbm.insurance.services;
 import com.sbm.insurance.entities.Car;
 import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.repositories.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -15,14 +14,19 @@ import java.util.Optional;
 @Service
 public class CarService {
 
-    @Autowired
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
 
-    @Autowired
-    private CarModelAgeService carModelAgeService;
+    private final CarModelAgeService carModelAgeService;
 
-    @Autowired
-    private ProposalService proposalService;
+    private final ProposalService proposalService;
+
+    public CarService(CarRepository carRepository,
+                      CarModelAgeService carModelAgeService,
+                      ProposalService proposalService) {
+        this.carRepository = carRepository;
+        this.carModelAgeService = carModelAgeService;
+        this.proposalService = proposalService;
+    }
 
     public void save(Car car) {
         carRepository.save(car);
