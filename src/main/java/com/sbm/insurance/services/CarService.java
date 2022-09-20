@@ -5,7 +5,6 @@ import com.sbm.insurance.entities.Proposal;
 import com.sbm.insurance.repositories.CarRepository;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

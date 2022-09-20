@@ -5,7 +5,6 @@ import com.sbm.insurance.entities.Travel;
 import com.sbm.insurance.repositories.TravelRepository;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

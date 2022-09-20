@@ -112,7 +112,7 @@ public class ProposalsController {
     }
 
     @PostMapping("/proposals/accept/{id}")
-    public String accept(@PathVariable Long id, @ModelAttribute("dto") BooleanDTO dto) {
+    public String acceptProposal(@PathVariable Long id, @ModelAttribute("dto") BooleanDTO dto) {
         Optional<Proposal> optionalProposal = proposalService.getById(id);
 
         if (optionalProposal.isPresent()) {

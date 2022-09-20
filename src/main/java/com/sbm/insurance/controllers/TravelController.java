@@ -30,7 +30,7 @@ public class TravelController {
     }
 
     @GetMapping("/travel_insurance")
-    public String travel_insurance(Model model) {
+    public String travelInsurance(Model model) {
         model.addAttribute("travel", new Travel());
         model.addAttribute("accounts", accountService.getAll());
         model.addAttribute("travelTypes", travelTypesService.getAll());
@@ -38,7 +38,7 @@ public class TravelController {
     }
 
     @PostMapping("/travel_registration")
-    public String travel_registration(@Valid @ModelAttribute Travel travel, Model model) {
+    public String travelRegistration(@Valid @ModelAttribute Travel travel, Model model) {
 
         travelService.travelRegistration(travel);
 

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DaskBuildingStyleRepository extends JpaRepository<DaskBuildingStyle, Long> {
+
 }

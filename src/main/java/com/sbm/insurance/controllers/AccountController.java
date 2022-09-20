@@ -30,7 +30,7 @@ public class AccountController {
     }
 
     @GetMapping("/create_account")
-    public String createAccount(Model model) {
+    public String registration(Model model) {
         updated = false;
         model.addAttribute("account", new Account());
         model.addAttribute("cities", citiesService.getAll());
@@ -41,7 +41,7 @@ public class AccountController {
     }
 
     @PostMapping("/account_registration")
-    public String registration(@Valid @ModelAttribute Account account) {
+    public String createAccount(@Valid @ModelAttribute Account account) {
 
         try {
             accountService.save(account);
@@ -54,7 +54,7 @@ public class AccountController {
     }
 
     @GetMapping("/info/{id}")
-    public String info(@PathVariable("id") Long id, Model model) {
+    public String submitInfo(@PathVariable("id") Long id, Model model) {
         if (emailExist) {
             model.addAttribute("flag", true);
             if (updated) {

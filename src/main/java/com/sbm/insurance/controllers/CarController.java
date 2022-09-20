@@ -35,7 +35,7 @@ public class CarController {
     }
 
     @GetMapping("/car_insurance")
-    public String car_insurance(Model model) {
+    public String carInsurance(Model model) {
         model.addAttribute("car", new Car());
         model.addAttribute("accounts", accountService.getAll());
         model.addAttribute("brands", carBrandsService.getAll());
@@ -44,7 +44,7 @@ public class CarController {
     }
 
     @PostMapping("/car_registration")
-    public String car_registration(@Valid @ModelAttribute Car car, Model model) {
+    public String carRegistration(@Valid @ModelAttribute Car car, Model model) {
 
         carService.carRegistration(car);
 

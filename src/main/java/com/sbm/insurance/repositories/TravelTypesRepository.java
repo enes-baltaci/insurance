@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TravelTypesRepository extends JpaRepository<TravelType, Long> {
+
 }
