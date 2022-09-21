@@ -28,7 +28,7 @@
             <label for="identity" class="col-sm-2 col-form-label">Identity</label>
             <div class="col-sm-10">
                 <input th:field="*{identity}" type="number" name="identity" class="form-control" id="identity" placeholder="Identity"
-                       minlength="1" title="Identity length may be longer than 1 character" required>
+                       min="10000000000" max="99999999999" title="Identity length may be longer than 1 character" required>
             </div>
         </div>
 

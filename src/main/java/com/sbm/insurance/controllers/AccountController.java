@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -21,9 +20,6 @@ public class AccountController {
 
     private final CitiesService citiesService;
 
-    private boolean emailExist = true;
-    private boolean updated = false;
-
     public AccountController(AccountService accountService, CitiesService citiesService) {
         this.accountService = accountService;
         this.citiesService = citiesService;
@@ -31,7 +27,6 @@ public class AccountController {
 
     @GetMapping("/create_account")
     public String registration(Model model) {
-        updated = false;
         model.addAttribute("account", new Account());
         model.addAttribute("cities", citiesService.getAll());
         model.addAttribute("processName", "Create");
@@ -45,35 +40,10 @@ public class AccountController {
 
         try {
             accountService.save(account);
-            emailExist = false;
-            return "redirect:/info/0";
+            return "redirect:/info";
         } catch (Exception e) {
-            emailExist = true;
-            return "redirect:/info/0";
+            return "redirect:/emailExist";
         }
-    }
-
-    @GetMapping("/info/{id}")
-    public String submitInfo(@PathVariable("id") Long id, Model model) {
-        if (emailExist) {
-            model.addAttribute("flag", true);
-            if (updated) {
-                model.addAttribute("id", id);
-                model.addAttribute("updated", true);
-            }
-        } else if (updated) {
-            model.addAttribute("updated", true);
-        } else {
-            model.addAttribute("flag", false);
-        }
-        emailExist = true;
-        return "account_info";
-    }
-
-    @GetMapping("/account_list")
-    public String accountList(Model model) {
-        model.addAttribute("accounts", accountService.getAll());
-        return "account_list";
     }
 
     @GetMapping("/account_edit/{id}")
@@ -86,7 +56,6 @@ public class AccountController {
             model.addAttribute("processName", "Update");
             model.addAttribute("cities", citiesService.getAll());
             model.addAttribute("action", "account_edit/" + accountOptional.get().getId());
-            updated = true;
             return "account";
         } else {
             return "id_error";
@@ -102,38 +71,30 @@ public class AccountController {
 
         Account accountDatabase = accountService.getById(id).get();
 
-        if (!Objects.equals(account.getIdentity(), accountDatabase.getIdentity())) {
-            accountDatabase.setIdentity(account.getIdentity());
-        }
+        accountDatabase.setIdentity(account.getIdentity());
 
-        if (!account.getName().equalsIgnoreCase(accountDatabase.getName())) {
-            accountDatabase.setName(account.getName());
-        }
+        accountDatabase.setName(account.getName());
 
-        if (!account.getSurname().equalsIgnoreCase(accountDatabase.getSurname())) {
-            accountDatabase.setSurname(account.getSurname());
-        }
+        accountDatabase.setSurname(account.getSurname());
 
-        if (!account.getEmail().equalsIgnoreCase(accountDatabase.getEmail())) {
-            accountDatabase.setEmail(account.getEmail());
-        }
+        accountDatabase.setEmail(account.getEmail());
 
-        if (account.getAge() != accountDatabase.getAge()) {
-            accountDatabase.setAge(account.getAge());
-        }
+        accountDatabase.setAge(account.getAge());
 
-        if (!account.getCity().getCityName().equalsIgnoreCase(accountDatabase.getCity().getCityName())) {
-            accountDatabase.setCity(account.getCity());
-        }
+        accountDatabase.setCity(account.getCity());
 
         try {
             accountService.save(account);
-            emailExist = false;
-            return "redirect:/info/" + accountDatabase.getId();
+            return "redirect:/info/update";
         } catch (Exception e) {
-            emailExist = true;
-            return "redirect:/info/" + accountDatabase.getId();
+            return "redirect:/emailExist/update/" + accountDatabase.getId();
         }
+    }
+
+    @GetMapping("/account_list")
+    public String accountList(Model model) {
+        model.addAttribute("accounts", accountService.getAll());
+        return "account_list";
     }
 
     @GetMapping("/account/delete/{id}")
@@ -144,5 +105,30 @@ public class AccountController {
         } catch (Exception e) {
             return "id_error";
         }
+    }
+
+    @GetMapping("/info")
+    public String submitInfoCreate() {
+        return "account_info";
+    }
+
+    @GetMapping("/info/update")
+    public String submitInfoUpdate(Model model) {
+        model.addAttribute("updated", true);
+        return "account_info";
+    }
+
+    @GetMapping("/emailExist")
+    public String emailExist(Model model) {
+        model.addAttribute("flag", true);
+        return "account_info";
+    }
+
+    @GetMapping("/emailExist/update/{id}")
+    public String emailExistUpdated( @PathVariable("id") String id, Model model) {
+        model.addAttribute("flag", true);
+        model.addAttribute("updated", true);
+        model.addAttribute("id", id);
+        return "account_info";
     }
 }

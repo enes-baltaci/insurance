@@ -36,6 +36,7 @@ public class ProposalService {
     }
 
     public List<Proposal> proposalsByAccountId(Long id) {
+
         List<Proposal> proposals = getAll();
 
         List<Proposal> proposalsByAccount = new ArrayList<>();
@@ -43,10 +44,12 @@ public class ProposalService {
         for (Proposal proposal : proposals) {
             if (proposal.getCar() != null && Objects.equals(proposal.getCar().getAccount().getId(), id)) {
                 proposalsByAccount.add(proposal);
+                continue;
             }
 
             if (proposal.getTravel() != null && Objects.equals(proposal.getTravel().getAccount().getId(), id)) {
                 proposalsByAccount.add(proposal);
+                continue;
             }
 
             if (proposal.getDask() != null && Objects.equals(proposal.getDask().getAccount().getId(), id)) {

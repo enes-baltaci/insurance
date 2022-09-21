@@ -272,7 +272,7 @@ class InitialData {
         ArrayList<Account> accounts = new ArrayList<>() {
             {
                 add(Account.builder()
-                        .identity(12345L)
+                        .identity(12345678901L)
                         .name("Enes")
                         .surname("Baltacı")
                         .email("enes@gmail.com")
@@ -280,7 +280,7 @@ class InitialData {
                         .city(citiesService.getCityById(40L))
                         .build());
                 add(Account.builder()
-                        .identity(12346L)
+                        .identity(12345678902L)
                         .name("Nazif")
                         .surname("İlbek")
                         .email("nazif@gmail.com")
@@ -288,7 +288,7 @@ class InitialData {
                         .city(citiesService.getCityById(7L))
                         .build());
                 add(Account.builder()
-                        .identity(12347L)
+                        .identity(12345678903L)
                         .name("İrem")
                         .surname("Er")
                         .email("irem@gmail.com")

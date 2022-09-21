@@ -31,7 +31,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(1)
+    @Min(10000000000L)
     @Max(99999999999L)
     private Long identity;
 
@@ -46,7 +46,7 @@ public class Account {
     private String surname;
 
     @Min(value = 0, message = "Minimum age is 0.")
-    @Max(value = 125, message = "Maximum age is 125")
+    @Max(value = 250, message = "Maximum age is 125")
     private int age;
 
     @NotBlank(message = "Email may not be empty")

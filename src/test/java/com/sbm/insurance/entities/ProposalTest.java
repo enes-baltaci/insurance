@@ -21,7 +21,6 @@ class ProposalTest {
     @Test
     void createProposal() {
 
-        SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
 
         Proposal proposal = Proposal.builder()

@@ -10,7 +10,4 @@ import javax.transaction.Transactional;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    @Transactional
-    @Modifying
-    void deleteAccountById(Long id);
 }
