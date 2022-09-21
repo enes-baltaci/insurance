@@ -27,14 +27,6 @@ public class ProposalService {
         return proposalRepository.findById(id);
     }
 
-    public void updateStatusById(Long id) {
-        proposalRepository.updateStatusById(id);
-    }
-
-    public void setAcceptedDate(Long id, Date date) {
-        proposalRepository.setAcceptedDateById(id, date);
-    }
-
     public List<Proposal> proposalsByAccountId(Long id) {
 
         List<Proposal> proposals = getAll();

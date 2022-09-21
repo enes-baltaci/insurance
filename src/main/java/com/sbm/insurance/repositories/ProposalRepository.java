@@ -13,21 +13,5 @@ import java.util.Date;
 public interface ProposalRepository extends JpaRepository<Proposal, Long> {
     @Modifying
     @Transactional
-    @Query(
-            value = "UPDATE proposal SET status = true WHERE id = ?1",
-            nativeQuery = true
-    )
-    void updateStatusById(Long id);
-
-    @Modifying
-    @Transactional
-    @Query(
-            value = "UPDATE proposal SET proposal_accepted_date = ?2 WHERE id = ?1",
-            nativeQuery = true
-    )
-    void setAcceptedDateById(Long id, Date date);
-
-    @Modifying
-    @Transactional
     void deleteProposalById(Long id);
 }

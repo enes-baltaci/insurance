@@ -117,12 +117,15 @@ public class ProposalsController {
 
         if (optionalProposal.isPresent()) {
 
-            if (!optionalProposal.get().isStatus()) {
+            Proposal proposal = optionalProposal.get();
 
-                proposalService.updateStatusById(optionalProposal.get().getId());
+            if (!proposal.isStatus()) {
 
-                Date date = new Date(System.currentTimeMillis());
-                proposalService.setAcceptedDate(optionalProposal.get().getId(), date);
+                proposal.setStatus(true);
+
+                proposal.setProposalAcceptedDate(new Date(System.currentTimeMillis()));
+
+                proposalService.save(proposal);
             }
 
             return dto.isFlag() ? "redirect:/proposals/accepted" : "redirect:/proposals";
