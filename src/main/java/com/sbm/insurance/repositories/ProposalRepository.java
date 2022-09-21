@@ -11,7 +11,4 @@ import java.util.Date;
 
 @Repository
 public interface ProposalRepository extends JpaRepository<Proposal, Long> {
-    @Modifying
-    @Transactional
-    void deleteProposalById(Long id);
 }

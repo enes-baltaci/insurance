@@ -53,6 +53,6 @@ public class ProposalService {
     }
 
     public void deleteProposal(Long id) {
-        proposalRepository.deleteProposalById(id);
+        proposalRepository.deleteById(id);
     }
 }
